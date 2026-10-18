@@ -1,0 +1,15 @@
+{
+  "id": "semicolon",
+  "label": ";",
+  "full": "Semicolon",
+  "group": "caps",
+  "pua": "U+E039",
+  "codepoint": 57401,
+  "width": 51.718,
+  "keycodes": [
+    "Semicolon"
+  ],
+  "folder": "U+E039_Semicolon",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

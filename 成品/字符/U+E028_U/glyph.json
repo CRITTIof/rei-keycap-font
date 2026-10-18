@@ -1,0 +1,15 @@
+{
+  "id": "keyu",
+  "label": "U",
+  "full": "U",
+  "group": "letters",
+  "pua": "U+E028",
+  "codepoint": 57384,
+  "width": 71.374,
+  "keycodes": [
+    "KeyU"
+  ],
+  "folder": "U+E028_U",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "home",
+  "label": "Home",
+  "full": "Home",
+  "group": "function",
+  "pua": "U+E00F",
+  "codepoint": 57359,
+  "width": 162.43,
+  "keycodes": [
+    "Home"
+  ],
+  "folder": "U+E00F_Home",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "period",
+  "label": ".",
+  "full": "Period",
+  "group": "shift",
+  "pua": "U+E045",
+  "codepoint": 57413,
+  "width": 51.718,
+  "keycodes": [
+    "Period",
+    "NumpadDecimal"
+  ],
+  "folder": "U+E045_Period",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

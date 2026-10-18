@@ -1,0 +1,15 @@
+{
+  "id": "f5",
+  "label": "F5",
+  "full": "F5",
+  "group": "function",
+  "pua": "U+E005",
+  "codepoint": 57349,
+  "width": 86.62,
+  "keycodes": [
+    "F5"
+  ],
+  "folder": "U+E005_F5",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

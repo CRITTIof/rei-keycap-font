@@ -1,0 +1,15 @@
+{
+  "id": "keyt",
+  "label": "T",
+  "full": "T",
+  "group": "letters",
+  "pua": "U+E026",
+  "codepoint": 57382,
+  "width": 63.94,
+  "keycodes": [
+    "KeyT"
+  ],
+  "folder": "U+E026_T",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

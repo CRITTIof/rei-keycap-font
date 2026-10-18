@@ -1,0 +1,16 @@
+{
+  "id": "digit9",
+  "label": "9",
+  "full": "9",
+  "group": "numbers",
+  "pua": "U+E01C",
+  "codepoint": 57372,
+  "width": 64.024,
+  "keycodes": [
+    "Digit9",
+    "Numpad9"
+  ],
+  "folder": "U+E01C_9",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

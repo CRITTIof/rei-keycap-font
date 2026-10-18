@@ -1,0 +1,15 @@
+{
+  "id": "delete",
+  "label": "Del",
+  "full": "Delete",
+  "group": "function",
+  "pua": "U+E00E",
+  "codepoint": 57358,
+  "width": 107.368,
+  "keycodes": [
+    "Delete"
+  ],
+  "folder": "U+E00E_Del",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

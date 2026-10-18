@@ -1,0 +1,16 @@
+{
+  "id": "digit4",
+  "label": "4",
+  "full": "4",
+  "group": "numbers",
+  "pua": "U+E017",
+  "codepoint": 57367,
+  "width": 64.024,
+  "keycodes": [
+    "Digit4",
+    "Numpad4"
+  ],
+  "folder": "U+E017_4",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

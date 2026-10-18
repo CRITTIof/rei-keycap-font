@@ -1,0 +1,15 @@
+{
+  "id": "comma",
+  "label": ",",
+  "full": "Comma",
+  "group": "shift",
+  "pua": "U+E044",
+  "codepoint": 57412,
+  "width": 51.718,
+  "keycodes": [
+    "Comma"
+  ],
+  "folder": "U+E044_Comma",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

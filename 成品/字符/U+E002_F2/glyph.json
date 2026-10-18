@@ -1,0 +1,15 @@
+{
+  "id": "f2",
+  "label": "F2",
+  "full": "F2",
+  "group": "function",
+  "pua": "U+E002",
+  "codepoint": 57346,
+  "width": 86.62,
+  "keycodes": [
+    "F2"
+  ],
+  "folder": "U+E002_F2",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

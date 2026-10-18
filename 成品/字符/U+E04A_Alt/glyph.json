@@ -1,0 +1,16 @@
+{
+  "id": "alt",
+  "label": "Alt",
+  "full": "Alt",
+  "group": "mods",
+  "pua": "U+E04A",
+  "codepoint": 57418,
+  "width": 97.288,
+  "keycodes": [
+    "AltLeft",
+    "AltRight"
+  ],
+  "folder": "U+E04A_Alt",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

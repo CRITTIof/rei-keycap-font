@@ -1,0 +1,15 @@
+{
+  "id": "keyw",
+  "label": "W",
+  "full": "W",
+  "group": "letters",
+  "pua": "U+E023",
+  "codepoint": 57379,
+  "width": 80.026,
+  "keycodes": [
+    "KeyW"
+  ],
+  "folder": "U+E023_W",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

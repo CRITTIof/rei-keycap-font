@@ -1,0 +1,16 @@
+{
+  "id": "digit1",
+  "label": "1",
+  "full": "1",
+  "group": "numbers",
+  "pua": "U+E014",
+  "codepoint": 57364,
+  "width": 64.024,
+  "keycodes": [
+    "Digit1",
+    "Numpad1"
+  ],
+  "folder": "U+E014_1",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

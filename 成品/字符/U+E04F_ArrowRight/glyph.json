@@ -1,0 +1,15 @@
+{
+  "id": "arrowright",
+  "label": "→",
+  "full": "Arrow Right",
+  "group": "mods",
+  "pua": "U+E04F",
+  "codepoint": 57423,
+  "width": 58.0,
+  "keycodes": [
+    "ArrowRight"
+  ],
+  "folder": "U+E04F_ArrowRight",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

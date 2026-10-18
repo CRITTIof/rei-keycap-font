@@ -1,0 +1,15 @@
+{
+  "id": "backspace",
+  "label": "Back",
+  "full": "Backspace",
+  "group": "numbers",
+  "pua": "U+E020",
+  "codepoint": 57376,
+  "width": 138.322,
+  "keycodes": [
+    "Backspace"
+  ],
+  "folder": "U+E020_Back",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

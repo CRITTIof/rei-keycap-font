@@ -1,0 +1,15 @@
+{
+  "id": "num",
+  "label": "Num",
+  "full": "Num Lock",
+  "group": "numpad",
+  "pua": "U+E050",
+  "codepoint": 57424,
+  "width": 140.758,
+  "keycodes": [
+    "NumLock"
+  ],
+  "folder": "U+E050_Num",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "keyk",
+  "label": "K",
+  "full": "K",
+  "group": "caps",
+  "pua": "U+E037",
+  "codepoint": 57399,
+  "width": 67.174,
+  "keycodes": [
+    "KeyK"
+  ],
+  "folder": "U+E037_K",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

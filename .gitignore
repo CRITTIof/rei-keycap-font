@@ -1,0 +1,18 @@
+# Python build dependencies and caches
+工作文件/pydeps/
+__pycache__/
+*.py[cod]
+
+# Node dependencies (package.json / pnpm-lock.yaml are tracked)
+工作文件/tools/node_modules/
+
+# Local browser profiles
+.edge-profile/
+edge-profile/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

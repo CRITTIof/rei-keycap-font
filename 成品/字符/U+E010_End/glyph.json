@@ -1,0 +1,15 @@
+{
+  "id": "end",
+  "label": "End",
+  "full": "End",
+  "group": "function",
+  "pua": "U+E010",
+  "codepoint": 57360,
+  "width": 116.692,
+  "keycodes": [
+    "End"
+  ],
+  "folder": "U+E010_End",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

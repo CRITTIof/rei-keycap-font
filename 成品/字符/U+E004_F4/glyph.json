@@ -1,0 +1,15 @@
+{
+  "id": "f4",
+  "label": "F4",
+  "full": "F4",
+  "group": "function",
+  "pua": "U+E004",
+  "codepoint": 57348,
+  "width": 86.62,
+  "keycodes": [
+    "F4"
+  ],
+  "folder": "U+E004_F4",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

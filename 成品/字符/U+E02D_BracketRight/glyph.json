@@ -1,0 +1,15 @@
+{
+  "id": "bracketright",
+  "label": "]",
+  "full": "Right Bracket",
+  "group": "letters",
+  "pua": "U+E02D",
+  "codepoint": 57389,
+  "width": 53.86,
+  "keycodes": [
+    "BracketRight"
+  ],
+  "folder": "U+E02D_BracketRight",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

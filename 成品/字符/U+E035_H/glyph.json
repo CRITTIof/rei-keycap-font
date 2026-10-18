@@ -1,0 +1,15 @@
+{
+  "id": "keyh",
+  "label": "H",
+  "full": "H",
+  "group": "caps",
+  "pua": "U+E035",
+  "codepoint": 57397,
+  "width": 71.752,
+  "keycodes": [
+    "KeyH"
+  ],
+  "folder": "U+E035_H",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

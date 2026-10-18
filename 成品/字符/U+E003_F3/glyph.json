@@ -1,0 +1,15 @@
+{
+  "id": "f3",
+  "label": "F3",
+  "full": "F3",
+  "group": "function",
+  "pua": "U+E003",
+  "codepoint": 57347,
+  "width": 86.62,
+  "keycodes": [
+    "F3"
+  ],
+  "folder": "U+E003_F3",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

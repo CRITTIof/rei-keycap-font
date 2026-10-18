@@ -1,0 +1,15 @@
+{
+  "id": "keyo",
+  "label": "O",
+  "full": "O",
+  "group": "letters",
+  "pua": "U+E02A",
+  "codepoint": 57386,
+  "width": 73.18,
+  "keycodes": [
+    "KeyO"
+  ],
+  "folder": "U+E02A_O",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

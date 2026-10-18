@@ -1,0 +1,15 @@
+{
+  "id": "capslock",
+  "label": "Cap",
+  "full": "Caps Lock",
+  "group": "caps",
+  "pua": "U+E02F",
+  "codepoint": 57391,
+  "width": 117.658,
+  "keycodes": [
+    "CapsLock"
+  ],
+  "folder": "U+E02F_Cap",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

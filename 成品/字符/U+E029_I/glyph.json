@@ -1,0 +1,15 @@
+{
+  "id": "keyi",
+  "label": "I",
+  "full": "I",
+  "group": "letters",
+  "pua": "U+E029",
+  "codepoint": 57385,
+  "width": 55.54,
+  "keycodes": [
+    "KeyI"
+  ],
+  "folder": "U+E029_I",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

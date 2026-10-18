@@ -1,0 +1,15 @@
+{
+  "id": "f12",
+  "label": "F12",
+  "full": "F12",
+  "group": "function",
+  "pua": "U+E00C",
+  "codepoint": 57356,
+  "width": 110.644,
+  "keycodes": [
+    "F12"
+  ],
+  "folder": "U+E00C_F12",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

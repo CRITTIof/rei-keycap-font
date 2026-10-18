@@ -1,0 +1,16 @@
+{
+  "id": "digit8",
+  "label": "8",
+  "full": "8",
+  "group": "numbers",
+  "pua": "U+E01B",
+  "codepoint": 57371,
+  "width": 64.024,
+  "keycodes": [
+    "Digit8",
+    "Numpad8"
+  ],
+  "folder": "U+E01B_8",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "digit5",
+  "label": "5",
+  "full": "5",
+  "group": "numbers",
+  "pua": "U+E018",
+  "codepoint": 57368,
+  "width": 64.024,
+  "keycodes": [
+    "Digit5",
+    "Numpad5"
+  ],
+  "folder": "U+E018_5",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

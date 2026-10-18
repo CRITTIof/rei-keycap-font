@@ -1,0 +1,15 @@
+{
+  "id": "keyn",
+  "label": "N",
+  "full": "N",
+  "group": "shift",
+  "pua": "U+E042",
+  "codepoint": 57410,
+  "width": 73.306,
+  "keycodes": [
+    "KeyN"
+  ],
+  "folder": "U+E042_N",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

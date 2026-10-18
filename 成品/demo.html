@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keycap Tight — Live Input Demo</title>
+<style>
+@font-face {
+  font-family: 'Keycap Tight';
+  src: url('KeycapTight-Regular.woff2') format('woff2'),
+       url('KeycapTight-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+:root {
+  --bg: #14171c;
+  --bg-2: #191d24;
+  --panel: #1c2027;
+  --panel-2: #222731;
+  --ink: #f4f1ea;
+  --muted: #8c939e;
+  --line: #303641;
+  --accent: #ffb454;
+  --accent-2: #e4572e;
+  --ui: "Segoe UI", "Noto Sans", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+  --cap-size: 38px;
+  --shadow: 0 28px 80px rgba(0,0,0,.42);
+}
+html[data-theme="light"] {
+  --bg: #ebe7de;
+  --bg-2: #f3f0e9;
+  --panel: #f7f5f0;
+  --panel-2: #fffdf8;
+  --ink: #20242a;
+  --muted: #77736b;
+  --line: #d8d2c7;
+  --accent: #c35a12;
+  --accent-2: #a33d0b;
+  --shadow: 0 28px 80px rgba(50,42,30,.16);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  font-family: var(--ui);
+  background:
+    radial-gradient(1200px 600px at 18% -10%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 62%),
+    radial-gradient(1000px 600px at 100% 22%, color-mix(in srgb, var(--accent-2) 7%, transparent), transparent 60%),
+    var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { width: min(1240px, calc(100% - 48px)); margin: 0 auto; padding: 42px 0 64px; }
+header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+h1 { margin: 0; font-size: 24px; letter-spacing: .16em; font-weight: 650; }
+.sub { margin: 9px 0 0; color: var(--muted); font-size: 12px; letter-spacing: .08em; line-height: 1.7; }
+.sub b { color: var(--ink); font-weight: 600; }
+.theme {
+  border: 1px solid var(--line); background: var(--panel); color: var(--ink);
+  padding: 9px 14px; border-radius: 999px; cursor: pointer; font: 600 12px/1 var(--ui);
+  letter-spacing: .08em; white-space: nowrap;
+}
+.theme:hover { border-color: var(--accent); color: var(--accent); }
+.hud {
+  display: grid; grid-template-columns: minmax(220px, 330px) 1fr; gap: 30px; align-items: center;
+  background: linear-gradient(145deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line); border-radius: 24px; padding: 26px 30px;
+  box-shadow: var(--shadow); min-height: 212px;
+}
+.hud-visual { min-width: 0; display: flex; align-items: center; justify-content: center; }
+.hud-glyph {
+  font-family: 'Keycap Tight'; font-size: clamp(76px, 7.6vw, 104px); line-height: 1; color: var(--accent);
+  display: block; max-width: 100%; transition: color .12s;
+}
+.hud-placeholder {
+  width: 148px; height: 148px; border: 1px dashed var(--line); border-radius: 26px;
+  display: grid; place-items: center; color: var(--muted); font-size: 11px; letter-spacing: .14em;
+  text-align: center; line-height: 1.6;
+}
+.hud.has-key .hud-placeholder { display: none; }
+.hud-meta { min-width: 0; }
+.kicker { font-size: 10px; letter-spacing: .3em; color: var(--muted); text-transform: uppercase; margin-bottom: 10px; }
+.last-label { font-size: clamp(24px, 4vw, 38px); font-weight: 650; letter-spacing: -.02em; }
+.last-full { margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.6; word-break: break-word; }
+.last-code { margin-top: 16px; display: inline-flex; gap: 8px; align-items: center; font: 600 11px/1 ui-monospace, Consolas, monospace; color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 32%, transparent); border-radius: 999px; padding: 7px 10px; }
+.history { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; min-height: 28px; }
+.hist {
+  display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel-2) 72%, transparent); border-radius: 8px; padding: 3px 7px;
+  color: var(--muted); font: 500 10px/1 ui-monospace, Consolas, monospace;
+}
+.hist-glyph { font-family: 'Keycap Tight'; font-size: 18px; line-height: 1; color: var(--ink); }
+.panel {
+  margin-top: 26px; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 24px; padding: 22px 26px 28px; box-shadow: var(--shadow);
+}
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 16px; }
+.panel-title { font-size: 11px; letter-spacing: .24em; color: var(--muted); text-transform: uppercase; }
+.controls { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 11px; }
+input[type=range] { accent-color: var(--accent); width: 128px; }
+.group { margin-top: 22px; }
+.group:first-of-type { margin-top: 2px; }
+.group-head { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 8px; color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .18em; }
+.caps { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 15px; padding-top: 16px; }
+.cap {
+  appearance: none; border: 0; background: transparent; padding: 0; margin: 0; color: var(--ink);
+  font-family: 'Keycap Tight'; font-size: var(--cap-size); line-height: 1; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; height: var(--cap-size);
+  transition: color .12s ease, transform .08s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.cap-glyph { display: block; line-height: 1; }
+.cap:hover { color: var(--accent); }
+.cap.is-down { color: var(--accent); transform: translateY(2px) scale(.97); }
+.notes { display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px; margin-top: 26px; }
+.note { background: var(--bg-2); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+.note strong { color: var(--ink); }
+.note ul { margin: 10px 0 0; padding-left: 18px; }
+.note li { margin: 5px 0; }
+code { font-family: ui-monospace, Consolas, monospace; font-size: .92em; color: var(--accent); }
+pre { margin: 10px 0 0; padding: 14px; overflow: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; color: var(--ink); font: 11px/1.65 ui-monospace, Consolas, monospace; }
+@media (max-width: 760px) {
+  .wrap { width: calc(100% - 28px); padding-top: 24px; }
+  header { align-items: flex-start; }
+  .hud { grid-template-columns: 1fr; gap: 18px; padding: 22px; }
+  .hud-visual { justify-content: flex-start; }
+  .hud-glyph { font-size: 92px; }
+  .notes { grid-template-columns: 1fr; }
+  .cap { --cap-size: 32px !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>KEYCAP TIGHT</h1>
+      <p class="sub"><b>83</b> unique glyphs · <b>101</b> physical Windows keycodes · transparent outline<br>按任意键测试；数字小键盘、左右 Shift/Ctrl/Alt 会映射到同一个字形。</p>
+    </div>
+    <button class="theme" id="theme" type="button">LIGHT</button>
+  </header>
+
+  <section class="hud" id="hud">
+    <div class="hud-visual">
+      <div class="hud-placeholder" id="placeholder">PRESS<br>ANY KEY</div>
+      <span class="hud-glyph" id="lastGlyph" aria-hidden="true"></span>
+    </div>
+    <div class="hud-meta">
+      <div class="kicker">LAST INPUT</div>
+      <div class="last-label" id="lastLabel">等待输入</div>
+      <div class="last-full" id="lastFull">按下键盘上的任意键，或点击下方键帽。</div>
+      <div class="last-code" id="lastCode">event.code —</div>
+      <div class="history" id="history"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div class="panel-title">83 UNIQUE KEYCAP GLYPHS / 101 KEYCODES</div>
+      <div class="controls"><label for="size">SIZE</label><input id="size" type="range" min="26" max="64" value="38" step="1"><span id="sizeLabel">38</span></div>
+    </div>
+<section class="group">
+  <div class="group-head"><span>01 / FUNCTION &amp; NAVIGATION</span><span>19</span></div>
+  <div class="caps"><button class="cap" type="button" data-glyph="escape" data-codes="Escape" aria-label="Esc — Escape" title="Esc — Escape · &#xE000"><span class="cap-glyph" aria-hidden="true">&#xE000;</span></button><button class="cap" type="button" data-glyph="f1" data-codes="F1" aria-label="F1 — F1" title="F1 — F1 · &#xE001"><span class="cap-glyph" aria-hidden="true">&#xE001;</span></button><button class="cap" type="button" data-glyph="f2" data-codes="F2" aria-label="F2 — F2" title="F2 — F2 · &#xE002"><span class="cap-glyph" aria-hidden="true">&#xE002;</span></button><button class="cap" type="button" data-glyph="f3" data-codes="F3" aria-label="F3 — F3" title="F3 — F3 · &#xE003"><span class="cap-glyph" aria-hidden="true">&#xE003;</span></button><button class="cap" type="button" data-glyph="f4" data-codes="F4" aria-label="F4 — F4" title="F4 — F4 · &#xE004"><span class="cap-glyph" aria-hidden="true">&#xE004;</span></button><button class="cap" type="button" data-glyph="f5" data-codes="F5" aria-label="F5 — F5" title="F5 — F5 · &#xE005"><span class="cap-glyph" aria-hidden="true">&#xE005;</span></button><button class="cap" type="button" data-glyph="f6" data-codes="F6" aria-label="F6 — F6" title="F6 — F6 · &#xE006"><span class="cap-glyph" aria-hidden="true">&#xE006;</span></button><button class="cap" type="button" data-glyph="f7" data-codes="F7" aria-label="F7 — F7" title="F7 — F7 · &#xE007"><span class="cap-glyph" aria-hidden="true">&#xE007;</span></button><button class="cap" type="button" data-glyph="f8" data-codes="F8" aria-label="F8 — F8" title="F8 — F8 · &#xE008"><span class="cap-glyph" aria-hidden="true">&#xE008;</span></button><button class="cap" type="button" data-glyph="f9" data-codes="F9" aria-label="F9 — F9" title="F9 — F9 · &#xE009"><span class="cap-glyph" aria-hidden="true">&#xE009;</span></button><button class="cap" type="button" data-glyph="f10" data-codes="F10" aria-label="F10 — F10" title="F10 — F10 · &#xE00A"><span class="cap-glyph" aria-hidden="true">&#xE00A;</span></button><button class="cap" type="button" data-glyph="f11" data-codes="F11" aria-label="F11 — F11" title="F11 — F11 · &#xE00B"><span class="cap-glyph" aria-hidden="true">&#xE00B;</span></button><button class="cap" type="button" data-glyph="f12" data-codes="F12" aria-label="F12 — F12" title="F12 — F12 · &#xE00C"><span class="cap-glyph" aria-hidden="true">&#xE00C;</span></button><button class="cap" type="button" data-glyph="insert" data-codes="Insert" aria-label="Ins — Insert" title="Ins — Insert · &#xE00D"><span class="cap-glyph" aria-hidden="true">&#xE00D;</span></button><button class="cap" type="button" data-glyph="delete" data-codes="Delete" aria-label="Del — Delete" title="Del — Delete · &#xE00E"><span class="cap-glyph" aria-hidden="true">&#xE00E;</span></button><button class="cap" type="button" data-glyph="home" data-codes="Home" aria-label="Home — Home" title="Home — Home · &#xE00F"><span class="cap-glyph" aria-hidden="true">&#xE00F;</span></button><button class="cap" type="button" data-glyph="end" data-codes="End" aria-label="End — End" title="End — End · &#xE010"><span class="cap-glyph" aria-hidden="true">&#xE010;</span></button><button class="cap" type="button" data-glyph="pageup" data-codes="PageUp" aria-label="PgUp — Page Up" title="PgUp — Page Up · &#xE011"><span class="cap-glyph" aria-hidden="true">&#xE011;</span></button><button class="cap" type="button" data-glyph="pagedown" data-codes="PageDown" aria-label="PgDn — Page Down" title="PgDn — Page Down · &#xE012"><span class="cap-glyph" aria-hidden="true">&#xE012;</span></button></div>
+</section><section class="group">
+  <div class="group-head"><span>02 / NUMBER ROW</span><span>14</span></div>
+  <div class="caps"><button class="cap" type="button" data-glyph="backquote" data-codes="Backquote" aria-label="` — Backquote" title="` — Backquote · &#xE013"><span class="cap-glyph" aria-hidden="true">&#xE013;</span></button><button class="cap" type="button" data-glyph="digit1" data-codes="Digit1 Numpad1" aria-label="1 — 1" title="1 — 1 · &#xE014"><span class="cap-glyph" aria-hidden="true">&#xE014;</span></button><button class="cap" type="button" data-glyph="digit2" data-codes="Digit2 Numpad2" aria-label="2 — 2" title="2 — 2 · &#xE015"><span class="cap-glyph" aria-hidden="true">&#xE015;</span></button><button class="cap" type="button" data-glyph="digit3" data-codes="Digit3 Numpad3" aria-label="3 — 3" title="3 — 3 · &#xE016"><span class="cap-glyph" aria-hidden="true">&#xE016;</span></button><button class="cap" type="button" data-glyph="digit4" data-codes="Digit4 Numpad4" aria-label="4 — 4" title="4 — 4 · &#xE017"><span class="cap-glyph" aria-hidden="true">&#xE017;</span></button><button class="cap" type="button" data-glyph="digit5" data-codes="Digit5 Numpad5" aria-label="5 — 5" title="5 — 5 · &#xE018"><span class="cap-glyph" aria-hidden="true">&#xE018;</span></button><button class="cap" type="button" data-glyph="digit6" data-codes="Digit6 Numpad6" aria-label="6 — 6" title="6 — 6 · &#xE019"><span class="cap-glyph" aria-hidden="true">&#xE019;</span></button><button class="cap" type="button" data-glyph="digit7" data-codes="Digit7 Numpad7" aria-label="7 — 7" title="7 — 7 · &#xE01A"><span class="cap-glyph" aria-hidden="true">&#xE01A;</span></button><button class="cap" type="button" data-glyph="digit8" data-codes="Digit8 Numpad8" aria-label="8 — 8" title="8 — 8 · &#xE01B"><span class="cap-glyph" aria-hidden="true">&#xE01B;</span></button><button class="cap" type="button" data-glyph="digit9" data-codes="Digit9 Numpad9" aria-label="9 — 9" title="9 — 9 · &#xE01C"><span class="cap-glyph" aria-hidden="true">&#xE01C;</span></button><button class="cap" type="button" data-glyph="digit0" data-codes="Digit0 Numpad0" aria-label="0 — 0" title="0 — 0 · &#xE01D"><span class="cap-glyph" aria-hidden="true">&#xE01D;</span></button><button class="cap" type="button" data-glyph="minus" data-codes="Minus NumpadSubtract" aria-label="- — Minus" title="- — Minus · &#xE01E"><span class="cap-glyph" aria-hidden="true">&#xE01E;</span></button><button class="cap" type="button" data-glyph="equal" data-codes="Equal" aria-label="= — Equal" title="= — Equal · &#xE01F"><span class="cap-glyph" aria-hidden="true">&#xE01F;</span></button><button class="cap" type="button" data-glyph="backspace" data-codes="Backspace" aria-label="Back — Backspace" title="Back — Backspace · &#xE020"><span class="cap-glyph" aria-hidden="true">&#xE020;</span></button></div>
+</section><section class="group">
+  <div class="group-head"><span>03 / TABS, LETTERS &amp; PUNCTUATION</span><span>38</span></div>
+  <div class="caps"><button class="cap" type="button" data-glyph="tab" data-codes="Tab" aria-label="Tab — Tab" title="Tab — Tab · &#xE021"><span class="cap-glyph" aria-hidden="true">&#xE021;</span></button><button class="cap" type="button" data-glyph="keyq" data-codes="KeyQ" aria-label="Q — Q" title="Q — Q · &#xE022"><span class="cap-glyph" aria-hidden="true">&#xE022;</span></button><button class="cap" type="button" data-glyph="keyw" data-codes="KeyW" aria-label="W — W" title="W — W · &#xE023"><span class="cap-glyph" aria-hidden="true">&#xE023;</span></button><button class="cap" type="button" data-glyph="keye" data-codes="KeyE" aria-label="E — E" title="E — E · &#xE024"><span class="cap-glyph" aria-hidden="true">&#xE024;</span></button><button class="cap" type="button" data-glyph="keyr" data-codes="KeyR" aria-label="R — R" title="R — R · &#xE025"><span class="cap-glyph" aria-hidden="true">&#xE025;</span></button><button class="cap" type="button" data-glyph="keyt" data-codes="KeyT" aria-label="T — T" title="T — T · &#xE026"><span class="cap-glyph" aria-hidden="true">&#xE026;</span></button><button class="cap" type="button" data-glyph="keyy" data-codes="KeyY" aria-label="Y — Y" title="Y — Y · &#xE027"><span class="cap-glyph" aria-hidden="true">&#xE027;</span></button><button class="cap" type="button" data-glyph="keyu" data-codes="KeyU" aria-label="U — U" title="U — U · &#xE028"><span class="cap-glyph" aria-hidden="true">&#xE028;</span></button><button class="cap" type="button" data-glyph="keyi" data-codes="KeyI" aria-label="I — I" title="I — I · &#xE029"><span class="cap-glyph" aria-hidden="true">&#xE029;</span></button><button class="cap" type="button" data-glyph="keyo" data-codes="KeyO" aria-label="O — O" title="O — O · &#xE02A"><span class="cap-glyph" aria-hidden="true">&#xE02A;</span></button><button class="cap" type="button" data-glyph="keyp" data-codes="KeyP" aria-label="P — P" title="P — P · &#xE02B"><span class="cap-glyph" aria-hidden="true">&#xE02B;</span></button><button class="cap" type="button" data-glyph="bracketleft" data-codes="BracketLeft" aria-label="[ — Left Bracket" title="[ — Left Bracket · &#xE02C"><span class="cap-glyph" aria-hidden="true">&#xE02C;</span></button><button class="cap" type="button" data-glyph="bracketright" data-codes="BracketRight" aria-label="] — Right Bracket" title="] — Right Bracket · &#xE02D"><span class="cap-glyph" aria-hidden="true">&#xE02D;</span></button><button class="cap" type="button" data-glyph="backslash" data-codes="Backslash" aria-label="\ — Backslash" title="\ — Backslash · &#xE02E"><span class="cap-glyph" aria-hidden="true">&#xE02E;</span></button><button class="cap" type="button" data-glyph="capslock" data-codes="CapsLock" aria-label="Cap — Caps Lock" title="Cap — Caps Lock · &#xE02F"><span class="cap-glyph" aria-hidden="true">&#xE02F;</span></button><button class="cap" type="button" data-glyph="keya" data-codes="KeyA" aria-label="A — A" title="A — A · &#xE030"><span class="cap-glyph" aria-hidden="true">&#xE030;</span></button><button class="cap" type="button" data-glyph="keys" data-codes="KeyS" aria-label="S — S" title="S — S · &#xE031"><span class="cap-glyph" aria-hidden="true">&#xE031;</span></button><button class="cap" type="button" data-glyph="keyd" data-codes="KeyD" aria-label="D — D" title="D — D · &#xE032"><span class="cap-glyph" aria-hidden="true">&#xE032;</span></button><button class="cap" type="button" data-glyph="keyf" data-codes="KeyF" aria-label="F — F" title="F — F · &#xE033"><span class="cap-glyph" aria-hidden="true">&#xE033;</span></button><button class="cap" type="button" data-glyph="keyg" data-codes="KeyG" aria-label="G — G" title="G — G · &#xE034"><span class="cap-glyph" aria-hidden="true">&#xE034;</span></button><button class="cap" type="button" data-glyph="keyh" data-codes="KeyH" aria-label="H — H" title="H — H · &#xE035"><span class="cap-glyph" aria-hidden="true">&#xE035;</span></button><button class="cap" type="button" data-glyph="keyj" data-codes="KeyJ" aria-label="J — J" title="J — J · &#xE036"><span class="cap-glyph" aria-hidden="true">&#xE036;</span></button><button class="cap" type="button" data-glyph="keyk" data-codes="KeyK" aria-label="K — K" title="K — K · &#xE037"><span class="cap-glyph" aria-hidden="true">&#xE037;</span></button><button class="cap" type="button" data-glyph="keyl" data-codes="KeyL" aria-label="L — L" title="L — L · &#xE038"><span class="cap-glyph" aria-hidden="true">&#xE038;</span></button><button class="cap" type="button" data-glyph="semicolon" data-codes="Semicolon" aria-label="; — Semicolon" title="; — Semicolon · &#xE039"><span class="cap-glyph" aria-hidden="true">&#xE039;</span></button><button class="cap" type="button" data-glyph="quote" data-codes="Quote" aria-label="&#x27; — Apostrophe" title="&#x27; — Apostrophe · &#xE03A"><span class="cap-glyph" aria-hidden="true">&#xE03A;</span></button><button class="cap" type="button" data-glyph="enter" data-codes="Enter NumpadEnter" aria-label="Enter — Enter" title="Enter — Enter · &#xE03B"><span class="cap-glyph" aria-hidden="true">&#xE03B;</span></button><button class="cap" type="button" data-glyph="shift" data-codes="ShiftLeft ShiftRight" aria-label="Shift — Shift" title="Shift — Shift · &#xE03C"><span class="cap-glyph" aria-hidden="true">&#xE03C;</span></button><button class="cap" type="button" data-glyph="keyz" data-codes="KeyZ" aria-label="Z — Z" title="Z — Z · &#xE03D"><span class="cap-glyph" aria-hidden="true">&#xE03D;</span></button><button class="cap" type="button" data-glyph="keyx" data-codes="KeyX" aria-label="X — X" title="X — X · &#xE03E"><span class="cap-glyph" aria-hidden="true">&#xE03E;</span></button><button class="cap" type="button" data-glyph="keyc" data-codes="KeyC" aria-label="C — C" title="C — C · &#xE03F"><span class="cap-glyph" aria-hidden="true">&#xE03F;</span></button><button class="cap" type="button" data-glyph="keyv" data-codes="KeyV" aria-label="V — V" title="V — V · &#xE040"><span class="cap-glyph" aria-hidden="true">&#xE040;</span></button><button class="cap" type="button" data-glyph="keyb" data-codes="KeyB" aria-label="B — B" title="B — B · &#xE041"><span class="cap-glyph" aria-hidden="true">&#xE041;</span></button><button class="cap" type="button" data-glyph="keyn" data-codes="KeyN" aria-label="N — N" title="N — N · &#xE042"><span class="cap-glyph" aria-hidden="true">&#xE042;</span></button><button class="cap" type="button" data-glyph="keym" data-codes="KeyM" aria-label="M — M" title="M — M · &#xE043"><span class="cap-glyph" aria-hidden="true">&#xE043;</span></button><button class="cap" type="button" data-glyph="comma" data-codes="Comma" aria-label=", — Comma" title=", — Comma · &#xE044"><span class="cap-glyph" aria-hidden="true">&#xE044;</span></button><button class="cap" type="button" data-glyph="period" data-codes="Period NumpadDecimal" aria-label=". — Period" title=". — Period · &#xE045"><span class="cap-glyph" aria-hidden="true">&#xE045;</span></button><button class="cap" type="button" data-glyph="slash" data-codes="Slash NumpadDivide" aria-label="/ — Slash" title="/ — Slash · &#xE046"><span class="cap-glyph" aria-hidden="true">&#xE046;</span></button></div>
+</section><section class="group">
+  <div class="group-head"><span>04 / MODIFIERS &amp; ARROWS</span><span>9</span></div>
+  <div class="caps"><button class="cap" type="button" data-glyph="ctrl" data-codes="ControlLeft ControlRight" aria-label="Ctrl — Control" title="Ctrl — Control · &#xE047"><span class="cap-glyph" aria-hidden="true">&#xE047;</span></button><button class="cap" type="button" data-glyph="fn" data-codes="FnLeft FnRight" aria-label="Fn — Function" title="Fn — Function · &#xE048"><span class="cap-glyph" aria-hidden="true">&#xE048;</span></button><button class="cap" type="button" data-glyph="win" data-codes="MetaLeft" aria-label="Win — Windows" title="Win — Windows · &#xE049"><span class="cap-glyph" aria-hidden="true">&#xE049;</span></button><button class="cap" type="button" data-glyph="alt" data-codes="AltLeft AltRight" aria-label="Alt — Alt" title="Alt — Alt · &#xE04A"><span class="cap-glyph" aria-hidden="true">&#xE04A;</span></button><button class="cap" type="button" data-glyph="space" data-codes="Space" aria-label="Space — Space" title="Space — Space · &#xE04B"><span class="cap-glyph" aria-hidden="true">&#xE04B;</span></button><button class="cap" type="button" data-glyph="arrowleft" data-codes="ArrowLeft" aria-label="← — Arrow Left" title="← — Arrow Left · &#xE04C"><span class="cap-glyph" aria-hidden="true">&#xE04C;</span></button><button class="cap" type="button" data-glyph="arrowup" data-codes="ArrowUp" aria-label="↑ — Arrow Up" title="↑ — Arrow Up · &#xE04D"><span class="cap-glyph" aria-hidden="true">&#xE04D;</span></button><button class="cap" type="button" data-glyph="arrowdown" data-codes="ArrowDown" aria-label="↓ — Arrow Down" title="↓ — Arrow Down · &#xE04E"><span class="cap-glyph" aria-hidden="true">&#xE04E;</span></button><button class="cap" type="button" data-glyph="arrowright" data-codes="ArrowRight" aria-label="→ — Arrow Right" title="→ — Arrow Right · &#xE04F"><span class="cap-glyph" aria-hidden="true">&#xE04F;</span></button></div>
+</section><section class="group">
+  <div class="group-head"><span>05 / NUMPAD-ONLY GLYPHS</span><span>3</span></div>
+  <div class="caps"><button class="cap" type="button" data-glyph="num" data-codes="NumLock" aria-label="Num — Num Lock" title="Num — Num Lock · &#xE050"><span class="cap-glyph" aria-hidden="true">&#xE050;</span></button><button class="cap" type="button" data-glyph="asterisk" data-codes="NumpadMultiply" aria-label="* — Multiply" title="* — Multiply · &#xE051"><span class="cap-glyph" aria-hidden="true">&#xE051;</span></button><button class="cap" type="button" data-glyph="plus" data-codes="NumpadAdd" aria-label="+ — Plus" title="+ — Plus · &#xE052"><span class="cap-glyph" aria-hidden="true">&#xE052;</span></button></div>
+</section>
+  </section>
+
+  <section class="notes">
+    <div class="note">
+      <strong>Usage</strong>
+      <ul>
+        <li><code>font-size</code> equals the visual key height; use <code>line-height: 1</code>.</li>
+        <li>Interior is transparent. Color the whole glyph with <code>color</code> / <code>currentColor</code>.</li>
+        <li>Use <code>keycap-tight-mapping.json</code> to map <code>event.code</code> to a PUA codepoint.</li>
+        <li>Fn usually emits no browser key event; treat it as a custom/visual key.</li>
+      </ul>
+    </div>
+    <div class="note">
+      <strong>Font</strong>
+      <pre>@font-face {
+  font-family: 'Keycap Tight';
+  src: url('KeycapTight-Regular.woff2') format('woff2');
+}
+.key {
+  font: 400 38px/1 'Keycap Tight';
+  color: #20242A;
+}
+&lt;span class="key"&gt;&amp;#xE000;&lt;/span&gt;</pre>
+    </div>
+  </section>
+</div>
+<script>
+const KEYS = [{"code": "Escape", "label": "Esc", "full": "Escape", "glyph": "escape", "pua": "U+E000", "codepoint": 57344}, {"code": "F1", "label": "F1", "full": "F1", "glyph": "f1", "pua": "U+E001", "codepoint": 57345}, {"code": "F2", "label": "F2", "full": "F2", "glyph": "f2", "pua": "U+E002", "codepoint": 57346}, {"code": "F3", "label": "F3", "full": "F3", "glyph": "f3", "pua": "U+E003", "codepoint": 57347}, {"code": "F4", "label": "F4", "full": "F4", "glyph": "f4", "pua": "U+E004", "codepoint": 57348}, {"code": "F5", "label": "F5", "full": "F5", "glyph": "f5", "pua": "U+E005", "codepoint": 57349}, {"code": "F6", "label": "F6", "full": "F6", "glyph": "f6", "pua": "U+E006", "codepoint": 57350}, {"code": "F7", "label": "F7", "full": "F7", "glyph": "f7", "pua": "U+E007", "codepoint": 57351}, {"code": "F8", "label": "F8", "full": "F8", "glyph": "f8", "pua": "U+E008", "codepoint": 57352}, {"code": "F9", "label": "F9", "full": "F9", "glyph": "f9", "pua": "U+E009", "codepoint": 57353}, {"code": "F10", "label": "F10", "full": "F10", "glyph": "f10", "pua": "U+E00A", "codepoint": 57354}, {"code": "F11", "label": "F11", "full": "F11", "glyph": "f11", "pua": "U+E00B", "codepoint": 57355}, {"code": "F12", "label": "F12", "full": "F12", "glyph": "f12", "pua": "U+E00C", "codepoint": 57356}, {"code": "Insert", "label": "Ins", "full": "Insert", "glyph": "insert", "pua": "U+E00D", "codepoint": 57357}, {"code": "Delete", "label": "Del", "full": "Delete", "glyph": "delete", "pua": "U+E00E", "codepoint": 57358}, {"code": "Home", "label": "Home", "full": "Home", "glyph": "home", "pua": "U+E00F", "codepoint": 57359}, {"code": "End", "label": "End", "full": "End", "glyph": "end", "pua": "U+E010", "codepoint": 57360}, {"code": "PageUp", "label": "PgUp", "full": "Page Up", "glyph": "pageup", "pua": "U+E011", "codepoint": 57361}, {"code": "PageDown", "label": "PgDn", "full": "Page Down", "glyph": "pagedown", "pua": "U+E012", "codepoint": 57362}, {"code": "Backquote", "label": "`", "full": "Backquote", "glyph": "backquote", "pua": "U+E013", "codepoint": 57363}, {"code": "Digit1", "label": "1", "full": "1", "glyph": "digit1", "pua": "U+E014", "codepoint": 57364}, {"code": "Digit2", "label": "2", "full": "2", "glyph": "digit2", "pua": "U+E015", "codepoint": 57365}, {"code": "Digit3", "label": "3", "full": "3", "glyph": "digit3", "pua": "U+E016", "codepoint": 57366}, {"code": "Digit4", "label": "4", "full": "4", "glyph": "digit4", "pua": "U+E017", "codepoint": 57367}, {"code": "Digit5", "label": "5", "full": "5", "glyph": "digit5", "pua": "U+E018", "codepoint": 57368}, {"code": "Digit6", "label": "6", "full": "6", "glyph": "digit6", "pua": "U+E019", "codepoint": 57369}, {"code": "Digit7", "label": "7", "full": "7", "glyph": "digit7", "pua": "U+E01A", "codepoint": 57370}, {"code": "Digit8", "label": "8", "full": "8", "glyph": "digit8", "pua": "U+E01B", "codepoint": 57371}, {"code": "Digit9", "label": "9", "full": "9", "glyph": "digit9", "pua": "U+E01C", "codepoint": 57372}, {"code": "Digit0", "label": "0", "full": "0", "glyph": "digit0", "pua": "U+E01D", "codepoint": 57373}, {"code": "Minus", "label": "-", "full": "Minus", "glyph": "minus", "pua": "U+E01E", "codepoint": 57374}, {"code": "Equal", "label": "=", "full": "Equal", "glyph": "equal", "pua": "U+E01F", "codepoint": 57375}, {"code": "Backspace", "label": "Back", "full": "Backspace", "glyph": "backspace", "pua": "U+E020", "codepoint": 57376}, {"code": "Tab", "label": "Tab", "full": "Tab", "glyph": "tab", "pua": "U+E021", "codepoint": 57377}, {"code": "KeyQ", "label": "Q", "full": "Q", "glyph": "keyq", "pua": "U+E022", "codepoint": 57378}, {"code": "KeyW", "label": "W", "full": "W", "glyph": "keyw", "pua": "U+E023", "codepoint": 57379}, {"code": "KeyE", "label": "E", "full": "E", "glyph": "keye", "pua": "U+E024", "codepoint": 57380}, {"code": "KeyR", "label": "R", "full": "R", "glyph": "keyr", "pua": "U+E025", "codepoint": 57381}, {"code": "KeyT", "label": "T", "full": "T", "glyph": "keyt", "pua": "U+E026", "codepoint": 57382}, {"code": "KeyY", "label": "Y", "full": "Y", "glyph": "keyy", "pua": "U+E027", "codepoint": 57383}, {"code": "KeyU", "label": "U", "full": "U", "glyph": "keyu", "pua": "U+E028", "codepoint": 57384}, {"code": "KeyI", "label": "I", "full": "I", "glyph": "keyi", "pua": "U+E029", "codepoint": 57385}, {"code": "KeyO", "label": "O", "full": "O", "glyph": "keyo", "pua": "U+E02A", "codepoint": 57386}, {"code": "KeyP", "label": "P", "full": "P", "glyph": "keyp", "pua": "U+E02B", "codepoint": 57387}, {"code": "BracketLeft", "label": "[", "full": "Left Bracket", "glyph": "bracketleft", "pua": "U+E02C", "codepoint": 57388}, {"code": "BracketRight", "label": "]", "full": "Right Bracket", "glyph": "bracketright", "pua": "U+E02D", "codepoint": 57389}, {"code": "Backslash", "label": "\\", "full": "Backslash", "glyph": "backslash", "pua": "U+E02E", "codepoint": 57390}, {"code": "CapsLock", "label": "Cap", "full": "Caps Lock", "glyph": "capslock", "pua": "U+E02F", "codepoint": 57391}, {"code": "KeyA", "label": "A", "full": "A", "glyph": "keya", "pua": "U+E030", "codepoint": 57392}, {"code": "KeyS", "label": "S", "full": "S", "glyph": "keys", "pua": "U+E031", "codepoint": 57393}, {"code": "KeyD", "label": "D", "full": "D", "glyph": "keyd", "pua": "U+E032", "codepoint": 57394}, {"code": "KeyF", "label": "F", "full": "F", "glyph": "keyf", "pua": "U+E033", "codepoint": 57395}, {"code": "KeyG", "label": "G", "full": "G", "glyph": "keyg", "pua": "U+E034", "codepoint": 57396}, {"code": "KeyH", "label": "H", "full": "H", "glyph": "keyh", "pua": "U+E035", "codepoint": 57397}, {"code": "KeyJ", "label": "J", "full": "J", "glyph": "keyj", "pua": "U+E036", "codepoint": 57398}, {"code": "KeyK", "label": "K", "full": "K", "glyph": "keyk", "pua": "U+E037", "codepoint": 57399}, {"code": "KeyL", "label": "L", "full": "L", "glyph": "keyl", "pua": "U+E038", "codepoint": 57400}, {"code": "Semicolon", "label": ";", "full": "Semicolon", "glyph": "semicolon", "pua": "U+E039", "codepoint": 57401}, {"code": "Quote", "label": "'", "full": "Apostrophe", "glyph": "quote", "pua": "U+E03A", "codepoint": 57402}, {"code": "Enter", "label": "Enter", "full": "Enter", "glyph": "enter", "pua": "U+E03B", "codepoint": 57403}, {"code": "ShiftLeft", "label": "Shift", "full": "Shift", "glyph": "shift", "pua": "U+E03C", "codepoint": 57404}, {"code": "KeyZ", "label": "Z", "full": "Z", "glyph": "keyz", "pua": "U+E03D", "codepoint": 57405}, {"code": "KeyX", "label": "X", "full": "X", "glyph": "keyx", "pua": "U+E03E", "codepoint": 57406}, {"code": "KeyC", "label": "C", "full": "C", "glyph": "keyc", "pua": "U+E03F", "codepoint": 57407}, {"code": "KeyV", "label": "V", "full": "V", "glyph": "keyv", "pua": "U+E040", "codepoint": 57408}, {"code": "KeyB", "label": "B", "full": "B", "glyph": "keyb", "pua": "U+E041", "codepoint": 57409}, {"code": "KeyN", "label": "N", "full": "N", "glyph": "keyn", "pua": "U+E042", "codepoint": 57410}, {"code": "KeyM", "label": "M", "full": "M", "glyph": "keym", "pua": "U+E043", "codepoint": 57411}, {"code": "Comma", "label": ",", "full": "Comma", "glyph": "comma", "pua": "U+E044", "codepoint": 57412}, {"code": "Period", "label": ".", "full": "Period", "glyph": "period", "pua": "U+E045", "codepoint": 57413}, {"code": "Slash", "label": "/", "full": "Slash", "glyph": "slash", "pua": "U+E046", "codepoint": 57414}, {"code": "ShiftRight", "label": "Shift", "full": "Shift", "glyph": "shift", "pua": "U+E03C", "codepoint": 57404}, {"code": "ControlLeft", "label": "Ctrl", "full": "Control", "glyph": "ctrl", "pua": "U+E047", "codepoint": 57415}, {"code": "FnLeft", "label": "Fn", "full": "Function", "glyph": "fn", "pua": "U+E048", "codepoint": 57416}, {"code": "MetaLeft", "label": "Win", "full": "Windows", "glyph": "win", "pua": "U+E049", "codepoint": 57417}, {"code": "AltLeft", "label": "Alt", "full": "Alt", "glyph": "alt", "pua": "U+E04A", "codepoint": 57418}, {"code": "Space", "label": "Space", "full": "Space", "glyph": "space", "pua": "U+E04B", "codepoint": 57419}, {"code": "AltRight", "label": "Alt", "full": "Alt", "glyph": "alt", "pua": "U+E04A", "codepoint": 57418}, {"code": "FnRight", "label": "Fn", "full": "Function", "glyph": "fn", "pua": "U+E048", "codepoint": 57416}, {"code": "ControlRight", "label": "Ctrl", "full": "Control", "glyph": "ctrl", "pua": "U+E047", "codepoint": 57415}, {"code": "ArrowLeft", "label": "←", "full": "Arrow Left", "glyph": "arrowleft", "pua": "U+E04C", "codepoint": 57420}, {"code": "ArrowUp", "label": "↑", "full": "Arrow Up", "glyph": "arrowup", "pua": "U+E04D", "codepoint": 57421}, {"code": "ArrowDown", "label": "↓", "full": "Arrow Down", "glyph": "arrowdown", "pua": "U+E04E", "codepoint": 57422}, {"code": "ArrowRight", "label": "→", "full": "Arrow Right", "glyph": "arrowright", "pua": "U+E04F", "codepoint": 57423}, {"code": "NumLock", "label": "Num", "full": "Num Lock", "glyph": "num", "pua": "U+E050", "codepoint": 57424}, {"code": "NumpadDivide", "label": "/", "full": "Slash", "glyph": "slash", "pua": "U+E046", "codepoint": 57414}, {"code": "NumpadMultiply", "label": "*", "full": "Multiply", "glyph": "asterisk", "pua": "U+E051", "codepoint": 57425}, {"code": "NumpadSubtract", "label": "-", "full": "Minus", "glyph": "minus", "pua": "U+E01E", "codepoint": 57374}, {"code": "Numpad7", "label": "7", "full": "7", "glyph": "digit7", "pua": "U+E01A", "codepoint": 57370}, {"code": "Numpad8", "label": "8", "full": "8", "glyph": "digit8", "pua": "U+E01B", "codepoint": 57371}, {"code": "Numpad9", "label": "9", "full": "9", "glyph": "digit9", "pua": "U+E01C", "codepoint": 57372}, {"code": "NumpadAdd", "label": "+", "full": "Plus", "glyph": "plus", "pua": "U+E052", "codepoint": 57426}, {"code": "Numpad4", "label": "4", "full": "4", "glyph": "digit4", "pua": "U+E017", "codepoint": 57367}, {"code": "Numpad5", "label": "5", "full": "5", "glyph": "digit5", "pua": "U+E018", "codepoint": 57368}, {"code": "Numpad6", "label": "6", "full": "6", "glyph": "digit6", "pua": "U+E019", "codepoint": 57369}, {"code": "Numpad1", "label": "1", "full": "1", "glyph": "digit1", "pua": "U+E014", "codepoint": 57364}, {"code": "Numpad2", "label": "2", "full": "2", "glyph": "digit2", "pua": "U+E015", "codepoint": 57365}, {"code": "Numpad3", "label": "3", "full": "3", "glyph": "digit3", "pua": "U+E016", "codepoint": 57366}, {"code": "NumpadEnter", "label": "Enter", "full": "Enter", "glyph": "enter", "pua": "U+E03B", "codepoint": 57403}, {"code": "Numpad0", "label": "0", "full": "0", "glyph": "digit0", "pua": "U+E01D", "codepoint": 57373}, {"code": "NumpadDecimal", "label": ".", "full": "Period", "glyph": "period", "pua": "U+E045", "codepoint": 57413}];
+const BY_CODE = new Map(KEYS.map(k => [k.code, k]));
+const capNodes = [...document.querySelectorAll('.cap')];
+const lastGlyph = document.getElementById('lastGlyph');
+const lastLabel = document.getElementById('lastLabel');
+const lastFull = document.getElementById('lastFull');
+const lastCode = document.getElementById('lastCode');
+const hud = document.getElementById('hud');
+const history = document.getElementById('history');
+let historyItems = [];
+
+function setGlyphDown(glyph, down) {
+  capNodes.filter(el => el.dataset.glyph === glyph).forEach(el => el.classList.toggle('is-down', down));
+}
+function clearDown() {
+  capNodes.forEach(el => el.classList.remove('is-down'));
+}
+function showKey(k) {
+  hud.classList.add('has-key');
+  lastGlyph.textContent = String.fromCodePoint(k.codepoint);
+  lastLabel.textContent = k.label;
+  lastFull.textContent = k.full + ' · ' + k.pua;
+  lastCode.textContent = 'event.code ' + k.code;
+  historyItems.unshift(k);
+  historyItems = historyItems.slice(0, 12);
+  history.innerHTML = historyItems.map(item =>
+    '<span class="hist"><span class="hist-glyph">' + String.fromCodePoint(item.codepoint) + '</span>' + item.code + '</span>'
+  ).join('');
+}
+function pressFromElement(el) {
+  const codes = el.dataset.codes.split(' ');
+  const k = BY_CODE.get(codes[0]);
+  if (!k) return;
+  setGlyphDown(k.glyph, true);
+  showKey(k);
+  setTimeout(() => setGlyphDown(k.glyph, false), 120);
+}
+capNodes.forEach(el => {
+  el.addEventListener('pointerdown', e => { e.preventDefault(); pressFromElement(el); });
+  el.addEventListener('click', e => { e.preventDefault(); });
+});
+document.addEventListener('keydown', e => {
+  const k = BY_CODE.get(e.code);
+  if (!k) return;
+  e.preventDefault();
+  setGlyphDown(k.glyph, true);
+  if (!e.repeat) showKey(k);
+});
+document.addEventListener('keyup', e => {
+  const k = BY_CODE.get(e.code);
+  if (k) setGlyphDown(k.glyph, false);
+});
+window.addEventListener('blur', clearDown);
+const theme = document.getElementById('theme');
+theme.addEventListener('click', () => {
+  const root = document.documentElement;
+  const light = root.dataset.theme === 'light';
+  root.dataset.theme = light ? 'dark' : 'light';
+  theme.textContent = light ? 'LIGHT' : 'DARK';
+});
+const size = document.getElementById('size');
+const sizeLabel = document.getElementById('sizeLabel');
+size.addEventListener('input', () => {
+  document.documentElement.style.setProperty('--cap-size', size.value + 'px');
+  sizeLabel.textContent = size.value;
+});
+const params = new URLSearchParams(location.search);
+if (params.get('theme') === 'light') {
+  document.documentElement.dataset.theme = 'light';
+  theme.textContent = 'DARK';
+}
+const demoKey = params.get('key');
+if (demoKey && BY_CODE.has(demoKey)) showKey(BY_CODE.get(demoKey));
+</script>
+</body>
+</html>

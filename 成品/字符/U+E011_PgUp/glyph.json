@@ -1,0 +1,15 @@
+{
+  "id": "pageup",
+  "label": "PgUp",
+  "full": "Page Up",
+  "group": "function",
+  "pua": "U+E011",
+  "codepoint": 57361,
+  "width": 149.956,
+  "keycodes": [
+    "PageUp"
+  ],
+  "folder": "U+E011_PgUp",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "keyq",
+  "label": "Q",
+  "full": "Q",
+  "group": "letters",
+  "pua": "U+E022",
+  "codepoint": 57378,
+  "width": 73.18,
+  "keycodes": [
+    "KeyQ"
+  ],
+  "folder": "U+E022_Q",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

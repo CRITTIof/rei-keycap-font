@@ -1,0 +1,15 @@
+{
+  "id": "pagedown",
+  "label": "PgDn",
+  "full": "Page Down",
+  "group": "function",
+  "pua": "U+E012",
+  "codepoint": 57362,
+  "width": 150.166,
+  "keycodes": [
+    "PageDown"
+  ],
+  "folder": "U+E012_PgDn",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

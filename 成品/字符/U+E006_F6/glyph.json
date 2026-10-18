@@ -1,0 +1,15 @@
+{
+  "id": "f6",
+  "label": "F6",
+  "full": "F6",
+  "group": "function",
+  "pua": "U+E006",
+  "codepoint": 57350,
+  "width": 86.62,
+  "keycodes": [
+    "F6"
+  ],
+  "folder": "U+E006_F6",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

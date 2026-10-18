@@ -1,0 +1,7 @@
+{
+	"dependencies": {
+		"@neplex/vectorizer": "^0.1.0",
+		"@resvg/resvg-js": "^2.6.2",
+		"potrace": "^2.1.8"
+	}
+}

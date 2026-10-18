@@ -1,0 +1,16 @@
+{
+  "id": "digit2",
+  "label": "2",
+  "full": "2",
+  "group": "numbers",
+  "pua": "U+E015",
+  "codepoint": 57365,
+  "width": 64.024,
+  "keycodes": [
+    "Digit2",
+    "Numpad2"
+  ],
+  "folder": "U+E015_2",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

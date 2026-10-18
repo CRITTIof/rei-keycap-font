@@ -1,0 +1,15 @@
+{
+  "id": "keyz",
+  "label": "Z",
+  "full": "Z",
+  "group": "shift",
+  "pua": "U+E03D",
+  "codepoint": 57405,
+  "width": 64.192,
+  "keycodes": [
+    "KeyZ"
+  ],
+  "folder": "U+E03D_Z",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}
