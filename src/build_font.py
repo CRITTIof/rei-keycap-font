@@ -97,7 +97,7 @@ fb.setupNameTable({
     "manufacturer": "Rei Xinglan",
     "designer": "Rei Xinglan",
     "description": "83 content-fitted keycap glyphs with Windows primary legends, 12 transparent system line icons, and normal-text aliases for A-Z/a-z/0-9. Letters and digits use a monospaced face. Upem 1000; glyph height equals 1em.",
-    "licenseDescription": "SIL Open Font License 1.1. Includes outlines derived from Noto Sans SemiBold and JetBrains Mono SemiBold. See OFL.txt.",
+    "licenseDescription": "SIL Open Font License 1.1. Includes outlines derived from Noto Sans SemiBold and JetBrains Mono SemiBold. See LICENSE.",
     "licenseInfoURL": "https://openfontlicense.org/",
 })
 fb.setupOS2(

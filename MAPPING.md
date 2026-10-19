@@ -329,4 +329,4 @@ document.addEventListener("keydown", (event) => {
 - Units per em：**1000**；所有字形占满 **1em / 62 设计单位** 的显示高度。
 - 键帽边框高 1000 字体单位；独立 SVG 的设计高度为 62 单位。
 - 单色轮廓，内部透明，颜色由 `color` / `currentColor` 控制。
-- 轮廓来自 Noto Sans SemiBold 与 JetBrains Mono SemiBold，均以 SIL OFL 1.1 使用。完整许可与版权声明见 `OFL.txt`。
+- 轮廓来自 Noto Sans SemiBold 与 JetBrains Mono SemiBold，均以 SIL OFL 1.1 使用。完整许可与版权声明见 `LICENSE`。
