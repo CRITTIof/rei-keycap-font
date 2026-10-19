@@ -1,14 +1,12 @@
-# Python build dependencies and caches
-work/pydeps/
+# Python
 __pycache__/
 *.py[cod]
+.venv/
+venv/
 
-# Node dependencies (package.json / pnpm-lock.yaml are tracked)
-work/tools/node_modules/
-
-# Local browser profiles
-.edge-profile/
-edge-profile/
+# Build output that is not part of the public repository
+font-proof-*.png
+*.zip
 
 # OS / editor noise
 .DS_Store

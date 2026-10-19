@@ -1,9 +1,0 @@
-﻿id,category,label,full,pua,codepoint,width,folder
-cpu,hardware,CPU,Processor,U+E053,57427,62.0,U+E053_CPU
-gpu,hardware,GPU,Graphics processor,U+E054,57428,62.0,U+E054_GPU
-ram,hardware,RAM,Memory,U+E055,57429,62.0,U+E055_RAM
-rom,hardware,ROM,Hard drive (ROM),U+E056,57430,62.0,U+E056_ROM
-netup,hardware,NetUp,Network uplink,U+E057,57431,62.0,U+E057_NetUp
-netdown,hardware,NetDown,Network downlink,U+E058,57432,62.0,U+E058_NetDown
-usb,hardware,USB,USB drive,U+E05D,57437,62.0,U+E05D_USB
-volume,hardware,Vol,Volume,U+E05E,57438,62.0,U+E05E_Vol
