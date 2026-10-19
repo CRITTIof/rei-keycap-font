@@ -1,5 +1,6 @@
 {
   "id": "insert",
+  "type": "keycap",
   "label": "Ins",
   "full": "Insert",
   "group": "function",

@@ -1,5 +1,6 @@
 {
   "id": "f10",
+  "type": "keycap",
   "label": "F10",
   "full": "F10",
   "group": "function",

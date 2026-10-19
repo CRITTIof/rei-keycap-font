@@ -1,5 +1,6 @@
 {
   "id": "digit3",
+  "type": "keycap",
   "label": "3",
   "full": "3",
   "group": "numbers",

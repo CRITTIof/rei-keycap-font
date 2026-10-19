@@ -1,5 +1,6 @@
 {
   "id": "bracketleft",
+  "type": "keycap",
   "label": "[",
   "full": "Left Bracket",
   "group": "letters",

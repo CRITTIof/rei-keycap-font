@@ -1,5 +1,6 @@
 {
   "id": "end",
+  "type": "keycap",
   "label": "End",
   "full": "End",
   "group": "function",

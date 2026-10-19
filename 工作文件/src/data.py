@@ -1,4 +1,4 @@
-"""Keycap set data: 101 physical keys, 83 unique primary-only designs."""
+"""Keycap set data: 101 physical keys, 83 keycap designs, 6 system icons."""
 
 # glyph_id, label, full name, group
 UNIQUE = [
@@ -108,7 +108,22 @@ PHYS = [
     ("NumpadDecimal", ".", "period", "Period", "numpad"),
 ]
 
+# glyph_id, label, full name, group
+# Simple transparent line icons, not text.  They occupy one em like the keycaps.
+ICONS = [
+    ("cpu", "CPU", "Processor", "system"),
+    ("gpu", "GPU", "Graphics processor", "system"),
+    ("ram", "RAM", "Memory", "system"),
+    ("rom", "ROM", "Hard drive (ROM)", "system"),
+    ("netup", "NetUp", "Network uplink", "network"),
+    ("netdown", "NetDown", "Network downlink", "network"),
+]
+
+ALL_GLYPHS = UNIQUE + ICONS
+
 assert len(PHYS) == 101, len(PHYS)
 assert len(UNIQUE) == 83, len(UNIQUE)
+assert len(ICONS) == 6, len(ICONS)
 assert len({g[0] for g in UNIQUE}) == len(UNIQUE)
+assert len({g[0] for g in ALL_GLYPHS}) == len(ALL_GLYPHS)
 assert set(g[0] for g in UNIQUE) == set(p[2] for p in PHYS)

@@ -1,5 +1,6 @@
 {
   "id": "comma",
+  "type": "keycap",
   "label": ",",
   "full": "Comma",
   "group": "shift",

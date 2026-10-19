@@ -1,5 +1,6 @@
 {
   "id": "plus",
+  "type": "keycap",
   "label": "+",
   "full": "Plus",
   "group": "numpad",

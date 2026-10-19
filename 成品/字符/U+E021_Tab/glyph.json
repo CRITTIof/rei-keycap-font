@@ -1,5 +1,6 @@
 {
   "id": "tab",
+  "type": "keycap",
   "label": "Tab",
   "full": "Tab",
   "group": "letters",

@@ -1,84 +1,90 @@
-﻿pua,label,full,group,width,folder,keycodes
-U+E000,Esc,Escape,function,105.058,U+E000_Esc,Escape
-U+E001,F1,F1,function,86.62,U+E001_F1,F1
-U+E002,F2,F2,function,86.62,U+E002_F2,F2
-U+E003,F3,F3,function,86.62,U+E003_F3,F3
-U+E004,F4,F4,function,86.62,U+E004_F4,F4
-U+E005,F5,F5,function,86.62,U+E005_F5,F5
-U+E006,F6,F6,function,86.62,U+E006_F6,F6
-U+E007,F7,F7,function,86.62,U+E007_F7,F7
-U+E008,F8,F8,function,86.62,U+E008_F8,F8
-U+E009,F9,F9,function,86.62,U+E009_F9,F9
-U+E00A,F10,F10,function,110.644,U+E00A_F10,F10
-U+E00B,F11,F11,function,110.644,U+E00B_F11,F11
-U+E00C,F12,F12,function,110.644,U+E00C_F12,F12
-U+E00D,Ins,Insert,function,103.084,U+E00D_Ins,Insert
-U+E00E,Del,Delete,function,107.368,U+E00E_Del,Delete
-U+E00F,Home,Home,function,162.43,U+E00F_Home,Home
-U+E010,End,End,function,116.692,U+E010_End,End
-U+E011,PgUp,Page Up,function,149.956,U+E011_PgUp,PageUp
-U+E012,PgDn,Page Down,function,150.166,U+E012_PgDn,PageDown
-U+E013,`,Backquote,numbers,53.902,U+E013_Backquote,Backquote
-U+E014,1,1,numbers,64.024,U+E014_1,Digit1 Numpad1
-U+E015,2,2,numbers,64.024,U+E015_2,Digit2 Numpad2
-U+E016,3,3,numbers,64.024,U+E016_3,Digit3 Numpad3
-U+E017,4,4,numbers,64.024,U+E017_4,Digit4 Numpad4
-U+E018,5,5,numbers,64.024,U+E018_5,Digit5 Numpad5
-U+E019,6,6,numbers,64.024,U+E019_6,Digit6 Numpad6
-U+E01A,7,7,numbers,64.024,U+E01A_7,Digit7 Numpad7
-U+E01B,8,8,numbers,64.024,U+E01B_8,Digit8 Numpad8
-U+E01C,9,9,numbers,64.024,U+E01C_9,Digit9 Numpad9
-U+E01D,0,0,numbers,64.024,U+E01D_0,Digit0 Numpad0
-U+E01E,-,Minus,numbers,53.524,U+E01E_Minus,Minus NumpadSubtract
-U+E01F,=,Equal,numbers,64.024,U+E01F_Equal,Equal
-U+E020,Back,Backspace,numbers,138.322,U+E020_Back,Backspace
-U+E021,Tab,Tab,letters,114.928,U+E021_Tab,Tab
-U+E022,Q,Q,letters,73.18,U+E022_Q,KeyQ
-U+E023,W,W,letters,80.026,U+E023_W,KeyW
-U+E024,E,E,letters,63.436,U+E024_E,KeyE
-U+E025,R,R,letters,67.132,U+E025_R,KeyR
-U+E026,T,T,letters,63.94,U+E026_T,KeyT
-U+E027,Y,Y,letters,65.284,U+E027_Y,KeyY
-U+E028,U,U,letters,71.374,U+E028_U,KeyU
-U+E029,I,I,letters,55.54,U+E029_I,KeyI
-U+E02A,O,O,letters,73.18,U+E02A_O,KeyO
-U+E02B,P,P,letters,65.998,U+E02B_P,KeyP
-U+E02C,[,Left Bracket,letters,53.86,U+E02C_BracketLeft,BracketLeft
-U+E02D,],Right Bracket,letters,53.86,U+E02D_BracketRight,BracketRight
-U+E02E,\,Backslash,letters,56.716,U+E02E_Backslash,Backslash
-U+E02F,Cap,Caps Lock,caps,117.658,U+E02F_Cap,CapsLock
-U+E030,A,A,caps,68.182,U+E030_A,KeyA
-U+E031,S,S,caps,63.1,U+E031_S,KeyS
-U+E032,D,D,caps,70.912,U+E032_D,KeyD
-U+E033,F,F,caps,62.596,U+E033_F,KeyF
-U+E034,G,G,caps,70.492,U+E034_G,KeyG
-U+E035,H,H,caps,71.752,U+E035_H,KeyH
-U+E036,J,J,caps,52.978,U+E036_J,KeyJ
-U+E037,K,K,caps,67.174,U+E037_K,KeyK
-U+E038,L,L,caps,63.1,U+E038_L,KeyL
-U+E039,;,Semicolon,caps,51.718,U+E039_Semicolon,Semicolon
-U+E03A,',Apostrophe,caps,50.542,U+E03A_Apostrophe,Quote
-U+E03B,Enter,Enter,caps,150.292,U+E03B_Enter,Enter NumpadEnter
-U+E03C,Shift,Shift,shift,134.752,U+E03C_Shift,ShiftLeft ShiftRight
-U+E03D,Z,Z,shift,64.192,U+E03D_Z,KeyZ
-U+E03E,X,X,shift,66.712,U+E03E_X,KeyX
-U+E03F,C,C,shift,66.67,U+E03F_C,KeyC
-U+E040,V,V,shift,66.502,U+E040_V,KeyV
-U+E041,B,B,shift,67.888,U+E041_B,KeyB
-U+E042,N,N,shift,73.306,U+E042_N,KeyN
-U+E043,M,M,shift,79.018,U+E043_M,KeyM
-U+E044,",",Comma,shift,51.718,U+E044_Comma,Comma
-U+E045,.,Period,shift,51.718,U+E045_Period,Period NumpadDecimal
-U+E046,/,Slash,shift,56.716,U+E046_Slash,Slash NumpadDivide
-U+E047,Ctrl,Control,mods,114.214,U+E047_Ctrl,ControlLeft ControlRight
-U+E048,Fn,Function,mods,89.56,U+E048_Fn,FnLeft FnRight
-U+E049,Win,Windows,mods,119.044,U+E049_Win,MetaLeft
-U+E04A,Alt,Alt,mods,97.288,U+E04A_Alt,AltLeft AltRight
-U+E04B,Space,Space,mods,159.532,U+E04B_Space,Space
-U+E04C,←,Arrow Left,mods,58.0,U+E04C_ArrowLeft,ArrowLeft
-U+E04D,↑,Arrow Up,mods,58.0,U+E04D_ArrowUp,ArrowUp
-U+E04E,↓,Arrow Down,mods,58.0,U+E04E_ArrowDown,ArrowDown
-U+E04F,→,Arrow Right,mods,58.0,U+E04F_ArrowRight,ArrowRight
-U+E050,Num,Num Lock,numpad,140.758,U+E050_Num,NumLock
-U+E051,*,Multiply,numpad,62.974,U+E051_Asterisk,NumpadMultiply
-U+E052,+,Plus,numpad,64.024,U+E052_Plus,NumpadAdd
+﻿pua,type,label,full,group,width,folder,keycodes
+U+E000,keycap,Esc,Escape,function,105.058,U+E000_Esc,Escape
+U+E001,keycap,F1,F1,function,86.62,U+E001_F1,F1
+U+E002,keycap,F2,F2,function,86.62,U+E002_F2,F2
+U+E003,keycap,F3,F3,function,86.62,U+E003_F3,F3
+U+E004,keycap,F4,F4,function,86.62,U+E004_F4,F4
+U+E005,keycap,F5,F5,function,86.62,U+E005_F5,F5
+U+E006,keycap,F6,F6,function,86.62,U+E006_F6,F6
+U+E007,keycap,F7,F7,function,86.62,U+E007_F7,F7
+U+E008,keycap,F8,F8,function,86.62,U+E008_F8,F8
+U+E009,keycap,F9,F9,function,86.62,U+E009_F9,F9
+U+E00A,keycap,F10,F10,function,110.644,U+E00A_F10,F10
+U+E00B,keycap,F11,F11,function,110.644,U+E00B_F11,F11
+U+E00C,keycap,F12,F12,function,110.644,U+E00C_F12,F12
+U+E00D,keycap,Ins,Insert,function,103.084,U+E00D_Ins,Insert
+U+E00E,keycap,Del,Delete,function,107.368,U+E00E_Del,Delete
+U+E00F,keycap,Home,Home,function,162.43,U+E00F_Home,Home
+U+E010,keycap,End,End,function,116.692,U+E010_End,End
+U+E011,keycap,PgUp,Page Up,function,149.956,U+E011_PgUp,PageUp
+U+E012,keycap,PgDn,Page Down,function,150.166,U+E012_PgDn,PageDown
+U+E013,keycap,`,Backquote,numbers,53.902,U+E013_Backquote,Backquote
+U+E014,keycap,1,1,numbers,64.024,U+E014_1,Digit1 Numpad1
+U+E015,keycap,2,2,numbers,64.024,U+E015_2,Digit2 Numpad2
+U+E016,keycap,3,3,numbers,64.024,U+E016_3,Digit3 Numpad3
+U+E017,keycap,4,4,numbers,64.024,U+E017_4,Digit4 Numpad4
+U+E018,keycap,5,5,numbers,64.024,U+E018_5,Digit5 Numpad5
+U+E019,keycap,6,6,numbers,64.024,U+E019_6,Digit6 Numpad6
+U+E01A,keycap,7,7,numbers,64.024,U+E01A_7,Digit7 Numpad7
+U+E01B,keycap,8,8,numbers,64.024,U+E01B_8,Digit8 Numpad8
+U+E01C,keycap,9,9,numbers,64.024,U+E01C_9,Digit9 Numpad9
+U+E01D,keycap,0,0,numbers,64.024,U+E01D_0,Digit0 Numpad0
+U+E01E,keycap,-,Minus,numbers,53.524,U+E01E_Minus,Minus NumpadSubtract
+U+E01F,keycap,=,Equal,numbers,64.024,U+E01F_Equal,Equal
+U+E020,keycap,Back,Backspace,numbers,138.322,U+E020_Back,Backspace
+U+E021,keycap,Tab,Tab,letters,114.928,U+E021_Tab,Tab
+U+E022,keycap,Q,Q,letters,73.18,U+E022_Q,KeyQ
+U+E023,keycap,W,W,letters,80.026,U+E023_W,KeyW
+U+E024,keycap,E,E,letters,63.436,U+E024_E,KeyE
+U+E025,keycap,R,R,letters,67.132,U+E025_R,KeyR
+U+E026,keycap,T,T,letters,63.94,U+E026_T,KeyT
+U+E027,keycap,Y,Y,letters,65.284,U+E027_Y,KeyY
+U+E028,keycap,U,U,letters,71.374,U+E028_U,KeyU
+U+E029,keycap,I,I,letters,55.54,U+E029_I,KeyI
+U+E02A,keycap,O,O,letters,73.18,U+E02A_O,KeyO
+U+E02B,keycap,P,P,letters,65.998,U+E02B_P,KeyP
+U+E02C,keycap,[,Left Bracket,letters,53.86,U+E02C_BracketLeft,BracketLeft
+U+E02D,keycap,],Right Bracket,letters,53.86,U+E02D_BracketRight,BracketRight
+U+E02E,keycap,\,Backslash,letters,56.716,U+E02E_Backslash,Backslash
+U+E02F,keycap,Cap,Caps Lock,caps,117.658,U+E02F_Cap,CapsLock
+U+E030,keycap,A,A,caps,68.182,U+E030_A,KeyA
+U+E031,keycap,S,S,caps,63.1,U+E031_S,KeyS
+U+E032,keycap,D,D,caps,70.912,U+E032_D,KeyD
+U+E033,keycap,F,F,caps,62.596,U+E033_F,KeyF
+U+E034,keycap,G,G,caps,70.492,U+E034_G,KeyG
+U+E035,keycap,H,H,caps,71.752,U+E035_H,KeyH
+U+E036,keycap,J,J,caps,52.978,U+E036_J,KeyJ
+U+E037,keycap,K,K,caps,67.174,U+E037_K,KeyK
+U+E038,keycap,L,L,caps,63.1,U+E038_L,KeyL
+U+E039,keycap,;,Semicolon,caps,51.718,U+E039_Semicolon,Semicolon
+U+E03A,keycap,',Apostrophe,caps,50.542,U+E03A_Apostrophe,Quote
+U+E03B,keycap,Enter,Enter,caps,150.292,U+E03B_Enter,Enter NumpadEnter
+U+E03C,keycap,Shift,Shift,shift,134.752,U+E03C_Shift,ShiftLeft ShiftRight
+U+E03D,keycap,Z,Z,shift,64.192,U+E03D_Z,KeyZ
+U+E03E,keycap,X,X,shift,66.712,U+E03E_X,KeyX
+U+E03F,keycap,C,C,shift,66.67,U+E03F_C,KeyC
+U+E040,keycap,V,V,shift,66.502,U+E040_V,KeyV
+U+E041,keycap,B,B,shift,67.888,U+E041_B,KeyB
+U+E042,keycap,N,N,shift,73.306,U+E042_N,KeyN
+U+E043,keycap,M,M,shift,79.018,U+E043_M,KeyM
+U+E044,keycap,",",Comma,shift,51.718,U+E044_Comma,Comma
+U+E045,keycap,.,Period,shift,51.718,U+E045_Period,Period NumpadDecimal
+U+E046,keycap,/,Slash,shift,56.716,U+E046_Slash,Slash NumpadDivide
+U+E047,keycap,Ctrl,Control,mods,114.214,U+E047_Ctrl,ControlLeft ControlRight
+U+E048,keycap,Fn,Function,mods,89.56,U+E048_Fn,FnLeft FnRight
+U+E049,keycap,Win,Windows,mods,119.044,U+E049_Win,MetaLeft
+U+E04A,keycap,Alt,Alt,mods,97.288,U+E04A_Alt,AltLeft AltRight
+U+E04B,keycap,Space,Space,mods,159.532,U+E04B_Space,Space
+U+E04C,keycap,←,Arrow Left,mods,58.0,U+E04C_ArrowLeft,ArrowLeft
+U+E04D,keycap,↑,Arrow Up,mods,58.0,U+E04D_ArrowUp,ArrowUp
+U+E04E,keycap,↓,Arrow Down,mods,58.0,U+E04E_ArrowDown,ArrowDown
+U+E04F,keycap,→,Arrow Right,mods,58.0,U+E04F_ArrowRight,ArrowRight
+U+E050,keycap,Num,Num Lock,numpad,140.758,U+E050_Num,NumLock
+U+E051,keycap,*,Multiply,numpad,62.974,U+E051_Asterisk,NumpadMultiply
+U+E052,keycap,+,Plus,numpad,64.024,U+E052_Plus,NumpadAdd
+U+E053,icon,CPU,Processor,system,62.0,U+E053_CPU,
+U+E054,icon,GPU,Graphics processor,system,62.0,U+E054_GPU,
+U+E055,icon,RAM,Memory,system,62.0,U+E055_RAM,
+U+E056,icon,ROM,Hard drive (ROM),system,62.0,U+E056_ROM,
+U+E057,icon,NetUp,Network uplink,network,62.0,U+E057_NetUp,
+U+E058,icon,NetDown,Network downlink,network,62.0,U+E058_NetDown,

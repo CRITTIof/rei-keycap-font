@@ -1,5 +1,6 @@
 {
   "id": "backquote",
+  "type": "keycap",
   "label": "`",
   "full": "Backquote",
   "group": "numbers",

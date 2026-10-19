@@ -1,5 +1,6 @@
 {
   "id": "backspace",
+  "type": "keycap",
   "label": "Back",
   "full": "Backspace",
   "group": "numbers",

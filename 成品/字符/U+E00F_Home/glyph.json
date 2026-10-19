@@ -1,5 +1,6 @@
 {
   "id": "home",
+  "type": "keycap",
   "label": "Home",
   "full": "Home",
   "group": "function",

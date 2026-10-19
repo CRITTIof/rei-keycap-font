@@ -1,5 +1,6 @@
 {
   "id": "asterisk",
+  "type": "keycap",
   "label": "*",
   "full": "Multiply",
   "group": "numpad",

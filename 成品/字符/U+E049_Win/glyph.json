@@ -1,5 +1,6 @@
 {
   "id": "win",
+  "type": "keycap",
   "label": "Win",
   "full": "Windows",
   "group": "mods",

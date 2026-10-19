@@ -1,5 +1,6 @@
 {
   "id": "space",
+  "type": "keycap",
   "label": "Space",
   "full": "Space",
   "group": "mods",

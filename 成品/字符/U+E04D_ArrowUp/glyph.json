@@ -1,5 +1,6 @@
 {
   "id": "arrowup",
+  "type": "keycap",
   "label": "↑",
   "full": "Arrow Up",
   "group": "mods",

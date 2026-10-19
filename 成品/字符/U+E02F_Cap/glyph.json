@@ -1,5 +1,6 @@
 {
   "id": "capslock",
+  "type": "keycap",
   "label": "Cap",
   "full": "Caps Lock",
   "group": "caps",

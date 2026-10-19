@@ -1,5 +1,6 @@
 {
   "id": "minus",
+  "type": "keycap",
   "label": "-",
   "full": "Minus",
   "group": "numbers",

@@ -1,5 +1,6 @@
 {
   "id": "pageup",
+  "type": "keycap",
   "label": "PgUp",
   "full": "Page Up",
   "group": "function",

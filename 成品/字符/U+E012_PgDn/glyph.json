@@ -1,5 +1,6 @@
 {
   "id": "pagedown",
+  "type": "keycap",
   "label": "PgDn",
   "full": "Page Down",
   "group": "function",

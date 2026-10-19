@@ -1,5 +1,6 @@
 {
   "id": "f11",
+  "type": "keycap",
   "label": "F11",
   "full": "F11",
   "group": "function",

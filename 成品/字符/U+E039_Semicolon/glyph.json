@@ -1,5 +1,6 @@
 {
   "id": "semicolon",
+  "type": "keycap",
   "label": ";",
   "full": "Semicolon",
   "group": "caps",

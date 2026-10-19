@@ -60,7 +60,10 @@ def main():
     ]:
         run([PY, str(HERE / script)], label)
 
-    run([NODE, str(HERE / "render_chars.js"), str(OUT / "字符")], "character PNG previews")
+    run([NODE, str(HERE / "render_chars.js"), str(OUT / "字符")], "glyph PNG previews")
+    run([NODE, str(HERE / "render.js"),
+         str(OUT / "keycap-tight-icons.svg"),
+         str(OUT / "keycap-tight-icons.png"), "1340"], "system icon sheet PNG")
     run([NODE, str(HERE / "render.js"),
          str(OUT / "keycap-tight-specimen.svg"),
          str(OUT / "keycap-tight-specimen.png"), "2200"], "specimen PNG")

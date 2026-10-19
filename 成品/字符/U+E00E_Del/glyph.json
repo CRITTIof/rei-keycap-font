@@ -1,5 +1,6 @@
 {
   "id": "delete",
+  "type": "keycap",
   "label": "Del",
   "full": "Delete",
   "group": "function",

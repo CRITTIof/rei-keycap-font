@@ -1,5 +1,6 @@
 {
   "id": "digit8",
+  "type": "keycap",
   "label": "8",
   "full": "8",
   "group": "numbers",

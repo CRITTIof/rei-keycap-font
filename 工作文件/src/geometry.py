@@ -20,7 +20,7 @@ from fontTools.pens.reverseContourPen import ReverseContourPen
 from fontTools.pens.ttGlyphPen import TTGlyphPen
 from fontTools.pens.cu2quPen import Cu2QuPen
 
-from data import UNIQUE, PHYS
+from data import UNIQUE, PHYS, ICONS, ALL_GLYPHS
 
 FONT_SRC = ROOT / "assets" / "noto-sans-semibold.ttf"
 SRC = TTFont(FONT_SRC)
@@ -41,11 +41,18 @@ K = 0.5522847498307936
 ARROW_W = 58.0
 ARROW_ANGLE = {"up": 0.0, "right": 90.0, "down": 180.0, "left": 270.0}
 
-PUA = {gid: 0xE000 + i for i, (gid, *_rest) in enumerate(UNIQUE)}
-META = {
-    gid: {"label": label, "full": full, "group": group, "pua": PUA[gid]}
-    for gid, label, full, group in UNIQUE
-}
+ICON_W = 62.0
+ICON_H = 62.0
+ICON_STROKE = 3.5
+
+PUA = {gid: 0xE000 + i for i, (gid, *_rest) in enumerate(ALL_GLYPHS)}
+META = {}
+for gid, label, full, group in UNIQUE:
+    META[gid] = {"label": label, "full": full, "group": group,
+                 "pua": PUA[gid], "kind": "keycap"}
+for gid, label, full, group in ICONS:
+    META[gid] = {"label": label, "full": full, "group": group,
+                 "pua": PUA[gid], "kind": "icon"}
 
 # Windows-safe, human-readable folder names.  A few key legends are illegal
 # filename characters, so they get a descriptive word instead.
@@ -112,6 +119,8 @@ def text_bounds(label):
 
 
 def design_for(gid):
+    if META[gid]["kind"] == "icon":
+        return {"W": ICON_W, "H": ICON_H, "kind": "icon"}
     label = META[gid]["label"]
     if is_arrow(gid):
         return {
@@ -143,6 +152,130 @@ def rr(pen, x, y, w, h, r):
     pen.closePath()
 
 
+def arc(pen, cx, cy, r, a0, a1):
+    """Cubic approximation of a positive (counter-clockwise in math coords)
+    arc.  Coordinates are y-down, so this appears clockwise on screen."""
+    steps = max(1, int(math.ceil((a1 - a0) / (math.pi / 2))))
+    for i in range(steps):
+        t0 = a0 + (a1 - a0) * i / steps
+        t1 = a0 + (a1 - a0) * (i + 1) / steps
+        delta = t1 - t0
+        k = (4.0 / 3.0) * math.tan(delta / 4.0) * r
+        p0 = (cx + r * math.cos(t0), cy + r * math.sin(t0))
+        p3 = (cx + r * math.cos(t1), cy + r * math.sin(t1))
+        p1 = (p0[0] - k * math.sin(t0), p0[1] + k * math.cos(t0))
+        p2 = (p3[0] + k * math.sin(t1), p3[1] - k * math.cos(t1))
+        pen.curveTo(p1, p2, p3)
+
+
+def circle(pen, cx, cy, r):
+    """Filled circle, same winding as rr()."""
+    pen.moveTo((cx + r, cy))
+    arc(pen, cx, cy, r, 0, 2 * math.pi)
+    pen.closePath()
+
+
+def capsule(pen, x1, y1, x2, y2, w=ICON_STROKE):
+    """A line segment with round caps, expanded to a filled outline."""
+    r = w / 2.0
+    dx, dy = x2 - x1, y2 - y1
+    length = math.hypot(dx, dy)
+    if length < 1e-9:
+        circle(pen, x1, y1, r)
+        return
+    ux, uy = dx / length, dy / length
+    nx, ny = -uy, ux
+    a = math.atan2(uy, ux)
+    p1b = (x1 - nx * r, y1 - ny * r)
+    p2b = (x2 - nx * r, y2 - ny * r)
+    p1a = (x1 + nx * r, y1 + ny * r)
+    p2a = (x2 + nx * r, y2 + ny * r)
+    pen.moveTo(p1b)
+    pen.lineTo(p2b)
+    arc(pen, x2, y2, r, a - math.pi / 2, a + math.pi / 2)
+    pen.lineTo(p1a)
+    arc(pen, x1, y1, r, a + math.pi / 2, a + 3 * math.pi / 2)
+    pen.closePath()
+
+
+def ring_rr(pen, x, y, w, h, r, stroke=ICON_STROKE):
+    s = stroke
+    rr(pen, x - s / 2, y - s / 2, w + s, h + s, r + s / 2)
+    inner = ReverseContourPen(pen)
+    rr(inner, x + s / 2, y + s / 2, w - s, h - s, max(0.1, r - s / 2))
+
+
+def ring_circle(pen, cx, cy, r, stroke=ICON_STROKE):
+    s = stroke
+    circle(pen, cx, cy, r + s / 2)
+    circle(ReverseContourPen(pen), cx, cy, max(0.1, r - s / 2))
+
+
+def draw_icon_svg(pen, gid):
+    """Filled line-art outlines for the six system pictograms.
+
+    All coordinates live in a 62 x 62 design box.  The shapes are built from
+    capsules, rings and dots so the same path can be used by SVG and by the
+    font (fonts can only fill, not stroke).
+    """
+    if gid == "cpu":
+        ring_rr(pen, 13, 13, 36, 36, 5)
+        ring_rr(pen, 25, 25, 12, 12, 2)
+        for p in (22, 31, 40):
+            capsule(pen, p, 8, p, 14)
+            capsule(pen, p, 48, p, 54)
+            capsule(pen, 8, p, 14, p)
+            capsule(pen, 48, p, 54, p)
+
+    elif gid == "gpu":
+        # The bracket is deliberately separated from the card body.
+        ring_rr(pen, 14, 20, 38, 20, 3)
+        capsule(pen, 6, 17, 6, 45)
+        capsule(pen, 3.5, 20, 7, 20)
+        capsule(pen, 3.5, 42, 7, 42)
+        ring_circle(pen, 34, 30, 6.5, 3.2)
+        circle(pen, 34, 30, 1.6)
+        for deg in (90, 210, 330):
+            a = math.radians(deg)
+            capsule(pen, 34, 30, 34 + 4.8 * math.cos(a), 30 + 4.8 * math.sin(a), 2.4)
+        for x in (20, 28, 36, 44):
+            capsule(pen, x, 40, x, 45, 2.2)
+
+    elif gid == "ram":
+        ring_rr(pen, 6, 23, 50, 15, 3)
+        for x in (13, 23, 33, 43):
+            ring_rr(pen, x, 27, 6, 6, 1.2, 2.2)
+        for x in (9, 16, 23, 30, 37, 44, 51):
+            capsule(pen, x, 38, x, 43, 2.2)
+
+    elif gid == "rom":
+        # "ROM" in this keyboard means the hard drive: enclosure, platter,
+        # spindle, actuator arm and SATA-side contacts.
+        ring_rr(pen, 10, 17, 42, 28, 3)
+        ring_circle(pen, 25, 31, 8.0, 3.2)
+        circle(pen, 25, 31, 2.0)
+        circle(pen, 45, 21, 2.2)
+        capsule(pen, 45, 21, 30, 30, 3.0)
+        for x in (38, 43, 48):
+            capsule(pen, x, 45, x, 49, 2.2)
+
+    elif gid == "netup":
+        for y in (20, 31, 42):
+            capsule(pen, 9, y, 35, y, 3.2)
+        capsule(pen, 36, 20, 36, 42, 3.2)
+        capsule(pen, 50, 46, 50, 20)
+        capsule(pen, 50, 15, 43, 23)
+        capsule(pen, 50, 15, 57, 23)
+
+    elif gid == "netdown":
+        for y in (20, 31, 42):
+            capsule(pen, 9, y, 35, y, 3.2)
+        capsule(pen, 36, 20, 36, 42, 3.2)
+        capsule(pen, 50, 16, 50, 42)
+        capsule(pen, 50, 47, 43, 39)
+        capsule(pen, 50, 47, 57, 39)
+
+
 def draw_frame_svg(pen, W):
     rr(pen, 0, 0, W, BOX_H, RADIUS_OUT)
     inner = ReverseContourPen(pen)
@@ -166,6 +299,11 @@ def draw_label_svg(pen, d):
 
 def path_pair(gid):
     d = design_for(gid)
+    if d["kind"] == "icon":
+        ip = SVGPathPen(GLYPHS, ntos=lambda v: f"{v:.3f}")
+        draw_icon_svg(ip, gid)
+        return d, "", ip.getCommands()
+
     fp = SVGPathPen(GLYPHS, ntos=lambda v: f"{v:.3f}")
     draw_frame_svg(fp, d["W"])
     lp = SVGPathPen(GLYPHS, ntos=lambda v: f"{v:.3f}")
@@ -173,4 +311,4 @@ def path_pair(gid):
     return d, fp.getCommands(), lp.getCommands()
 
 
-PATHS = {gid: path_pair(gid) for gid, *_ in UNIQUE}
+PATHS = {gid: path_pair(gid) for gid, *_ in ALL_GLYPHS}

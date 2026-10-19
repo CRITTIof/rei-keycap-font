@@ -4,7 +4,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape as xesc
 
 import geometry as G
-from data import UNIQUE, PHYS
+from data import UNIQUE, PHYS, ICONS, ALL_GLYPHS
 
 DIST = G.OUT
 DIST.mkdir(parents=True, exist_ok=True)
@@ -23,56 +23,68 @@ HAIR = "#D8D2C7"
 
 def symbol_svg(gid):
     meta = G.META[gid]
-    d, frame, label = G.PATHS[gid]
-    return f'''  <symbol id="key-{gid}" viewBox="0 0 {d['W']:.3f} 62" data-glyph="{gid}" data-label="{xesc(meta['label'])}" data-full="{xesc(meta['full'])}" data-pua="U+{meta['pua']:04X}">
+    d, frame, body = G.PATHS[gid]
+    if meta["kind"] == "icon":
+        inner = f'<path class="system-icon" d="{body}"/>'
+    else:
+        inner = (f'<path class="keycap-frame" d="{frame}"/>'
+                 f'<path class="keycap-label" d="{body}"/>')
+    return f'''  <symbol id="key-{gid}" viewBox="0 0 {d['W']:.3f} 62" data-glyph="{gid}" data-kind="{meta['kind']}" data-label="{xesc(meta['label'])}" data-full="{xesc(meta['full'])}" data-pua="U+{meta['pua']:04X}">
     <title>{xesc(meta['label'])} — {xesc(meta['full'])}</title>
     <g fill="currentColor">
-      <path class="keycap-frame" d="{frame}"/>
-      <path class="keycap-label" d="{label}"/>
+      {inner}
     </g>
   </symbol>'''
 
 
 sprite = f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
-  <!-- Keycap Tight — 83 unique primary-only keycaps, Windows legends.
+  <!-- Keycap Tight — 83 primary-only keycaps + 6 system line icons.
        ViewBox height is 62. Use with <svg viewBox="0 0 W 62"><use href="#key-..."/></svg>.
-       Both path classes inherit currentColor; override .keycap-frame / .keycap-label to theme separately. -->
+       All glyphs inherit currentColor; override .keycap-frame / .keycap-label
+       or .system-icon to theme them separately. -->
   <defs>
-{chr(10).join(symbol_svg(gid) for gid, *_ in UNIQUE)}
+{chr(10).join(symbol_svg(gid) for gid, *_ in ALL_GLYPHS)}
   </defs>
 </svg>
 '''
 (DIST / "keycap-tight-sprite.svg").write_text(sprite, encoding="utf-8")
 
-# One folder per unique character.
-for gid, label, full, group in UNIQUE:
-    d, frame, label_path = G.PATHS[gid]
+# One folder per glyph: 83 keycaps + 6 system icons.
+for gid, label, full, group in ALL_GLYPHS:
+    d, frame, body = G.PATHS[gid]
     w = d["W"]
     meta = G.META[gid]
+    is_icon = meta["kind"] == "icon"
+    svg_name = "icon.svg" if is_icon else "keycap.svg"
     folder = G.CHARS / G.folder_name(gid)
     folder.mkdir(parents=True, exist_ok=True)
+    if is_icon:
+        markup = f'<path class="system-icon" d="{body}"/>'
+    else:
+        markup = (f'<path class="keycap-frame" d="{frame}"/>\n'
+                  f'    <path class="keycap-label" d="{body}"/>')
     one = f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="{w:.3f}" height="62" viewBox="0 0 {w:.3f} 62" role="img" aria-label="{xesc(label)}">
   <title>{xesc(label)} — {xesc(full)}</title>
   <g fill="currentColor">
-    <path class="keycap-frame" d="{frame}"/>
-    <path class="keycap-label" d="{label_path}"/>
+    {markup}
   </g>
 </svg>
 '''
-    (folder / "keycap.svg").write_text(one, encoding="utf-8")
+    (folder / svg_name).write_text(one, encoding="utf-8")
     glyph = {
         "id": gid,
+        "type": meta["kind"],
         "label": label,
         "full": full,
         "group": group,
         "pua": f"U+{meta['pua']:04X}",
         "codepoint": meta["pua"],
         "width": round(w, 3),
-        "keycodes": SHARED[gid],
+        "keycodes": SHARED.get(gid, []),
         "folder": folder.name,
-        "svg": "keycap.svg",
+        "svg": svg_name,
         "preview": "preview.png",
     }
     (folder / "glyph.json").write_text(
@@ -81,13 +93,13 @@ for gid, label, full, group in UNIQUE:
 
 with (G.CHARS / "index.csv").open("w", encoding="utf-8-sig", newline="") as f:
     writer = csv.writer(f)
-    writer.writerow(["pua", "label", "full", "group", "width", "folder", "keycodes"])
-    for gid, label, full, group in UNIQUE:
+    writer.writerow(["pua", "type", "label", "full", "group", "width", "folder", "keycodes"])
+    for gid, label, full, group in ALL_GLYPHS:
         meta = G.META[gid]
         writer.writerow([
-            f"U+{meta['pua']:04X}", label, full, group,
+            f"U+{meta['pua']:04X}", meta["kind"], label, full, group,
             round(G.PATHS[gid][0]["W"], 3), G.folder_name(gid),
-            " ".join(SHARED[gid]),
+            " ".join(SHARED.get(gid, [])),
         ])
 
 # Specimen layout -----------------------------------------------------------
@@ -97,6 +109,7 @@ SECTIONS = [
     ("03", "Tabs, letters & punctuation", ["tab", *[f"key{c}" for c in "qwertyuiop"], "bracketleft", "bracketright", "backslash", "capslock", *[f"key{c}" for c in "asdfghjkl"], "semicolon", "quote", "enter", "shift", *[f"key{c}" for c in "zxcvbnm"], "comma", "period", "slash"]),
     ("04", "Modifiers & arrows", ["ctrl", "fn", "win", "alt", "space", "arrowleft", "arrowup", "arrowdown", "arrowright"]),
     ("05", "Numpad-only glyphs", ["num", "asterisk", "plus"]),
+    ("06", "System icons", [gid for gid, *_ in ICONS]),
 ]
 
 W = 2200
@@ -126,12 +139,16 @@ H = y + 24
 
 parts = []
 for gid, x, yy in positions:
-    d, frame, label = G.PATHS[gid]
+    d, frame, body = G.PATHS[gid]
     meta = G.META[gid]
-    parts.append(f'''  <g transform="translate({x:.3f} {yy:.3f})" data-glyph="{gid}">
+    if meta["kind"] == "icon":
+        drawn = f'<path class="system-icon" d="{body}" fill="{INK}"/>'
+    else:
+        drawn = (f'<path class="keycap-frame" d="{frame}" fill="{INK}"/>'
+                 f'<path class="keycap-label" d="{body}" fill="{INK}"/>')
+    parts.append(f'''  <g transform="translate({x:.3f} {yy:.3f})" data-glyph="{gid}" data-kind="{meta['kind']}">
     <title>{xesc(meta['label'])} — {xesc(meta['full'])}</title>
-    <path class="keycap-frame" d="{frame}" fill="{INK}"/>
-    <path class="keycap-label" d="{label}" fill="{INK}"/>
+    {drawn}
   </g>''')
 
 sections_svg = []
@@ -146,8 +163,8 @@ for num, title, keys in SECTIONS:
 specimen = f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
   <rect width="{W}" height="{H}" fill="{PAPER}"/>
-  <text x="{MARGIN}" y="72" font-family="Noto Sans SemiBold, Noto Sans, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" letter-spacing="6" fill="{INK}">KEYCAP TIGHT / WINDOWS</text>
-  <text x="{MARGIN}" y="104" font-family="Noto Sans SemiBold, Noto Sans, Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" letter-spacing="1.2" fill="{MUTED}">83 UNIQUE PRIMARY-ONLY KEYS · 101 PHYSICAL KEYS · TRANSPARENT FILL · CONTENT-FITTED OUTLINE</text>
+  <text x="{MARGIN}" y="72" font-family="Noto Sans SemiBold, Noto Sans, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" letter-spacing="6" fill="{INK}">KEYCAP TIGHT / WINDOWS + SYSTEM</text>
+  <text x="{MARGIN}" y="104" font-family="Noto Sans SemiBold, Noto Sans, Segoe UI, Arial, sans-serif" font-size="13" font-weight="400" letter-spacing="1.2" fill="{MUTED}">83 KEYCAPS + 6 SYSTEM ICONS · 101 PHYSICAL KEYS · TRANSPARENT FILL · CONTENT-FITTED OUTLINE</text>
   <text x="{RIGHT}" y="72" text-anchor="end" font-family="Noto Sans SemiBold, Noto Sans, Segoe UI, Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="2.2" fill="{MUTED}">NOTO SANS SEMIBOLD</text>
   <text x="{RIGHT}" y="104" text-anchor="end" font-family="Noto Sans SemiBold, Noto Sans, Segoe UI, Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="2.2" fill="{MUTED}">62 / 4 / 16</text>
   <line x1="{MARGIN}" y1="128" x2="{RIGHT}" y2="128" stroke="{INK}" stroke-width="1"/>
@@ -155,11 +172,37 @@ specimen = f'''<?xml version="1.0" encoding="UTF-8"?>
 {chr(10).join(parts)}
   <line x1="{MARGIN}" y1="{H-54}" x2="{RIGHT}" y2="{H-54}" stroke="{HAIR}" stroke-width="1"/>
   <text x="{MARGIN}" y="{H-26}" font-family="Noto Sans SemiBold, Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="{MUTED}">DUPLICATES SHARE ONE GLYPH · WINDOWS PRIMARY LEGENDS ONLY</text>
-  <text x="{RIGHT}" y="{H-26}" text-anchor="end" font-family="Noto Sans SemiBold, Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="{MUTED}">83 GLYPHS / 101 KEYCODES</text>
+  <text x="{RIGHT}" y="{H-26}" text-anchor="end" font-family="Noto Sans SemiBold, Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="{MUTED}">89 GLYPHS / 101 KEYCODES</text>
 </svg>
 '''
 (DIST / "keycap-tight-specimen.svg").write_text(specimen, encoding="utf-8")
 
+# System-icon overview ------------------------------------------------------
+SHEET_W = 1340
+SHEET_H = 252
+CELL = 200
+ICON_SCALE = 2.0
+sheet_parts = []
+for i, (gid, label, full, group) in enumerate(ICONS):
+    meta = G.META[gid]
+    body = G.PATHS[gid][2]
+    x = 70 + i * CELL + (CELL - 62 * ICON_SCALE) / 2
+    sheet_parts.append(f'''  <g transform="translate({x:.3f} 48) scale({ICON_SCALE})">
+    <path class="system-icon" d="{body}" fill="{INK}"/>
+  </g>
+  <text x="{70 + i * CELL + CELL / 2}" y="210" text-anchor="middle" font-family="Noto Sans SemiBold, Noto Sans, Segoe UI, Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="1.8" fill="{INK}">{xesc(label)}</text>
+  <text x="{70 + i * CELL + CELL / 2}" y="229" text-anchor="middle" font-family="Noto Sans SemiBold, Noto Sans, Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" letter-spacing="1.2" fill="{MUTED}">U+{meta['pua']:04X} · {xesc(full.upper())}</text>''')
+
+icon_sheet = f'''<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="{SHEET_W}" height="{SHEET_H}" viewBox="0 0 {SHEET_W} {SHEET_H}">
+  <rect width="{SHEET_W}" height="{SHEET_H}" fill="{PAPER}"/>
+  <text x="70" y="28" font-family="Noto Sans SemiBold, Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" letter-spacing="2.4" fill="{MUTED}">SYSTEM ICONS / 6 TRANSPARENT LINE GLYPHS</text>
+{chr(10).join(sheet_parts)}
+</svg>
+'''
+(DIST / "keycap-tight-icons.svg").write_text(icon_sheet, encoding="utf-8")
+
 print(DIST / "keycap-tight-sprite.svg", len(sprite))
 print(DIST / "keycap-tight-specimen.svg", len(specimen), "height", H)
+print(DIST / "keycap-tight-icons.svg", SHEET_W, "x", SHEET_H)
 print("character folders", len(list(G.CHARS.glob("U+*"))))

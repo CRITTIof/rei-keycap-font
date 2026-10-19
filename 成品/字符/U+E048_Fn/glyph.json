@@ -1,5 +1,6 @@
 {
   "id": "fn",
+  "type": "keycap",
   "label": "Fn",
   "full": "Function",
   "group": "mods",

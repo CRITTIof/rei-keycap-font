@@ -1,5 +1,6 @@
 {
   "id": "num",
+  "type": "keycap",
   "label": "Num",
   "full": "Num Lock",
   "group": "numpad",

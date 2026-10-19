@@ -13,7 +13,7 @@ from fontTools.ttLib import TTFont
 from PIL import Image, ImageDraw, ImageFont
 
 import geometry as G
-from data import UNIQUE
+from data import ALL_GLYPHS
 
 DIST = G.OUT
 DIST.mkdir(parents=True, exist_ok=True)
@@ -49,6 +49,13 @@ def draw_key(gid):
     ttpen = TTGlyphPen(None)
     pen = Cu2QuPen(ttpen, max_err=0.4)
 
+    if d["kind"] == "icon":
+        # Icons are already filled outlines in a 62-unit design box.  Flip
+        # y for font coordinates and center them in the em.
+        icon_pen = TransformPen(pen, (S, 0, 0, -S, SIDE, 1000))
+        G.draw_icon_svg(icon_pen, gid)
+        return ttpen.glyph(), advance, box_w
+
     # Frame: outer and reversed inner contour.
     rr_font(pen, SIDE, 0, box_w, 1000, G.RADIUS_OUT * S)
     inner = ReverseContourPen(pen)
@@ -78,15 +85,15 @@ def draw_key(gid):
     return ttpen.glyph(), advance, box_w
 
 
-glyph_order = [".notdef"] + [gid for gid, *_ in UNIQUE]
+glyph_order = [".notdef"] + [gid for gid, *_ in ALL_GLYPHS]
 glyphs = {".notdef": TTGlyphPen(None).glyph()}
 hmtx = {".notdef": (500, 0)}
-for gid, *_ in UNIQUE:
+for gid, *_ in ALL_GLYPHS:
     glyph, advance, box_w = draw_key(gid)
     glyphs[gid] = glyph
     hmtx[gid] = (advance, SIDE)
 
-cmap = {G.META[gid]["pua"]: gid for gid, *_ in UNIQUE}
+cmap = {G.META[gid]["pua"]: gid for gid, *_ in ALL_GLYPHS}
 
 fb = FontBuilder(1000, isTTF=True)
 fb.setupGlyphOrder(glyph_order)
@@ -98,12 +105,12 @@ fb.setupNameTable({
     "copyright": "Copyright 2026 Keycap Tight. Glyph outlines derived from Noto Sans SemiBold, Copyright 2018 The Noto Project Authors (SIL Open Font License 1.1).",
     "familyName": "Keycap Tight",
     "styleName": "Regular",
-    "uniqueFontIdentifier": "KeycapTight-Regular-1.000",
+    "uniqueFontIdentifier": "KeycapTight-Regular-1.101",
     "fullName": "Keycap Tight Regular",
-    "version": "Version 1.000",
+    "version": "Version 1.101",
     "psName": "KeycapTight-Regular",
     "manufacturer": "Keycap Tight",
-    "description": "83 content-fitted, transparent keycap glyphs with Windows primary legends. Upem 1000; glyph height equals 1em.",
+    "description": "83 content-fitted, transparent keycap glyphs with Windows primary legends, plus 6 transparent system line icons. Upem 1000; glyph height equals 1em.",
     "licenseDescription": "SIL Open Font License 1.1. Includes outlines derived from Noto Sans SemiBold. See OFL.txt.",
     "licenseInfoURL": "https://openfontlicense.org/",
 })
@@ -132,8 +139,8 @@ print("saved", TTF_PATH, TTF_PATH.stat().st_size)
 print("saved", WOFF2_PATH, WOFF2_PATH.stat().st_size)
 print("glyphs", len(glyph_order), "cmap", len(cmap))
 
-# Quick raster proof: all 83 glyphs on light and dark backgrounds.
-labels = [gid for gid, *_ in UNIQUE]
+# Quick raster proof: all 89 glyphs on light and dark backgrounds.
+labels = [gid for gid, *_ in ALL_GLYPHS]
 font_px = 62
 pil_font = ImageFont.truetype(str(TTF_PATH), font_px)
 pad = 18

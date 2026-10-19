@@ -1,5 +1,6 @@
 {
   "id": "alt",
+  "type": "keycap",
   "label": "Alt",
   "full": "Alt",
   "group": "mods",

@@ -1,0 +1,7 @@
+﻿id,label,full,group,pua,codepoint,width,folder
+cpu,CPU,Processor,system,U+E053,57427,62.0,U+E053_CPU
+gpu,GPU,Graphics processor,system,U+E054,57428,62.0,U+E054_GPU
+ram,RAM,Memory,system,U+E055,57429,62.0,U+E055_RAM
+rom,ROM,Hard drive (ROM),system,U+E056,57430,62.0,U+E056_ROM
+netup,NetUp,Network uplink,network,U+E057,57431,62.0,U+E057_NetUp
+netdown,NetDown,Network downlink,network,U+E058,57432,62.0,U+E058_NetDown

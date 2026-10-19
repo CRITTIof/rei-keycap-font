@@ -1,5 +1,6 @@
 {
   "id": "arrowleft",
+  "type": "keycap",
   "label": "←",
   "full": "Arrow Left",
   "group": "mods",

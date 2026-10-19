@@ -1,5 +1,6 @@
 {
   "id": "keya",
+  "type": "keycap",
   "label": "A",
   "full": "A",
   "group": "caps",

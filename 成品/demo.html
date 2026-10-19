@@ -135,7 +135,7 @@ pre { margin: 10px 0 0; padding: 14px; overflow: auto; background: var(--panel);
   <header>
     <div>
       <h1>KEYCAP TIGHT</h1>
-      <p class="sub"><b>83</b> unique glyphs · <b>101</b> physical Windows keycodes · transparent outline<br>按任意键测试；数字小键盘、左右 Shift/Ctrl/Alt 会映射到同一个字形。</p>
+      <p class="sub"><b>83</b> keycaps + <b>6</b> system icons · <b>101</b> physical Windows keycodes · transparent outline<br>按任意键测试；数字小键盘、左右 Shift/Ctrl/Alt 会映射到同一个字形。</p>
     </div>
     <button class="theme" id="theme" type="button">LIGHT</button>
   </header>
@@ -156,7 +156,7 @@ pre { margin: 10px 0 0; padding: 14px; overflow: auto; background: var(--panel);
 
   <section class="panel">
     <div class="panel-head">
-      <div class="panel-title">83 UNIQUE KEYCAP GLYPHS / 101 KEYCODES</div>
+      <div class="panel-title">83 KEYCAPS / 101 KEYCODES · +6 SYSTEM ICONS</div>
       <div class="controls"><label for="size">SIZE</label><input id="size" type="range" min="26" max="64" value="38" step="1"><span id="sizeLabel">38</span></div>
     </div>
 <section class="group">
@@ -184,6 +184,7 @@ pre { margin: 10px 0 0; padding: 14px; overflow: auto; background: var(--panel);
         <li><code>font-size</code> equals the visual key height; use <code>line-height: 1</code>.</li>
         <li>Interior is transparent. Color the whole glyph with <code>color</code> / <code>currentColor</code>.</li>
         <li>Use <code>keycap-tight-mapping.json</code> to map <code>event.code</code> to a PUA codepoint.</li>
+        <li>6 transparent system icons: U+E053–U+E058 (CPU, GPU, RAM, ROM, NetUp, NetDown).</li>
         <li>Fn usually emits no browser key event; treat it as a custom/visual key.</li>
       </ul>
     </div>

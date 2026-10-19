@@ -1,5 +1,6 @@
 {
   "id": "keyr",
+  "type": "keycap",
   "label": "R",
   "full": "R",
   "group": "letters",

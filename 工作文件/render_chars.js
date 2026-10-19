@@ -14,8 +14,10 @@ const dirs = fs.readdirSync(root, { withFileTypes: true })
   .sort();
 
 for (const name of dirs) {
-  const svgPath = path.join(root, name, 'keycap.svg');
-  const pngPath = path.join(root, name, 'preview.png');
+  const dir = path.join(root, name);
+  const glyph = JSON.parse(fs.readFileSync(path.join(dir, 'glyph.json'), 'utf8'));
+  const svgPath = path.join(dir, glyph.svg);
+  const pngPath = path.join(dir, 'preview.png');
   const svg = fs.readFileSync(svgPath, 'utf8');
   const match = svg.match(/\bwidth="([0-9.]+)"/);
   if (!match) throw new Error(`no width in ${svgPath}`);
@@ -27,4 +29,4 @@ for (const name of dirs) {
   fs.writeFileSync(pngPath, resvg.render().asPng());
 }
 
-console.log(`rendered ${dirs.length} character previews`);
+console.log(`rendered ${dirs.length} glyph previews`);

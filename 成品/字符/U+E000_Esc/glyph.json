@@ -1,5 +1,6 @@
 {
   "id": "escape",
+  "type": "keycap",
   "label": "Esc",
   "full": "Escape",
   "group": "function",

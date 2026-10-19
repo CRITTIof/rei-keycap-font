@@ -1,5 +1,6 @@
 {
   "id": "enter",
+  "type": "keycap",
   "label": "Enter",
   "full": "Enter",
   "group": "caps",

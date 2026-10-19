@@ -1,7 +1,7 @@
 {
   "name": "Keycap Tight",
-  "version": "1.0.0",
-  "description": "83 unique, content-fitted, transparent keycap glyphs for Windows primary legends. 101 physical keycodes are mapped to these glyphs.",
+  "version": "1.1.1",
+  "description": "83 unique content-fitted keycap glyphs plus 6 transparent system line icons (CPU, GPU, RAM, ROM-as-hard-drive, network up/down). 101 physical keycodes map to the keycap glyphs.",
   "design": {
     "box_height": 62,
     "stroke": 4,
@@ -12,7 +12,8 @@
     "text_face": "Noto Sans SemiBold",
     "fill": "none (outline only)",
     "width_rule": "text advance width + 40",
-    "height_rule": "uniform 62; glyphs vertically centered on ink"
+    "height_rule": "uniform 62; glyphs vertically centered on ink",
+    "icon_box": "62 x 62 design units; line icons use the same 1em height"
   },
   "font": {
     "family": "Keycap Tight",
@@ -21,12 +22,14 @@
     "file_woff2": "KeycapTight-Regular.woff2",
     "units_per_em": 1000,
     "glyph_height_em": 1.0,
-    "pua_range": "U+E000–U+E052",
+    "pua_range": "U+E000–U+E058",
     "usage": "font-size equals the desired visual key height; line-height 1; transparent interior; single color via CSS color/currentColor."
   },
   "stats": {
     "physical_keys": 101,
     "unique_glyphs": 83,
+    "icon_glyphs": 6,
+    "total_glyphs": 89,
     "duplicate_instances": 18,
     "sections": 7
   },
@@ -36,11 +39,14 @@
     "Left/right Shift, Ctrl, Alt and Fn share one glyph each.",
     "Clear is rendered as Num (Num Lock) for Windows.",
     "The Windows key uses event.code MetaLeft in browsers.",
-    "Fn generally does not emit a browser KeyboardEvent; FnLeft/FnRight are custom mapping names."
+    "Fn generally does not emit a browser KeyboardEvent; FnLeft/FnRight are custom mapping names.",
+    "The six system icons are pictograms, not text, and have no keycode entry. They share the same transparent 1em outline style.",
+    "The glyph labelled ROM follows the keyboard's terminology but is drawn as a hard drive (HDD), not a ROM chip."
   ],
   "glyphs": [
     {
       "id": "escape",
+      "type": "keycap",
       "label": "Esc",
       "full": "Escape",
       "group": "function",
@@ -56,6 +62,7 @@
     },
     {
       "id": "f1",
+      "type": "keycap",
       "label": "F1",
       "full": "F1",
       "group": "function",
@@ -71,6 +78,7 @@
     },
     {
       "id": "f2",
+      "type": "keycap",
       "label": "F2",
       "full": "F2",
       "group": "function",
@@ -86,6 +94,7 @@
     },
     {
       "id": "f3",
+      "type": "keycap",
       "label": "F3",
       "full": "F3",
       "group": "function",
@@ -101,6 +110,7 @@
     },
     {
       "id": "f4",
+      "type": "keycap",
       "label": "F4",
       "full": "F4",
       "group": "function",
@@ -116,6 +126,7 @@
     },
     {
       "id": "f5",
+      "type": "keycap",
       "label": "F5",
       "full": "F5",
       "group": "function",
@@ -131,6 +142,7 @@
     },
     {
       "id": "f6",
+      "type": "keycap",
       "label": "F6",
       "full": "F6",
       "group": "function",
@@ -146,6 +158,7 @@
     },
     {
       "id": "f7",
+      "type": "keycap",
       "label": "F7",
       "full": "F7",
       "group": "function",
@@ -161,6 +174,7 @@
     },
     {
       "id": "f8",
+      "type": "keycap",
       "label": "F8",
       "full": "F8",
       "group": "function",
@@ -176,6 +190,7 @@
     },
     {
       "id": "f9",
+      "type": "keycap",
       "label": "F9",
       "full": "F9",
       "group": "function",
@@ -191,6 +206,7 @@
     },
     {
       "id": "f10",
+      "type": "keycap",
       "label": "F10",
       "full": "F10",
       "group": "function",
@@ -206,6 +222,7 @@
     },
     {
       "id": "f11",
+      "type": "keycap",
       "label": "F11",
       "full": "F11",
       "group": "function",
@@ -221,6 +238,7 @@
     },
     {
       "id": "f12",
+      "type": "keycap",
       "label": "F12",
       "full": "F12",
       "group": "function",
@@ -236,6 +254,7 @@
     },
     {
       "id": "insert",
+      "type": "keycap",
       "label": "Ins",
       "full": "Insert",
       "group": "function",
@@ -251,6 +270,7 @@
     },
     {
       "id": "delete",
+      "type": "keycap",
       "label": "Del",
       "full": "Delete",
       "group": "function",
@@ -266,6 +286,7 @@
     },
     {
       "id": "home",
+      "type": "keycap",
       "label": "Home",
       "full": "Home",
       "group": "function",
@@ -281,6 +302,7 @@
     },
     {
       "id": "end",
+      "type": "keycap",
       "label": "End",
       "full": "End",
       "group": "function",
@@ -296,6 +318,7 @@
     },
     {
       "id": "pageup",
+      "type": "keycap",
       "label": "PgUp",
       "full": "Page Up",
       "group": "function",
@@ -311,6 +334,7 @@
     },
     {
       "id": "pagedown",
+      "type": "keycap",
       "label": "PgDn",
       "full": "Page Down",
       "group": "function",
@@ -326,6 +350,7 @@
     },
     {
       "id": "backquote",
+      "type": "keycap",
       "label": "`",
       "full": "Backquote",
       "group": "numbers",
@@ -341,6 +366,7 @@
     },
     {
       "id": "digit1",
+      "type": "keycap",
       "label": "1",
       "full": "1",
       "group": "numbers",
@@ -357,6 +383,7 @@
     },
     {
       "id": "digit2",
+      "type": "keycap",
       "label": "2",
       "full": "2",
       "group": "numbers",
@@ -373,6 +400,7 @@
     },
     {
       "id": "digit3",
+      "type": "keycap",
       "label": "3",
       "full": "3",
       "group": "numbers",
@@ -389,6 +417,7 @@
     },
     {
       "id": "digit4",
+      "type": "keycap",
       "label": "4",
       "full": "4",
       "group": "numbers",
@@ -405,6 +434,7 @@
     },
     {
       "id": "digit5",
+      "type": "keycap",
       "label": "5",
       "full": "5",
       "group": "numbers",
@@ -421,6 +451,7 @@
     },
     {
       "id": "digit6",
+      "type": "keycap",
       "label": "6",
       "full": "6",
       "group": "numbers",
@@ -437,6 +468,7 @@
     },
     {
       "id": "digit7",
+      "type": "keycap",
       "label": "7",
       "full": "7",
       "group": "numbers",
@@ -453,6 +485,7 @@
     },
     {
       "id": "digit8",
+      "type": "keycap",
       "label": "8",
       "full": "8",
       "group": "numbers",
@@ -469,6 +502,7 @@
     },
     {
       "id": "digit9",
+      "type": "keycap",
       "label": "9",
       "full": "9",
       "group": "numbers",
@@ -485,6 +519,7 @@
     },
     {
       "id": "digit0",
+      "type": "keycap",
       "label": "0",
       "full": "0",
       "group": "numbers",
@@ -501,6 +536,7 @@
     },
     {
       "id": "minus",
+      "type": "keycap",
       "label": "-",
       "full": "Minus",
       "group": "numbers",
@@ -517,6 +553,7 @@
     },
     {
       "id": "equal",
+      "type": "keycap",
       "label": "=",
       "full": "Equal",
       "group": "numbers",
@@ -532,6 +569,7 @@
     },
     {
       "id": "backspace",
+      "type": "keycap",
       "label": "Back",
       "full": "Backspace",
       "group": "numbers",
@@ -547,6 +585,7 @@
     },
     {
       "id": "tab",
+      "type": "keycap",
       "label": "Tab",
       "full": "Tab",
       "group": "letters",
@@ -562,6 +601,7 @@
     },
     {
       "id": "keyq",
+      "type": "keycap",
       "label": "Q",
       "full": "Q",
       "group": "letters",
@@ -577,6 +617,7 @@
     },
     {
       "id": "keyw",
+      "type": "keycap",
       "label": "W",
       "full": "W",
       "group": "letters",
@@ -592,6 +633,7 @@
     },
     {
       "id": "keye",
+      "type": "keycap",
       "label": "E",
       "full": "E",
       "group": "letters",
@@ -607,6 +649,7 @@
     },
     {
       "id": "keyr",
+      "type": "keycap",
       "label": "R",
       "full": "R",
       "group": "letters",
@@ -622,6 +665,7 @@
     },
     {
       "id": "keyt",
+      "type": "keycap",
       "label": "T",
       "full": "T",
       "group": "letters",
@@ -637,6 +681,7 @@
     },
     {
       "id": "keyy",
+      "type": "keycap",
       "label": "Y",
       "full": "Y",
       "group": "letters",
@@ -652,6 +697,7 @@
     },
     {
       "id": "keyu",
+      "type": "keycap",
       "label": "U",
       "full": "U",
       "group": "letters",
@@ -667,6 +713,7 @@
     },
     {
       "id": "keyi",
+      "type": "keycap",
       "label": "I",
       "full": "I",
       "group": "letters",
@@ -682,6 +729,7 @@
     },
     {
       "id": "keyo",
+      "type": "keycap",
       "label": "O",
       "full": "O",
       "group": "letters",
@@ -697,6 +745,7 @@
     },
     {
       "id": "keyp",
+      "type": "keycap",
       "label": "P",
       "full": "P",
       "group": "letters",
@@ -712,6 +761,7 @@
     },
     {
       "id": "bracketleft",
+      "type": "keycap",
       "label": "[",
       "full": "Left Bracket",
       "group": "letters",
@@ -727,6 +777,7 @@
     },
     {
       "id": "bracketright",
+      "type": "keycap",
       "label": "]",
       "full": "Right Bracket",
       "group": "letters",
@@ -742,6 +793,7 @@
     },
     {
       "id": "backslash",
+      "type": "keycap",
       "label": "\\",
       "full": "Backslash",
       "group": "letters",
@@ -757,6 +809,7 @@
     },
     {
       "id": "capslock",
+      "type": "keycap",
       "label": "Cap",
       "full": "Caps Lock",
       "group": "caps",
@@ -772,6 +825,7 @@
     },
     {
       "id": "keya",
+      "type": "keycap",
       "label": "A",
       "full": "A",
       "group": "caps",
@@ -787,6 +841,7 @@
     },
     {
       "id": "keys",
+      "type": "keycap",
       "label": "S",
       "full": "S",
       "group": "caps",
@@ -802,6 +857,7 @@
     },
     {
       "id": "keyd",
+      "type": "keycap",
       "label": "D",
       "full": "D",
       "group": "caps",
@@ -817,6 +873,7 @@
     },
     {
       "id": "keyf",
+      "type": "keycap",
       "label": "F",
       "full": "F",
       "group": "caps",
@@ -832,6 +889,7 @@
     },
     {
       "id": "keyg",
+      "type": "keycap",
       "label": "G",
       "full": "G",
       "group": "caps",
@@ -847,6 +905,7 @@
     },
     {
       "id": "keyh",
+      "type": "keycap",
       "label": "H",
       "full": "H",
       "group": "caps",
@@ -862,6 +921,7 @@
     },
     {
       "id": "keyj",
+      "type": "keycap",
       "label": "J",
       "full": "J",
       "group": "caps",
@@ -877,6 +937,7 @@
     },
     {
       "id": "keyk",
+      "type": "keycap",
       "label": "K",
       "full": "K",
       "group": "caps",
@@ -892,6 +953,7 @@
     },
     {
       "id": "keyl",
+      "type": "keycap",
       "label": "L",
       "full": "L",
       "group": "caps",
@@ -907,6 +969,7 @@
     },
     {
       "id": "semicolon",
+      "type": "keycap",
       "label": ";",
       "full": "Semicolon",
       "group": "caps",
@@ -922,6 +985,7 @@
     },
     {
       "id": "quote",
+      "type": "keycap",
       "label": "'",
       "full": "Apostrophe",
       "group": "caps",
@@ -937,6 +1001,7 @@
     },
     {
       "id": "enter",
+      "type": "keycap",
       "label": "Enter",
       "full": "Enter",
       "group": "caps",
@@ -953,6 +1018,7 @@
     },
     {
       "id": "shift",
+      "type": "keycap",
       "label": "Shift",
       "full": "Shift",
       "group": "shift",
@@ -969,6 +1035,7 @@
     },
     {
       "id": "keyz",
+      "type": "keycap",
       "label": "Z",
       "full": "Z",
       "group": "shift",
@@ -984,6 +1051,7 @@
     },
     {
       "id": "keyx",
+      "type": "keycap",
       "label": "X",
       "full": "X",
       "group": "shift",
@@ -999,6 +1067,7 @@
     },
     {
       "id": "keyc",
+      "type": "keycap",
       "label": "C",
       "full": "C",
       "group": "shift",
@@ -1014,6 +1083,7 @@
     },
     {
       "id": "keyv",
+      "type": "keycap",
       "label": "V",
       "full": "V",
       "group": "shift",
@@ -1029,6 +1099,7 @@
     },
     {
       "id": "keyb",
+      "type": "keycap",
       "label": "B",
       "full": "B",
       "group": "shift",
@@ -1044,6 +1115,7 @@
     },
     {
       "id": "keyn",
+      "type": "keycap",
       "label": "N",
       "full": "N",
       "group": "shift",
@@ -1059,6 +1131,7 @@
     },
     {
       "id": "keym",
+      "type": "keycap",
       "label": "M",
       "full": "M",
       "group": "shift",
@@ -1074,6 +1147,7 @@
     },
     {
       "id": "comma",
+      "type": "keycap",
       "label": ",",
       "full": "Comma",
       "group": "shift",
@@ -1089,6 +1163,7 @@
     },
     {
       "id": "period",
+      "type": "keycap",
       "label": ".",
       "full": "Period",
       "group": "shift",
@@ -1105,6 +1180,7 @@
     },
     {
       "id": "slash",
+      "type": "keycap",
       "label": "/",
       "full": "Slash",
       "group": "shift",
@@ -1121,6 +1197,7 @@
     },
     {
       "id": "ctrl",
+      "type": "keycap",
       "label": "Ctrl",
       "full": "Control",
       "group": "mods",
@@ -1137,6 +1214,7 @@
     },
     {
       "id": "fn",
+      "type": "keycap",
       "label": "Fn",
       "full": "Function",
       "group": "mods",
@@ -1153,6 +1231,7 @@
     },
     {
       "id": "win",
+      "type": "keycap",
       "label": "Win",
       "full": "Windows",
       "group": "mods",
@@ -1168,6 +1247,7 @@
     },
     {
       "id": "alt",
+      "type": "keycap",
       "label": "Alt",
       "full": "Alt",
       "group": "mods",
@@ -1184,6 +1264,7 @@
     },
     {
       "id": "space",
+      "type": "keycap",
       "label": "Space",
       "full": "Space",
       "group": "mods",
@@ -1199,6 +1280,7 @@
     },
     {
       "id": "arrowleft",
+      "type": "keycap",
       "label": "←",
       "full": "Arrow Left",
       "group": "mods",
@@ -1214,6 +1296,7 @@
     },
     {
       "id": "arrowup",
+      "type": "keycap",
       "label": "↑",
       "full": "Arrow Up",
       "group": "mods",
@@ -1229,6 +1312,7 @@
     },
     {
       "id": "arrowdown",
+      "type": "keycap",
       "label": "↓",
       "full": "Arrow Down",
       "group": "mods",
@@ -1244,6 +1328,7 @@
     },
     {
       "id": "arrowright",
+      "type": "keycap",
       "label": "→",
       "full": "Arrow Right",
       "group": "mods",
@@ -1259,6 +1344,7 @@
     },
     {
       "id": "num",
+      "type": "keycap",
       "label": "Num",
       "full": "Num Lock",
       "group": "numpad",
@@ -1274,6 +1360,7 @@
     },
     {
       "id": "asterisk",
+      "type": "keycap",
       "label": "*",
       "full": "Multiply",
       "group": "numpad",
@@ -1289,6 +1376,7 @@
     },
     {
       "id": "plus",
+      "type": "keycap",
       "label": "+",
       "full": "Plus",
       "group": "numpad",
@@ -1303,9 +1391,96 @@
       "preview": "字符/U+E052_Plus/preview.png"
     }
   ],
+  "icons": [
+    {
+      "id": "cpu",
+      "type": "icon",
+      "label": "CPU",
+      "full": "Processor",
+      "group": "system",
+      "pua": "U+E053",
+      "codepoint": 57427,
+      "width": 62.0,
+      "folder": "U+E053_CPU",
+      "svg": "字符/U+E053_CPU/icon.svg",
+      "preview": "字符/U+E053_CPU/preview.png",
+      "style": "transparent line icon; no border, no text"
+    },
+    {
+      "id": "gpu",
+      "type": "icon",
+      "label": "GPU",
+      "full": "Graphics processor",
+      "group": "system",
+      "pua": "U+E054",
+      "codepoint": 57428,
+      "width": 62.0,
+      "folder": "U+E054_GPU",
+      "svg": "字符/U+E054_GPU/icon.svg",
+      "preview": "字符/U+E054_GPU/preview.png",
+      "style": "transparent line icon; no border, no text"
+    },
+    {
+      "id": "ram",
+      "type": "icon",
+      "label": "RAM",
+      "full": "Memory",
+      "group": "system",
+      "pua": "U+E055",
+      "codepoint": 57429,
+      "width": 62.0,
+      "folder": "U+E055_RAM",
+      "svg": "字符/U+E055_RAM/icon.svg",
+      "preview": "字符/U+E055_RAM/preview.png",
+      "style": "transparent line icon; no border, no text"
+    },
+    {
+      "id": "rom",
+      "type": "icon",
+      "label": "ROM",
+      "full": "Hard drive (ROM)",
+      "group": "system",
+      "pua": "U+E056",
+      "codepoint": 57430,
+      "width": 62.0,
+      "folder": "U+E056_ROM",
+      "svg": "字符/U+E056_ROM/icon.svg",
+      "preview": "字符/U+E056_ROM/preview.png",
+      "style": "transparent line icon; no border, no text"
+    },
+    {
+      "id": "netup",
+      "type": "icon",
+      "label": "NetUp",
+      "full": "Network uplink",
+      "group": "network",
+      "pua": "U+E057",
+      "codepoint": 57431,
+      "width": 62.0,
+      "folder": "U+E057_NetUp",
+      "svg": "字符/U+E057_NetUp/icon.svg",
+      "preview": "字符/U+E057_NetUp/preview.png",
+      "style": "transparent line icon; no border, no text"
+    },
+    {
+      "id": "netdown",
+      "type": "icon",
+      "label": "NetDown",
+      "full": "Network downlink",
+      "group": "network",
+      "pua": "U+E058",
+      "codepoint": 57432,
+      "width": 62.0,
+      "folder": "U+E058_NetDown",
+      "svg": "字符/U+E058_NetDown/icon.svg",
+      "preview": "字符/U+E058_NetDown/preview.png",
+      "style": "transparent line icon; no border, no text"
+    }
+  ],
   "keys": [
     {
       "code": "Escape",
+      "type": "keycap",
       "label": "Esc",
       "full": "Escape",
       "glyph": "escape",
@@ -1319,6 +1494,7 @@
     },
     {
       "code": "F1",
+      "type": "keycap",
       "label": "F1",
       "full": "F1",
       "glyph": "f1",
@@ -1332,6 +1508,7 @@
     },
     {
       "code": "F2",
+      "type": "keycap",
       "label": "F2",
       "full": "F2",
       "glyph": "f2",
@@ -1345,6 +1522,7 @@
     },
     {
       "code": "F3",
+      "type": "keycap",
       "label": "F3",
       "full": "F3",
       "glyph": "f3",
@@ -1358,6 +1536,7 @@
     },
     {
       "code": "F4",
+      "type": "keycap",
       "label": "F4",
       "full": "F4",
       "glyph": "f4",
@@ -1371,6 +1550,7 @@
     },
     {
       "code": "F5",
+      "type": "keycap",
       "label": "F5",
       "full": "F5",
       "glyph": "f5",
@@ -1384,6 +1564,7 @@
     },
     {
       "code": "F6",
+      "type": "keycap",
       "label": "F6",
       "full": "F6",
       "glyph": "f6",
@@ -1397,6 +1578,7 @@
     },
     {
       "code": "F7",
+      "type": "keycap",
       "label": "F7",
       "full": "F7",
       "glyph": "f7",
@@ -1410,6 +1592,7 @@
     },
     {
       "code": "F8",
+      "type": "keycap",
       "label": "F8",
       "full": "F8",
       "glyph": "f8",
@@ -1423,6 +1606,7 @@
     },
     {
       "code": "F9",
+      "type": "keycap",
       "label": "F9",
       "full": "F9",
       "glyph": "f9",
@@ -1436,6 +1620,7 @@
     },
     {
       "code": "F10",
+      "type": "keycap",
       "label": "F10",
       "full": "F10",
       "glyph": "f10",
@@ -1449,6 +1634,7 @@
     },
     {
       "code": "F11",
+      "type": "keycap",
       "label": "F11",
       "full": "F11",
       "glyph": "f11",
@@ -1462,6 +1648,7 @@
     },
     {
       "code": "F12",
+      "type": "keycap",
       "label": "F12",
       "full": "F12",
       "glyph": "f12",
@@ -1475,6 +1662,7 @@
     },
     {
       "code": "Insert",
+      "type": "keycap",
       "label": "Ins",
       "full": "Insert",
       "glyph": "insert",
@@ -1488,6 +1676,7 @@
     },
     {
       "code": "Delete",
+      "type": "keycap",
       "label": "Del",
       "full": "Delete",
       "glyph": "delete",
@@ -1501,6 +1690,7 @@
     },
     {
       "code": "Home",
+      "type": "keycap",
       "label": "Home",
       "full": "Home",
       "glyph": "home",
@@ -1514,6 +1704,7 @@
     },
     {
       "code": "End",
+      "type": "keycap",
       "label": "End",
       "full": "End",
       "glyph": "end",
@@ -1527,6 +1718,7 @@
     },
     {
       "code": "PageUp",
+      "type": "keycap",
       "label": "PgUp",
       "full": "Page Up",
       "glyph": "pageup",
@@ -1540,6 +1732,7 @@
     },
     {
       "code": "PageDown",
+      "type": "keycap",
       "label": "PgDn",
       "full": "Page Down",
       "glyph": "pagedown",
@@ -1553,6 +1746,7 @@
     },
     {
       "code": "Backquote",
+      "type": "keycap",
       "label": "`",
       "full": "Backquote",
       "glyph": "backquote",
@@ -1566,6 +1760,7 @@
     },
     {
       "code": "Digit1",
+      "type": "keycap",
       "label": "1",
       "full": "1",
       "glyph": "digit1",
@@ -1581,6 +1776,7 @@
     },
     {
       "code": "Digit2",
+      "type": "keycap",
       "label": "2",
       "full": "2",
       "glyph": "digit2",
@@ -1596,6 +1792,7 @@
     },
     {
       "code": "Digit3",
+      "type": "keycap",
       "label": "3",
       "full": "3",
       "glyph": "digit3",
@@ -1611,6 +1808,7 @@
     },
     {
       "code": "Digit4",
+      "type": "keycap",
       "label": "4",
       "full": "4",
       "glyph": "digit4",
@@ -1626,6 +1824,7 @@
     },
     {
       "code": "Digit5",
+      "type": "keycap",
       "label": "5",
       "full": "5",
       "glyph": "digit5",
@@ -1641,6 +1840,7 @@
     },
     {
       "code": "Digit6",
+      "type": "keycap",
       "label": "6",
       "full": "6",
       "glyph": "digit6",
@@ -1656,6 +1856,7 @@
     },
     {
       "code": "Digit7",
+      "type": "keycap",
       "label": "7",
       "full": "7",
       "glyph": "digit7",
@@ -1671,6 +1872,7 @@
     },
     {
       "code": "Digit8",
+      "type": "keycap",
       "label": "8",
       "full": "8",
       "glyph": "digit8",
@@ -1686,6 +1888,7 @@
     },
     {
       "code": "Digit9",
+      "type": "keycap",
       "label": "9",
       "full": "9",
       "glyph": "digit9",
@@ -1701,6 +1904,7 @@
     },
     {
       "code": "Digit0",
+      "type": "keycap",
       "label": "0",
       "full": "0",
       "glyph": "digit0",
@@ -1716,6 +1920,7 @@
     },
     {
       "code": "Minus",
+      "type": "keycap",
       "label": "-",
       "full": "Minus",
       "glyph": "minus",
@@ -1731,6 +1936,7 @@
     },
     {
       "code": "Equal",
+      "type": "keycap",
       "label": "=",
       "full": "Equal",
       "glyph": "equal",
@@ -1744,6 +1950,7 @@
     },
     {
       "code": "Backspace",
+      "type": "keycap",
       "label": "Back",
       "full": "Backspace",
       "glyph": "backspace",
@@ -1757,6 +1964,7 @@
     },
     {
       "code": "Tab",
+      "type": "keycap",
       "label": "Tab",
       "full": "Tab",
       "glyph": "tab",
@@ -1770,6 +1978,7 @@
     },
     {
       "code": "KeyQ",
+      "type": "keycap",
       "label": "Q",
       "full": "Q",
       "glyph": "keyq",
@@ -1783,6 +1992,7 @@
     },
     {
       "code": "KeyW",
+      "type": "keycap",
       "label": "W",
       "full": "W",
       "glyph": "keyw",
@@ -1796,6 +2006,7 @@
     },
     {
       "code": "KeyE",
+      "type": "keycap",
       "label": "E",
       "full": "E",
       "glyph": "keye",
@@ -1809,6 +2020,7 @@
     },
     {
       "code": "KeyR",
+      "type": "keycap",
       "label": "R",
       "full": "R",
       "glyph": "keyr",
@@ -1822,6 +2034,7 @@
     },
     {
       "code": "KeyT",
+      "type": "keycap",
       "label": "T",
       "full": "T",
       "glyph": "keyt",
@@ -1835,6 +2048,7 @@
     },
     {
       "code": "KeyY",
+      "type": "keycap",
       "label": "Y",
       "full": "Y",
       "glyph": "keyy",
@@ -1848,6 +2062,7 @@
     },
     {
       "code": "KeyU",
+      "type": "keycap",
       "label": "U",
       "full": "U",
       "glyph": "keyu",
@@ -1861,6 +2076,7 @@
     },
     {
       "code": "KeyI",
+      "type": "keycap",
       "label": "I",
       "full": "I",
       "glyph": "keyi",
@@ -1874,6 +2090,7 @@
     },
     {
       "code": "KeyO",
+      "type": "keycap",
       "label": "O",
       "full": "O",
       "glyph": "keyo",
@@ -1887,6 +2104,7 @@
     },
     {
       "code": "KeyP",
+      "type": "keycap",
       "label": "P",
       "full": "P",
       "glyph": "keyp",
@@ -1900,6 +2118,7 @@
     },
     {
       "code": "BracketLeft",
+      "type": "keycap",
       "label": "[",
       "full": "Left Bracket",
       "glyph": "bracketleft",
@@ -1913,6 +2132,7 @@
     },
     {
       "code": "BracketRight",
+      "type": "keycap",
       "label": "]",
       "full": "Right Bracket",
       "glyph": "bracketright",
@@ -1926,6 +2146,7 @@
     },
     {
       "code": "Backslash",
+      "type": "keycap",
       "label": "\\",
       "full": "Backslash",
       "glyph": "backslash",
@@ -1939,6 +2160,7 @@
     },
     {
       "code": "CapsLock",
+      "type": "keycap",
       "label": "Cap",
       "full": "Caps Lock",
       "glyph": "capslock",
@@ -1952,6 +2174,7 @@
     },
     {
       "code": "KeyA",
+      "type": "keycap",
       "label": "A",
       "full": "A",
       "glyph": "keya",
@@ -1965,6 +2188,7 @@
     },
     {
       "code": "KeyS",
+      "type": "keycap",
       "label": "S",
       "full": "S",
       "glyph": "keys",
@@ -1978,6 +2202,7 @@
     },
     {
       "code": "KeyD",
+      "type": "keycap",
       "label": "D",
       "full": "D",
       "glyph": "keyd",
@@ -1991,6 +2216,7 @@
     },
     {
       "code": "KeyF",
+      "type": "keycap",
       "label": "F",
       "full": "F",
       "glyph": "keyf",
@@ -2004,6 +2230,7 @@
     },
     {
       "code": "KeyG",
+      "type": "keycap",
       "label": "G",
       "full": "G",
       "glyph": "keyg",
@@ -2017,6 +2244,7 @@
     },
     {
       "code": "KeyH",
+      "type": "keycap",
       "label": "H",
       "full": "H",
       "glyph": "keyh",
@@ -2030,6 +2258,7 @@
     },
     {
       "code": "KeyJ",
+      "type": "keycap",
       "label": "J",
       "full": "J",
       "glyph": "keyj",
@@ -2043,6 +2272,7 @@
     },
     {
       "code": "KeyK",
+      "type": "keycap",
       "label": "K",
       "full": "K",
       "glyph": "keyk",
@@ -2056,6 +2286,7 @@
     },
     {
       "code": "KeyL",
+      "type": "keycap",
       "label": "L",
       "full": "L",
       "glyph": "keyl",
@@ -2069,6 +2300,7 @@
     },
     {
       "code": "Semicolon",
+      "type": "keycap",
       "label": ";",
       "full": "Semicolon",
       "glyph": "semicolon",
@@ -2082,6 +2314,7 @@
     },
     {
       "code": "Quote",
+      "type": "keycap",
       "label": "'",
       "full": "Apostrophe",
       "glyph": "quote",
@@ -2095,6 +2328,7 @@
     },
     {
       "code": "Enter",
+      "type": "keycap",
       "label": "Enter",
       "full": "Enter",
       "glyph": "enter",
@@ -2110,6 +2344,7 @@
     },
     {
       "code": "ShiftLeft",
+      "type": "keycap",
       "label": "Shift",
       "full": "Shift",
       "glyph": "shift",
@@ -2125,6 +2360,7 @@
     },
     {
       "code": "KeyZ",
+      "type": "keycap",
       "label": "Z",
       "full": "Z",
       "glyph": "keyz",
@@ -2138,6 +2374,7 @@
     },
     {
       "code": "KeyX",
+      "type": "keycap",
       "label": "X",
       "full": "X",
       "glyph": "keyx",
@@ -2151,6 +2388,7 @@
     },
     {
       "code": "KeyC",
+      "type": "keycap",
       "label": "C",
       "full": "C",
       "glyph": "keyc",
@@ -2164,6 +2402,7 @@
     },
     {
       "code": "KeyV",
+      "type": "keycap",
       "label": "V",
       "full": "V",
       "glyph": "keyv",
@@ -2177,6 +2416,7 @@
     },
     {
       "code": "KeyB",
+      "type": "keycap",
       "label": "B",
       "full": "B",
       "glyph": "keyb",
@@ -2190,6 +2430,7 @@
     },
     {
       "code": "KeyN",
+      "type": "keycap",
       "label": "N",
       "full": "N",
       "glyph": "keyn",
@@ -2203,6 +2444,7 @@
     },
     {
       "code": "KeyM",
+      "type": "keycap",
       "label": "M",
       "full": "M",
       "glyph": "keym",
@@ -2216,6 +2458,7 @@
     },
     {
       "code": "Comma",
+      "type": "keycap",
       "label": ",",
       "full": "Comma",
       "glyph": "comma",
@@ -2229,6 +2472,7 @@
     },
     {
       "code": "Period",
+      "type": "keycap",
       "label": ".",
       "full": "Period",
       "glyph": "period",
@@ -2244,6 +2488,7 @@
     },
     {
       "code": "Slash",
+      "type": "keycap",
       "label": "/",
       "full": "Slash",
       "glyph": "slash",
@@ -2259,6 +2504,7 @@
     },
     {
       "code": "ShiftRight",
+      "type": "keycap",
       "label": "Shift",
       "full": "Shift",
       "glyph": "shift",
@@ -2274,6 +2520,7 @@
     },
     {
       "code": "ControlLeft",
+      "type": "keycap",
       "label": "Ctrl",
       "full": "Control",
       "glyph": "ctrl",
@@ -2289,6 +2536,7 @@
     },
     {
       "code": "FnLeft",
+      "type": "keycap",
       "label": "Fn",
       "full": "Function",
       "glyph": "fn",
@@ -2304,6 +2552,7 @@
     },
     {
       "code": "MetaLeft",
+      "type": "keycap",
       "label": "Win",
       "full": "Windows",
       "glyph": "win",
@@ -2317,6 +2566,7 @@
     },
     {
       "code": "AltLeft",
+      "type": "keycap",
       "label": "Alt",
       "full": "Alt",
       "glyph": "alt",
@@ -2332,6 +2582,7 @@
     },
     {
       "code": "Space",
+      "type": "keycap",
       "label": "Space",
       "full": "Space",
       "glyph": "space",
@@ -2345,6 +2596,7 @@
     },
     {
       "code": "AltRight",
+      "type": "keycap",
       "label": "Alt",
       "full": "Alt",
       "glyph": "alt",
@@ -2360,6 +2612,7 @@
     },
     {
       "code": "FnRight",
+      "type": "keycap",
       "label": "Fn",
       "full": "Function",
       "glyph": "fn",
@@ -2375,6 +2628,7 @@
     },
     {
       "code": "ControlRight",
+      "type": "keycap",
       "label": "Ctrl",
       "full": "Control",
       "glyph": "ctrl",
@@ -2390,6 +2644,7 @@
     },
     {
       "code": "ArrowLeft",
+      "type": "keycap",
       "label": "←",
       "full": "Arrow Left",
       "glyph": "arrowleft",
@@ -2403,6 +2658,7 @@
     },
     {
       "code": "ArrowUp",
+      "type": "keycap",
       "label": "↑",
       "full": "Arrow Up",
       "glyph": "arrowup",
@@ -2416,6 +2672,7 @@
     },
     {
       "code": "ArrowDown",
+      "type": "keycap",
       "label": "↓",
       "full": "Arrow Down",
       "glyph": "arrowdown",
@@ -2429,6 +2686,7 @@
     },
     {
       "code": "ArrowRight",
+      "type": "keycap",
       "label": "→",
       "full": "Arrow Right",
       "glyph": "arrowright",
@@ -2442,6 +2700,7 @@
     },
     {
       "code": "NumLock",
+      "type": "keycap",
       "label": "Num",
       "full": "Num Lock",
       "glyph": "num",
@@ -2455,6 +2714,7 @@
     },
     {
       "code": "NumpadDivide",
+      "type": "keycap",
       "label": "/",
       "full": "Slash",
       "glyph": "slash",
@@ -2470,6 +2730,7 @@
     },
     {
       "code": "NumpadMultiply",
+      "type": "keycap",
       "label": "*",
       "full": "Multiply",
       "glyph": "asterisk",
@@ -2483,6 +2744,7 @@
     },
     {
       "code": "NumpadSubtract",
+      "type": "keycap",
       "label": "-",
       "full": "Minus",
       "glyph": "minus",
@@ -2498,6 +2760,7 @@
     },
     {
       "code": "Numpad7",
+      "type": "keycap",
       "label": "7",
       "full": "7",
       "glyph": "digit7",
@@ -2513,6 +2776,7 @@
     },
     {
       "code": "Numpad8",
+      "type": "keycap",
       "label": "8",
       "full": "8",
       "glyph": "digit8",
@@ -2528,6 +2792,7 @@
     },
     {
       "code": "Numpad9",
+      "type": "keycap",
       "label": "9",
       "full": "9",
       "glyph": "digit9",
@@ -2543,6 +2808,7 @@
     },
     {
       "code": "NumpadAdd",
+      "type": "keycap",
       "label": "+",
       "full": "Plus",
       "glyph": "plus",
@@ -2556,6 +2822,7 @@
     },
     {
       "code": "Numpad4",
+      "type": "keycap",
       "label": "4",
       "full": "4",
       "glyph": "digit4",
@@ -2571,6 +2838,7 @@
     },
     {
       "code": "Numpad5",
+      "type": "keycap",
       "label": "5",
       "full": "5",
       "glyph": "digit5",
@@ -2586,6 +2854,7 @@
     },
     {
       "code": "Numpad6",
+      "type": "keycap",
       "label": "6",
       "full": "6",
       "glyph": "digit6",
@@ -2601,6 +2870,7 @@
     },
     {
       "code": "Numpad1",
+      "type": "keycap",
       "label": "1",
       "full": "1",
       "glyph": "digit1",
@@ -2616,6 +2886,7 @@
     },
     {
       "code": "Numpad2",
+      "type": "keycap",
       "label": "2",
       "full": "2",
       "glyph": "digit2",
@@ -2631,6 +2902,7 @@
     },
     {
       "code": "Numpad3",
+      "type": "keycap",
       "label": "3",
       "full": "3",
       "glyph": "digit3",
@@ -2646,6 +2918,7 @@
     },
     {
       "code": "NumpadEnter",
+      "type": "keycap",
       "label": "Enter",
       "full": "Enter",
       "glyph": "enter",
@@ -2661,6 +2934,7 @@
     },
     {
       "code": "Numpad0",
+      "type": "keycap",
       "label": "0",
       "full": "0",
       "glyph": "digit0",
@@ -2676,6 +2950,7 @@
     },
     {
       "code": "NumpadDecimal",
+      "type": "keycap",
       "label": ".",
       "full": "Period",
       "glyph": "period",

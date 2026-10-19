@@ -1,0 +1,14 @@
+{
+  "id": "ram",
+  "type": "icon",
+  "label": "RAM",
+  "full": "Memory",
+  "group": "system",
+  "pua": "U+E055",
+  "codepoint": 57429,
+  "width": 62.0,
+  "keycodes": [],
+  "folder": "U+E055_RAM",
+  "svg": "icon.svg",
+  "preview": "preview.png"
+}

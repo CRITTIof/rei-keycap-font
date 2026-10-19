@@ -1,5 +1,6 @@
 {
   "id": "keyx",
+  "type": "keycap",
   "label": "X",
   "full": "X",
   "group": "shift",

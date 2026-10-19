@@ -1,5 +1,6 @@
 {
   "id": "ctrl",
+  "type": "keycap",
   "label": "Ctrl",
   "full": "Control",
   "group": "mods",

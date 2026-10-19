@@ -1,5 +1,6 @@
 {
   "id": "backslash",
+  "type": "keycap",
   "label": "\\",
   "full": "Backslash",
   "group": "letters",

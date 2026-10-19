@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 import geometry as G
-from data import UNIQUE, PHYS
+from data import UNIQUE, PHYS, ICONS
 
 DIST = G.OUT
 DIST.mkdir(parents=True, exist_ok=True)
@@ -27,6 +27,7 @@ for code, label, gid, full, section in PHYS:
     others = [c for c in shared[gid] if c != code]
     keys.append({
         "code": code,
+        "type": "keycap",
         "label": label,
         "full": full,
         "glyph": gid,
@@ -44,6 +45,7 @@ for gid, label, full, group in UNIQUE:
     meta = G.META[gid]
     glyphs.append({
         "id": gid,
+        "type": "keycap",
         "label": label,
         "full": full,
         "group": group,
@@ -56,10 +58,28 @@ for gid, label, full, group in UNIQUE:
         "preview": f"字符/{G.folder_name(gid)}/preview.png",
     })
 
+icons = []
+for gid, label, full, group in ICONS:
+    meta = G.META[gid]
+    icons.append({
+        "id": gid,
+        "type": "icon",
+        "label": label,
+        "full": full,
+        "group": group,
+        "pua": f"U+{meta['pua']:04X}",
+        "codepoint": meta["pua"],
+        "width": round(G.PATHS[gid][0]["W"], 3),
+        "folder": G.folder_name(gid),
+        "svg": f"字符/{G.folder_name(gid)}/icon.svg",
+        "preview": f"字符/{G.folder_name(gid)}/preview.png",
+        "style": "transparent line icon; no border, no text",
+    })
+
 data = {
     "name": "Keycap Tight",
-    "version": "1.0.0",
-    "description": "83 unique, content-fitted, transparent keycap glyphs for Windows primary legends. 101 physical keycodes are mapped to these glyphs.",
+    "version": "1.1.1",
+    "description": "83 unique content-fitted keycap glyphs plus 6 transparent system line icons (CPU, GPU, RAM, ROM-as-hard-drive, network up/down). 101 physical keycodes map to the keycap glyphs.",
     "design": {
         "box_height": 62,
         "stroke": 4,
@@ -71,6 +91,7 @@ data = {
         "fill": "none (outline only)",
         "width_rule": "text advance width + 40",
         "height_rule": "uniform 62; glyphs vertically centered on ink",
+        "icon_box": "62 x 62 design units; line icons use the same 1em height",
     },
     "font": {
         "family": "Keycap Tight",
@@ -79,12 +100,14 @@ data = {
         "file_woff2": "KeycapTight-Regular.woff2",
         "units_per_em": 1000,
         "glyph_height_em": 1.0,
-        "pua_range": "U+E000–U+E052",
+        "pua_range": "U+E000–U+E058",
         "usage": "font-size equals the desired visual key height; line-height 1; transparent interior; single color via CSS color/currentColor.",
     },
     "stats": {
         "physical_keys": len(PHYS),
         "unique_glyphs": len(UNIQUE),
+        "icon_glyphs": len(ICONS),
+        "total_glyphs": len(UNIQUE) + len(ICONS),
         "duplicate_instances": len(PHYS) - len(UNIQUE),
         "sections": len(SECTIONS),
     },
@@ -95,8 +118,11 @@ data = {
         "Clear is rendered as Num (Num Lock) for Windows.",
         "The Windows key uses event.code MetaLeft in browsers.",
         "Fn generally does not emit a browser KeyboardEvent; FnLeft/FnRight are custom mapping names.",
+        "The six system icons are pictograms, not text, and have no keycode entry. They share the same transparent 1em outline style.",
+        "The glyph labelled ROM follows the keyboard's terminology but is drawn as a hard drive (HDD), not a ROM chip.",
     ],
     "glyphs": glyphs,
+    "icons": icons,
     "keys": keys,
 }
 (DIST / "keycap-tight-mapping.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -113,5 +139,12 @@ with (DIST / "keycap-tight-glyphs.csv").open("w", encoding="utf-8-sig", newline=
     for g in glyphs:
         w.writerow([g["id"], g["label"], g["full"], g["group"], g["pua"], g["codepoint"], g["width"], " ".join(g["keycodes"])])
 
-print("mapping", len(keys), "keys", len(glyphs), "glyphs")
+with (DIST / "keycap-tight-icons.csv").open("w", encoding="utf-8-sig", newline="") as f:
+    w = csv.writer(f)
+    w.writerow(["id", "label", "full", "group", "pua", "codepoint", "width", "folder"])
+    for icon in icons:
+        w.writerow([icon["id"], icon["label"], icon["full"], icon["group"], icon["pua"],
+                    icon["codepoint"], icon["width"], icon["folder"]])
+
+print("mapping", len(keys), "keys", len(glyphs), "keycap glyphs", len(icons), "icons")
 print(json.dumps(data["stats"], ensure_ascii=False))

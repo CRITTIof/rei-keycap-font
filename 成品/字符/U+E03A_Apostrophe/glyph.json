@@ -1,5 +1,6 @@
 {
   "id": "quote",
+  "type": "keycap",
   "label": "'",
   "full": "Apostrophe",
   "group": "caps",

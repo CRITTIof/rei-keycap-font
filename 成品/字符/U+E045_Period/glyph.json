@@ -1,5 +1,6 @@
 {
   "id": "period",
+  "type": "keycap",
   "label": ".",
   "full": "Period",
   "group": "shift",

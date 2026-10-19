@@ -1,5 +1,6 @@
 {
   "id": "digit7",
+  "type": "keycap",
   "label": "7",
   "full": "7",
   "group": "numbers",
