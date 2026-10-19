@@ -1,0 +1,20 @@
+{
+  "id": "keyf",
+  "type": "keycap",
+  "label": "F",
+  "full": "F",
+  "group": "caps",
+  "pua": "U+E033",
+  "codepoint": 57395,
+  "width": 65.2,
+  "keycodes": [
+    "KeyF"
+  ],
+  "text": [
+    "F",
+    "f"
+  ],
+  "folder": "U+E033_F",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

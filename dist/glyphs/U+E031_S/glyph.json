@@ -1,0 +1,20 @@
+{
+  "id": "keys",
+  "type": "keycap",
+  "label": "S",
+  "full": "S",
+  "group": "caps",
+  "pua": "U+E031",
+  "codepoint": 57393,
+  "width": 65.2,
+  "keycodes": [
+    "KeyS"
+  ],
+  "text": [
+    "S",
+    "s"
+  ],
+  "folder": "U+E031_S",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "keyv",
+  "type": "keycap",
+  "label": "V",
+  "full": "V",
+  "group": "shift",
+  "pua": "U+E040",
+  "codepoint": 57408,
+  "width": 65.2,
+  "keycodes": [
+    "KeyV"
+  ],
+  "text": [
+    "V",
+    "v"
+  ],
+  "folder": "U+E040_V",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

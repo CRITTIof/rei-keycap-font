@@ -1,0 +1,18 @@
+{
+  "id": "enter",
+  "type": "keycap",
+  "label": "Enter",
+  "full": "Enter",
+  "group": "caps",
+  "pua": "U+E03B",
+  "codepoint": 57403,
+  "width": 150.292,
+  "keycodes": [
+    "Enter",
+    "NumpadEnter"
+  ],
+  "text": [],
+  "folder": "U+E03B_Enter",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "space",
+  "type": "keycap",
+  "label": "Space",
+  "full": "Space",
+  "group": "mods",
+  "pua": "U+E04B",
+  "codepoint": 57419,
+  "width": 159.532,
+  "keycodes": [
+    "Space"
+  ],
+  "text": [],
+  "folder": "U+E04B_Space",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

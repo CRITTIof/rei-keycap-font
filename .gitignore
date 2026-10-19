@@ -1,10 +1,10 @@
 # Python build dependencies and caches
-工作文件/pydeps/
+work/pydeps/
 __pycache__/
 *.py[cod]
 
 # Node dependencies (package.json / pnpm-lock.yaml are tracked)
-工作文件/tools/node_modules/
+work/tools/node_modules/
 
 # Local browser profiles
 .edge-profile/

@@ -1,0 +1,5 @@
+﻿id,category,label,full,pua,codepoint,width,folder
+terminal,software,CLI,Command line,U+E059,57433,62.0,U+E059_CLI
+web,software,Web,Web page,U+E05A,57434,62.0,U+E05A_Web
+app,software,App,Application,U+E05B,57435,62.0,U+E05B_App
+game,software,Game,Game,U+E05C,57436,62.0,U+E05C_Game

@@ -1,0 +1,18 @@
+{
+  "id": "fn",
+  "type": "keycap",
+  "label": "Fn",
+  "full": "Function",
+  "group": "mods",
+  "pua": "U+E048",
+  "codepoint": 57416,
+  "width": 89.56,
+  "keycodes": [
+    "FnLeft",
+    "FnRight"
+  ],
+  "text": [],
+  "folder": "U+E048_Fn",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

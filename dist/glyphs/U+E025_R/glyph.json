@@ -1,0 +1,20 @@
+{
+  "id": "keyr",
+  "type": "keycap",
+  "label": "R",
+  "full": "R",
+  "group": "letters",
+  "pua": "U+E025",
+  "codepoint": 57381,
+  "width": 65.2,
+  "keycodes": [
+    "KeyR"
+  ],
+  "text": [
+    "R",
+    "r"
+  ],
+  "folder": "U+E025_R",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

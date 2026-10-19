@@ -1,0 +1,15 @@
+{
+  "id": "app",
+  "type": "icon",
+  "label": "App",
+  "full": "Application",
+  "group": "software",
+  "pua": "U+E05B",
+  "codepoint": 57435,
+  "width": 62.0,
+  "keycodes": [],
+  "text": [],
+  "folder": "U+E05B_App",
+  "svg": "icon.svg",
+  "preview": "preview.png"
+}

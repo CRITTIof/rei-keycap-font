@@ -1,0 +1,20 @@
+{
+  "id": "keye",
+  "type": "keycap",
+  "label": "E",
+  "full": "E",
+  "group": "letters",
+  "pua": "U+E024",
+  "codepoint": 57380,
+  "width": 65.2,
+  "keycodes": [
+    "KeyE"
+  ],
+  "text": [
+    "E",
+    "e"
+  ],
+  "folder": "U+E024_E",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

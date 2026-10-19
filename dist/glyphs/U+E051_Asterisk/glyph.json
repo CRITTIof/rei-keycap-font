@@ -1,0 +1,17 @@
+{
+  "id": "asterisk",
+  "type": "keycap",
+  "label": "*",
+  "full": "Multiply",
+  "group": "numpad",
+  "pua": "U+E051",
+  "codepoint": 57425,
+  "width": 62.974,
+  "keycodes": [
+    "NumpadMultiply"
+  ],
+  "text": [],
+  "folder": "U+E051_Asterisk",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

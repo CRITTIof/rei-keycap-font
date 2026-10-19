@@ -1,0 +1,20 @@
+{
+  "id": "digit7",
+  "type": "keycap",
+  "label": "7",
+  "full": "7",
+  "group": "numbers",
+  "pua": "U+E01A",
+  "codepoint": 57370,
+  "width": 65.2,
+  "keycodes": [
+    "Digit7",
+    "Numpad7"
+  ],
+  "text": [
+    "7"
+  ],
+  "folder": "U+E01A_7",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

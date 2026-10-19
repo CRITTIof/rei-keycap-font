@@ -1,0 +1,20 @@
+{
+  "id": "keya",
+  "type": "keycap",
+  "label": "A",
+  "full": "A",
+  "group": "caps",
+  "pua": "U+E030",
+  "codepoint": 57392,
+  "width": 65.2,
+  "keycodes": [
+    "KeyA"
+  ],
+  "text": [
+    "A",
+    "a"
+  ],
+  "folder": "U+E030_A",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

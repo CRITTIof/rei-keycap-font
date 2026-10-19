@@ -1,0 +1,17 @@
+{
+  "id": "win",
+  "type": "keycap",
+  "label": "Win",
+  "full": "Windows",
+  "group": "mods",
+  "pua": "U+E049",
+  "codepoint": 57417,
+  "width": 119.044,
+  "keycodes": [
+    "MetaLeft"
+  ],
+  "text": [],
+  "folder": "U+E049_Win",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

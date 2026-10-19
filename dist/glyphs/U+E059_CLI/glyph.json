@@ -1,0 +1,15 @@
+{
+  "id": "terminal",
+  "type": "icon",
+  "label": "CLI",
+  "full": "Command line",
+  "group": "software",
+  "pua": "U+E059",
+  "codepoint": 57433,
+  "width": 62.0,
+  "keycodes": [],
+  "text": [],
+  "folder": "U+E059_CLI",
+  "svg": "icon.svg",
+  "preview": "preview.png"
+}

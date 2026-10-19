@@ -1,0 +1,20 @@
+{
+  "id": "keyx",
+  "type": "keycap",
+  "label": "X",
+  "full": "X",
+  "group": "shift",
+  "pua": "U+E03E",
+  "codepoint": 57406,
+  "width": 65.2,
+  "keycodes": [
+    "KeyX"
+  ],
+  "text": [
+    "X",
+    "x"
+  ],
+  "folder": "U+E03E_X",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

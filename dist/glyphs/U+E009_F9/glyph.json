@@ -1,0 +1,17 @@
+{
+  "id": "f9",
+  "type": "keycap",
+  "label": "F9",
+  "full": "F9",
+  "group": "function",
+  "pua": "U+E009",
+  "codepoint": 57353,
+  "width": 86.62,
+  "keycodes": [
+    "F9"
+  ],
+  "text": [],
+  "folder": "U+E009_F9",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

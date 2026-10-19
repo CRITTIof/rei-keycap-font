@@ -1,0 +1,17 @@
+{
+  "id": "f11",
+  "type": "keycap",
+  "label": "F11",
+  "full": "F11",
+  "group": "function",
+  "pua": "U+E00B",
+  "codepoint": 57355,
+  "width": 110.644,
+  "keycodes": [
+    "F11"
+  ],
+  "text": [],
+  "folder": "U+E00B_F11",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

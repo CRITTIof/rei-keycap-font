@@ -1,0 +1,20 @@
+{
+  "id": "keyd",
+  "type": "keycap",
+  "label": "D",
+  "full": "D",
+  "group": "caps",
+  "pua": "U+E032",
+  "codepoint": 57394,
+  "width": 65.2,
+  "keycodes": [
+    "KeyD"
+  ],
+  "text": [
+    "D",
+    "d"
+  ],
+  "folder": "U+E032_D",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

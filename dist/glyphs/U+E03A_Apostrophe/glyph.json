@@ -1,0 +1,17 @@
+{
+  "id": "quote",
+  "type": "keycap",
+  "label": "'",
+  "full": "Apostrophe",
+  "group": "caps",
+  "pua": "U+E03A",
+  "codepoint": 57402,
+  "width": 50.542,
+  "keycodes": [
+    "Quote"
+  ],
+  "text": [],
+  "folder": "U+E03A_Apostrophe",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

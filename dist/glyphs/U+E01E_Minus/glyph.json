@@ -1,0 +1,18 @@
+{
+  "id": "minus",
+  "type": "keycap",
+  "label": "-",
+  "full": "Minus",
+  "group": "numbers",
+  "pua": "U+E01E",
+  "codepoint": 57374,
+  "width": 53.524,
+  "keycodes": [
+    "Minus",
+    "NumpadSubtract"
+  ],
+  "text": [],
+  "folder": "U+E01E_Minus",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

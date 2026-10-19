@@ -1,0 +1,15 @@
+{
+  "id": "web",
+  "type": "icon",
+  "label": "Web",
+  "full": "Web page",
+  "group": "software",
+  "pua": "U+E05A",
+  "codepoint": 57434,
+  "width": 62.0,
+  "keycodes": [],
+  "text": [],
+  "folder": "U+E05A_Web",
+  "svg": "icon.svg",
+  "preview": "preview.png"
+}

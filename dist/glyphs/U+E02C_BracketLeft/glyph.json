@@ -1,0 +1,17 @@
+{
+  "id": "bracketleft",
+  "type": "keycap",
+  "label": "[",
+  "full": "Left Bracket",
+  "group": "letters",
+  "pua": "U+E02C",
+  "codepoint": 57388,
+  "width": 53.86,
+  "keycodes": [
+    "BracketLeft"
+  ],
+  "text": [],
+  "folder": "U+E02C_BracketLeft",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

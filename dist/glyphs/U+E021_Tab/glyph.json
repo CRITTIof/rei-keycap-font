@@ -1,0 +1,17 @@
+{
+  "id": "tab",
+  "type": "keycap",
+  "label": "Tab",
+  "full": "Tab",
+  "group": "letters",
+  "pua": "U+E021",
+  "codepoint": 57377,
+  "width": 114.928,
+  "keycodes": [
+    "Tab"
+  ],
+  "text": [],
+  "folder": "U+E021_Tab",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

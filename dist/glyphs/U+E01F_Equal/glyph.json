@@ -1,0 +1,17 @@
+{
+  "id": "equal",
+  "type": "keycap",
+  "label": "=",
+  "full": "Equal",
+  "group": "numbers",
+  "pua": "U+E01F",
+  "codepoint": 57375,
+  "width": 64.024,
+  "keycodes": [
+    "Equal"
+  ],
+  "text": [],
+  "folder": "U+E01F_Equal",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}

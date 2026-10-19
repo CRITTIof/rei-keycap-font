@@ -1,0 +1,20 @@
+{
+  "id": "keyb",
+  "type": "keycap",
+  "label": "B",
+  "full": "B",
+  "group": "shift",
+  "pua": "U+E041",
+  "codepoint": 57409,
+  "width": 65.2,
+  "keycodes": [
+    "KeyB"
+  ],
+  "text": [
+    "B",
+    "b"
+  ],
+  "folder": "U+E041_B",
+  "svg": "keycap.svg",
+  "preview": "preview.png"
+}
