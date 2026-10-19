@@ -6,8 +6,8 @@ The font maps this to 1000 units/em with the box filling the em.
 import math
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]          # KeycapTight/
-OUT = ROOT / "fonts"                                # KeycapTight/fonts
+ROOT = Path(__file__).resolve().parents[1]          # project root
+OUT = ROOT / "fonts"                                # generated fonts
 
 from fontTools.ttLib import TTFont
 from fontTools.pens.boundsPen import BoundsPen

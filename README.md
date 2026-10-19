@@ -1,91 +1,76 @@
-# Keycap Tight
+# ReiKeycap
 
-**A transparent, content-fitted keycap and system-icon font, redrawn from a photographed Windows keyboard.**
+[中文](#中文) · [English](#english)
 
-Keycap Tight turns physical keys into clean, transparent outline glyphs. It includes **83 keycap glyphs**, **12 system line icons**, **101 `event.code` mappings**, and **62 ASCII aliases** — **95 glyphs** in total. Every keycap frame and icon sits in the same **1em / 62-unit** display slot, so they line up at any font size.
+## 中文
 
-- **Version:** 1.4.0
-- **Font family:** Keycap Tight Regular
-- **Formats:** TTF + WOFF2
-- **License:** SIL Open Font License 1.1
-- **Author:** Rei Xinglan ([@CRITTIof](https://github.com/CRITTIof))
+**透明、贴合内容的键帽与系统图标字体。** 依据实拍 Windows 键盘重绘，适合快捷键提示、键位图和键帽展示。
 
-## Repository layout
+- **版本：** 1.4.0
+- **字体族：** ReiKeycap Regular
+- **格式：** TTF + WOFF2
+- **字形：** 83 个键帽 + 12 个图标 = 95 个
+- **映射：** 101 个 `event.code`，62 个 ASCII 别名
+- **许可：** SIL Open Font License 1.1
+- **作者：** Rei Xinglan（[@CRITTIof](https://github.com/CRITTIof)）
 
-This repository intentionally contains only what is needed to use, understand and rebuild the font.
+## 仓库结构
 
 ```text
-KeycapTight/
-├─ demo.html                     Interactive keyboard demo
+rei-keycap-font/
+├─ demo.html                     实时键盘演示
 ├─ fonts/
-│  ├─ KeycapTight-Regular.ttf    Desktop font
-│  └─ KeycapTight-Regular.woff2  Web font
-├─ MAPPING.md                    Complete PUA / ASCII / event.code reference
+│  ├─ ReiKeycap-Regular.ttf      桌面字体
+│  └─ ReiKeycap-Regular.woff2    Web 字体
+├─ MAPPING.md                    完整映射文档（中文）
 ├─ README.md
 ├─ src/
-│  ├─ build_font.py              Font build entry point
-│  ├─ data.py                    Key list and icon categories
-│  └─ geometry.py                Glyph outlines and shared geometry
-├─ assets/
-│  ├─ noto-sans-semibold.ttf     Source outlines for multi-character legends
-│  └─ jetbrains-mono-semibold.ttf Source outlines for A-Z / 0-9
+│  ├─ build_font.py              构建入口
+│  ├─ data.py                    键位与图标分类
+│  └─ geometry.py                字形轮廓与几何
+├─ assets/                       两个 OFL 源字体
 ├─ requirements.txt
-├─ OFL.txt
-└─ OFL-JetBrainsMono.txt
+└─ OFL.txt                       完整许可与源字体版权
 ```
 
-Generated specimens, per-glyph SVG folders, preview PNGs and ZIP archives are not committed. The release contains the final fonts and mapping documentation.
+生成图片、逐字形 SVG、预览 PNG 和 ZIP 不进入仓库。
 
-## Download and install
+## 下载与安装
 
-Download the latest fonts from **[Releases](https://github.com/CRITTIof/rei-keycap-frot/releases/latest)**.
+从 **[Releases](https://github.com/CRITTIof/rei-keycap-font/releases/latest)** 下载最新字体。
 
-- **Windows:** open `KeycapTight-Regular.ttf` and choose **Install**.
-- **macOS:** open the TTF with **Font Book** and choose **Install Font**.
-- **Web:** use `KeycapTight-Regular.woff2`:
+- **Windows：** 双击 `ReiKeycap-Regular.ttf`，选择“安装”。
+- **macOS：** 用“字体册”打开 TTF，选择“安装字体”。
+- **Web：**
 
 ```css
 @font-face {
-  font-family: "Keycap Tight";
-  src: url("fonts/KeycapTight-Regular.woff2") format("woff2");
+  font-family: "ReiKeycap";
+  src: url("fonts/ReiKeycap-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: block;
 }
 
 .key {
-  font: 400 38px/1 "Keycap Tight";
+  font: 400 38px/1 "ReiKeycap";
   color: currentColor;
 }
 ```
 
-`font-size` is the visual key height. Use `line-height: 1` and color the glyph with `color` / `currentColor`; the interior is transparent.
+`font-size` 就是键帽的视觉高度。使用 `line-height: 1`，颜色由 `color` / `currentColor` 控制，内部透明。
 
-## Demo
+## 使用
 
-Open **`demo.html`** in a browser. It is a self-contained live keyboard demo and loads the fonts from `fonts/` with relative URLs.
-
-The demo supports:
-
-- Physical key presses through `event.code`
-- Clickable keycaps
-- Light / dark themes
-- Size control
-- A live glyph and keycode readout
-
-No build step or local server is required.
-
-## Quick start
-
-Use a PUA codepoint for an exact glyph:
+用 PUA 码位精确取字形：
 
 ```html
 <span class="key">&#xE000;</span>  <!-- Esc -->
-<span class="key">&#xE053;</span>  <!-- CPU icon -->
-<span class="key">&#xE059;</span>  <!-- CLI icon -->
+<span class="key">&#xE053;</span>  <!-- CPU -->
+<span class="key">&#xE059;</span>  <!-- CLI -->
 ```
 
-Letters and digits are also mapped directly:
+字母和数字也可直接输入：
 
 ```html
 <span class="key">A</span>
@@ -93,63 +78,34 @@ Letters and digits are also mapped directly:
 <span class="key">7</span>
 ```
 
-`A` and `a` both render the uppercase **A** keycap.
+`A` 和 `a` 都显示大写 A 键帽。
 
-> **Important:** ASCII letters and digits are intentionally remapped to keycap glyphs. Do **not** use Keycap Tight for ordinary prose. Use a normal text font for body copy and Keycap Tight only for keycaps and pictograms.
+> **注意：** ASCII 字母和数字被有意映射为键帽，不要把本字体用于正文。正文请使用普通文本字体。
 
-## Mapping
+## 映射
 
-The complete reference is **[MAPPING.md](MAPPING.md)**. It includes:
+完整码位、ASCII 别名和 101 个 `event.code` 见 **[MAPPING.md](MAPPING.md)**。
 
-- All 95 PUA codepoints and glyph IDs
-- All 62 ASCII aliases
-- All 101 `event.code` mappings
-- Category, legend and full name for every glyph
-- JavaScript integration example
-
-### Ranges
-
-| Range | Contents |
+| 范围 | 内容 |
 |---|---|
-| `U+E000–U+E052` | 83 keycap glyphs |
-| `U+E053–U+E05E` | 12 system icons |
-| `A–Z`, `a–z`, `0–9` | ASCII aliases to keycaps |
+| `U+E000–U+E052` | 83 个键帽 |
+| `U+E053–U+E05E` | 12 个系统图标 |
+| `A–Z`、`a–z`、`0–9` | 键帽的 ASCII 别名 |
 
-### System icons
-
-| Software | PUA | Hardware | PUA |
-|---|---|---|---|
-| CLI | `U+E059` | CPU | `U+E053` |
-| Web | `U+E05A` | GPU | `U+E054` |
-| App | `U+E05B` | RAM | `U+E055` |
-| Game | `U+E05C` | ROM / hard drive | `U+E056` |
-| | | NetUp | `U+E057` |
-| | | NetDown | `U+E058` |
-| | | USB | `U+E05D` |
-| | | Vol | `U+E05E` |
-
-The `ROM` glyph follows the label on this keyboard, but the drawing is a hard drive (platter, spindle and actuator arm), not a ROM chip.
-
-## Use with keyboard events
-
-The font does not know about keyboard events. The release includes `keycap-tight-mapping.json`; map `event.code` to a codepoint, then render it:
+字体本身不处理键盘事件。把 `event.code` 映射到码位，再渲染：
 
 ```js
-const mapping = await fetch("keycap-tight-mapping.json").then((r) => r.json());
-const byCode = new Map(mapping.keys.map((key) => [key.code, key]));
-
 document.addEventListener("keydown", (event) => {
-  const key = byCode.get(event.code);
-  if (!key) return;
-  output.textContent = String.fromCodePoint(key.codepoint);
+  const key = KEYS.find((item) => item.code === event.code);
+  if (key) output.textContent = String.fromCodePoint(key.codepoint);
 });
 ```
 
-Duplicate physical keys share one glyph: `ShiftLeft` / `ShiftRight` both use `shift`, and `Digit7` / `Numpad7` both use `digit7`. All 101 `event.code` values are still listed individually.
+`demo.html` 中的 `KEYS` 数组已经包含全部 101 条映射，可直接复制使用。
 
-## Build from source
+## 从源码构建
 
-Requirements: Python 3.10+ and the packages in `requirements.txt` (`fonttools` and `brotli`).
+需要 Python 3.10+，并安装 `requirements.txt` 中的 `fonttools` 和 `brotli`。
 
 ```bash
 python -m venv .venv
@@ -162,35 +118,85 @@ pip install -r requirements.txt
 python src/build_font.py
 ```
 
-The build writes:
+输出：
 
 ```text
-fonts/KeycapTight-Regular.ttf
-fonts/KeycapTight-Regular.woff2
+fonts/ReiKeycap-Regular.ttf
+fonts/ReiKeycap-Regular.woff2
 ```
 
-No Node.js, browser, image library or network access is needed.
+构建不依赖 Node.js、浏览器、图像库或网络。
 
-### Editing the set
+## 设计
 
-- Keycaps and icon categories: `src/data.py`
-- Shared geometry, monospaced letter/digit rules and icon paths: `src/geometry.py`
-- Font metadata and output paths: `src/build_font.py`
+- 1000 units/em；所有字形都占满 **1em** 高度。
+- 键帽边框高 62 设计单位，外圆角 16，描边 4，内部透明。
+- 字母和数字使用 JetBrains Mono SemiBold，统一为 65.2 单位宽的键帽。
+- 多字符图例（`Esc`、`Tab`、`Ctrl`、`F1` 等）使用 Noto Sans SemiBold，宽度贴合内容。
+- 图标位于 62 × 62 设计框内，描边 3.5，无键帽边框。
+- 单色轮廓字体，颜色来自 `currentColor`。
 
-## Design notes
+## 许可
 
-- Keycap frame: **62** design units high, **16** outer radius, **4** stroke, transparent interior.
-- Width: text advance + **20** units on each side. All single letters and digits use **JetBrains Mono SemiBold** and share one **65.2-unit** frame width.
-- Multi-character legends (`Esc`, `Tab`, `Ctrl`, `F1`, …) use **Noto Sans SemiBold** and fit their content.
-- Icons use a **62 × 62** box and a **3.5** stroke; they have no keycap frame and no background.
-- Font metrics: **1000 units/em**; every glyph occupies exactly **1em** of display height. Keycap frames are exactly **1000** units tall and all icons stay inside the same **0–1000** slot.
-- The font is a single-color outline font. The interior is transparent; color comes from `color` / `currentColor`.
-
-## Credits and license
-
-Font outlines are derived from:
+字形轮廓来自：
 
 - **Noto Sans SemiBold** — Copyright 2018 The Noto Project Authors
 - **JetBrains Mono SemiBold** — Copyright 2020 The JetBrains Mono Project Authors
 
-Both are used and redistributed under the **SIL Open Font License 1.1**. See [OFL.txt](OFL.txt) and [OFL-JetBrainsMono.txt](OFL-JetBrainsMono.txt). The generated font is named **Keycap Tight** and does not use a reserved name from either source font.
+两者均以 **SIL Open Font License 1.1** 使用和再分发。完整许可与版权声明见 [OFL.txt](OFL.txt)。生成的字体命名为 **ReiKeycap**，未使用任何源字体的保留名称。
+
+---
+
+## English
+
+[中文](#中文) · [English](#english)
+
+**A transparent, content-fitted keycap and system-icon font**, redrawn from a photographed Windows keyboard.
+
+- **Version:** 1.4.0 · **Family:** ReiKeycap Regular · **Formats:** TTF + WOFF2
+- **95 glyphs:** 83 keycaps + 12 icons
+- **101** `event.code` mappings · **62** ASCII aliases
+- **License:** SIL Open Font License 1.1 · **Author:** Rei Xinglan ([@CRITTIof](https://github.com/CRITTIof))
+
+### Install
+
+Download the latest fonts from **[Releases](https://github.com/CRITTIof/rei-keycap-font/releases/latest)**.
+
+- **Windows:** open `ReiKeycap-Regular.ttf` and choose **Install**.
+- **macOS:** open the TTF in **Font Book** and choose **Install Font**.
+- **Web:**
+
+```css
+@font-face {
+  font-family: "ReiKeycap";
+  src: url("fonts/ReiKeycap-Regular.woff2") format("woff2");
+}
+.key { font: 400 38px/1 "ReiKeycap"; color: currentColor; }
+```
+
+### Use
+
+```html
+<span class="key">&#xE000;</span>  <!-- Esc -->
+<span class="key">&#xE053;</span>  <!-- CPU -->
+<span class="key">A</span>         <!-- A keycap -->
+```
+
+Use PUA codepoints for exact glyphs. ASCII `A–Z`, `a–z`, `0–9` are aliases for the matching keycaps. **Do not use this font for body text.**
+
+See **[MAPPING.md](MAPPING.md)** for all PUA codepoints, ASCII aliases, and 101 `event.code` mappings. The `KEYS` array in [demo.html](demo.html) is a ready-to-copy JavaScript map.
+
+### Build
+
+```bash
+pip install -r requirements.txt
+python src/build_font.py
+```
+
+Outputs `fonts/ReiKeycap-Regular.ttf` and `.woff2`. Python 3.10+ only; no Node.js or image tooling required.
+
+### Design and license
+
+Every glyph occupies a **1em** slot at **1000 units/em**. Keycap frames are 62 design units high with a 4-unit stroke and a transparent interior; icons use a 62 × 62 box with a 3.5-unit stroke. Letters and digits use JetBrains Mono SemiBold; other legends use Noto Sans SemiBold.
+
+Outlines are derived from **Noto Sans SemiBold** (Copyright 2018 The Noto Project Authors) and **JetBrains Mono SemiBold** (Copyright 2020 The JetBrains Mono Project Authors), both under the **SIL Open Font License 1.1**. See [OFL.txt](OFL.txt) for the full license and copyright notices. The generated font is named **ReiKeycap** and uses no reserved name from either source font.

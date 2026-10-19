@@ -1,4 +1,16 @@
+ReiKeycap
+Copyright 2026 Rei Xinglan
+
+Glyph outlines are derived from:
+
+Noto Sans SemiBold
 Copyright 2018 The Noto Project Authors (github.com/googlei18n/noto-fonts)
+
+JetBrains Mono SemiBold
+Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)
+
+Both source font families are licensed under the SIL Open Font License, Version 1.1.
+The generated ReiKeycap font is distributed under the same license.
 
 This Font Software is licensed under the SIL Open Font License,
 Version 1.1.

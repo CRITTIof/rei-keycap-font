@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Keycap Tight — Live Input Demo</title>
+<title>ReiKeycap — Live Input Demo</title>
 <style>
 @font-face {
-  font-family: 'Keycap Tight';
-  src: url('fonts/KeycapTight-Regular.woff2') format('woff2'),
-       url('fonts/KeycapTight-Regular.ttf') format('truetype');
+  font-family: 'ReiKeycap';
+  src: url('fonts/ReiKeycap-Regular.woff2') format('woff2'),
+       url('fonts/ReiKeycap-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: block;
@@ -69,7 +69,7 @@ h1 { margin: 0; font-size: 24px; letter-spacing: .16em; font-weight: 650; }
 }
 .hud-visual { min-width: 0; display: flex; align-items: center; justify-content: center; }
 .hud-glyph {
-  font-family: 'Keycap Tight'; font-size: clamp(76px, 7.6vw, 104px); line-height: 1; color: var(--accent);
+  font-family: 'ReiKeycap'; font-size: clamp(76px, 7.6vw, 104px); line-height: 1; color: var(--accent);
   display: block; max-width: 100%; transition: color .12s;
 }
 .hud-placeholder {
@@ -89,7 +89,7 @@ h1 { margin: 0; font-size: 24px; letter-spacing: .16em; font-weight: 650; }
   background: color-mix(in srgb, var(--panel-2) 72%, transparent); border-radius: 8px; padding: 3px 7px;
   color: var(--muted); font: 500 10px/1 ui-monospace, Consolas, monospace;
 }
-.hist-glyph { font-family: 'Keycap Tight'; font-size: 18px; line-height: 1; color: var(--ink); }
+.hist-glyph { font-family: 'ReiKeycap'; font-size: 18px; line-height: 1; color: var(--ink); }
 .panel {
   margin-top: 26px; background: var(--panel); border: 1px solid var(--line);
   border-radius: 24px; padding: 22px 26px 28px; box-shadow: var(--shadow);
@@ -104,7 +104,7 @@ input[type=range] { accent-color: var(--accent); width: 128px; }
 .caps { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 15px; padding-top: 16px; }
 .cap {
   appearance: none; border: 0; background: transparent; padding: 0; margin: 0; color: var(--ink);
-  font-family: 'Keycap Tight'; font-size: var(--cap-size); line-height: 1; cursor: pointer;
+  font-family: 'ReiKeycap'; font-size: var(--cap-size); line-height: 1; cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center; height: var(--cap-size);
   transition: color .12s ease, transform .08s ease;
   -webkit-tap-highlight-color: transparent;
@@ -134,7 +134,7 @@ pre { margin: 10px 0 0; padding: 14px; overflow: auto; background: var(--panel);
 <div class="wrap">
   <header>
     <div>
-      <h1>KEYCAP TIGHT</h1>
+      <h1>REIKEYCAP</h1>
       <p class="sub"><b>83</b> keycaps + <b>12</b> system icons · <b>101</b> physical Windows keycodes · transparent outline<br>Press any key to test; the numpad and left/right Shift/Ctrl/Alt share one glyph.</p>
     </div>
     <button class="theme" id="theme" type="button">LIGHT</button>
@@ -193,11 +193,11 @@ pre { margin: 10px 0 0; padding: 14px; overflow: auto; background: var(--panel);
     <div class="note">
       <strong>Font</strong>
       <pre>@font-face {
-  font-family: 'Keycap Tight';
-  src: url('fonts/KeycapTight-Regular.woff2') format('woff2');
+  font-family: 'ReiKeycap';
+  src: url('fonts/ReiKeycap-Regular.woff2') format('woff2');
 }
 .key {
-  font: 400 38px/1 'Keycap Tight';
+  font: 400 38px/1 'ReiKeycap';
   color: #20242A;
 }
 &lt;span class="key"&gt;&amp;#xE000;&lt;/span&gt;</pre>
