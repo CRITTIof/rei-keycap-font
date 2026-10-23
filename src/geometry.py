@@ -510,6 +510,45 @@ def draw_icon_svg(pen, gid):
             pen.lineTo(p)
         pen.closePath()
 
+    elif gid == "trash":
+        # Waste bin: lid, handle, tapered body and two ribs.
+        capsule(pen, 13, 16, 49, 16, 4.2)
+        capsule(pen, 25.5, 11, 36.5, 11, 3.4)
+        capsule(pen, 25.5, 12, 25.5, 15.5, 3.0)
+        capsule(pen, 36.5, 12, 36.5, 15.5, 3.0)
+        capsule(pen, 17.5, 18.5, 20.5, 50, 3.4)
+        capsule(pen, 44.5, 18.5, 41.5, 50, 3.4)
+        capsule(pen, 20.5, 50, 41.5, 50, 3.4)
+        capsule(pen, 27, 25, 27, 43.5, 2.6)
+        capsule(pen, 35, 25, 35, 43.5, 2.6)
+
+    elif gid == "move":
+        # Four-way arrow cross.
+        capsule(pen, 31, 13, 31, 49, 3.4)
+        capsule(pen, 13, 31, 49, 31, 3.4)
+        capsule(pen, 31, 12, 25.8, 19, 3.4)
+        capsule(pen, 31, 12, 36.2, 19, 3.4)
+        capsule(pen, 31, 50, 25.8, 43, 3.4)
+        capsule(pen, 31, 50, 36.2, 43, 3.4)
+        capsule(pen, 12, 31, 19, 25.8, 3.4)
+        capsule(pen, 12, 31, 19, 36.2, 3.4)
+        capsule(pen, 50, 31, 43, 25.8, 3.4)
+        capsule(pen, 50, 31, 43, 36.2, 3.4)
+
+    elif gid == "add":
+        # Plus sign.
+        capsule(pen, 31, 15, 31, 47, 4.4)
+        capsule(pen, 15, 31, 47, 31, 4.4)
+
+    elif gid == "expand":
+        # Two diagonal arrows pointing outward.
+        capsule(pen, 31, 31, 48, 14, 3.4)
+        capsule(pen, 48, 14, 48, 23, 3.4)
+        capsule(pen, 48, 14, 39, 14, 3.4)
+        capsule(pen, 31, 31, 14, 48, 3.4)
+        capsule(pen, 14, 48, 14, 39, 3.4)
+        capsule(pen, 14, 48, 23, 48, 3.4)
+
     elif gid == "netup":
         for y in (20, 31, 42):
             capsule(pen, 9, y, 35, y, 3.2)
