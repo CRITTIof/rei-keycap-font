@@ -1,4 +1,4 @@
-"""Keycap set data: 106 physical keys, 87 keycap designs, 17 system icons."""
+"""Keycap set data: 106 physical keys, 87 keycaps, 17 system icons."""
 
 # glyph_id, label, full name, group
 UNIQUE = [
@@ -45,9 +45,9 @@ UNIQUE = [
     ("plus", "+", "Plus", "numpad"),
 ]
 
-# Keys present on a standard 104-key Windows keyboard but absent from the
-# photographed keyboard.  They are appended after the icons so every existing
-# PUA codepoint (U+E000-U+E063) stays stable.
+# Keys that a standard 104-key Windows keyboard has in addition to the
+# photographed keyboard.  They are ordinary keycaps and sit in the same
+# contiguous U+E000 block as every other keycap.
 EXTRA_KEYS = [
     ("printscreen", "PrtSc", "Print Screen", "function"),
     ("scrolllock", "ScrLk", "Scroll Lock", "function"),
@@ -123,37 +123,57 @@ PHYS = [
     ("ContextMenu", "Menu", "menu", "Context Menu", "mods"),
 ]
 
-# glyph_id, label, full name, group
-# Simple transparent line icons, not text.  They occupy one em like the keycaps.
-# group is the mapping category: "software", "hardware", "file" or "ai".
-ICONS = [
+# Software / file / AI / media icons.  They own the U+E100 block.
+# Simple transparent line icons, not text; each occupies one em.
+SOFTWARE_ICONS = [
+    ("terminal", "CLI", "Command line", "software"),
+    ("web", "Web", "Web page", "software"),
+    ("app", "App", "Application", "software"),
+    ("game", "Game", "Game", "software"),
+    ("folder", "Folder", "Folder", "file"),
+    ("txt", "TXT", "Text file", "file"),
+    ("image", "Image", "Image", "file"),
+    ("agent", "AI", "AI Agent", "ai"),
+]
+
+# Hardware icons.  They own the U+E200 block.
+HARDWARE_ICONS = [
     ("cpu", "CPU", "Processor", "hardware"),
     ("gpu", "GPU", "Graphics processor", "hardware"),
     ("ram", "RAM", "Memory", "hardware"),
     ("rom", "ROM", "Hard drive (ROM)", "hardware"),
     ("netup", "NetUp", "Network uplink", "hardware"),
     ("netdown", "NetDown", "Network downlink", "hardware"),
-    ("terminal", "CLI", "Command line", "software"),
-    ("web", "Web", "Web page", "software"),
-    ("app", "App", "Application", "software"),
-    ("game", "Game", "Game", "software"),
     ("usb", "USB", "USB drive", "hardware"),
     ("volume", "Vol", "Volume", "hardware"),
-    ("folder", "Folder", "Folder", "file"),
-    ("txt", "TXT", "Text file", "file"),
-    ("agent", "AI", "AI Agent", "ai"),
-    ("image", "Image", "Image", "file"),
     ("microphone", "Mic", "Microphone", "hardware"),
 ]
 
+ICONS = SOFTWARE_ICONS + HARDWARE_ICONS
+
+# PUA blocks.  Each block is 256 code points so later additions have room:
+#   U+E000-U+E0FF  keycaps (87 used)
+#   U+E100-U+E1FF  software, file and AI icons (8 used)
+#   U+E200-U+E2FF  hardware icons (9 used)
+PUA_KEYCAP = 0xE000
+PUA_SOFTWARE = 0xE100
+PUA_HARDWARE = 0xE200
+
 ALL_KEYCAPS = UNIQUE + EXTRA_KEYS
-ALL_GLYPHS = UNIQUE + ICONS + EXTRA_KEYS
+ALL_GLYPHS = ALL_KEYCAPS + ICONS
+
+PUA = {gid: PUA_KEYCAP + i for i, (gid, *_rest) in enumerate(ALL_KEYCAPS)}
+PUA.update({gid: PUA_SOFTWARE + i for i, (gid, *_rest) in enumerate(SOFTWARE_ICONS)})
+PUA.update({gid: PUA_HARDWARE + i for i, (gid, *_rest) in enumerate(HARDWARE_ICONS)})
 
 assert len(PHYS) == 106, len(PHYS)
 assert len(UNIQUE) == 83, len(UNIQUE)
 assert len(EXTRA_KEYS) == 4, len(EXTRA_KEYS)
 assert len(ALL_KEYCAPS) == 87, len(ALL_KEYCAPS)
+assert len(SOFTWARE_ICONS) == 8, len(SOFTWARE_ICONS)
+assert len(HARDWARE_ICONS) == 9, len(HARDWARE_ICONS)
 assert len(ICONS) == 17, len(ICONS)
 assert len({g[0] for g in ALL_KEYCAPS}) == len(ALL_KEYCAPS)
 assert len({g[0] for g in ALL_GLYPHS}) == len(ALL_GLYPHS)
 assert set(g[0] for g in ALL_KEYCAPS) == set(p[2] for p in PHYS)
+assert len(PUA) == len(ALL_GLYPHS)

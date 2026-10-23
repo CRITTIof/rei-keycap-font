@@ -17,7 +17,7 @@ from fontTools.pens.reverseContourPen import ReverseContourPen
 from fontTools.pens.ttGlyphPen import TTGlyphPen
 from fontTools.pens.cu2quPen import Cu2QuPen
 
-from data import ICONS, ALL_KEYCAPS, ALL_GLYPHS
+from data import ICONS, ALL_KEYCAPS, ALL_GLYPHS, PUA
 
 FONT_SRC = ROOT / "assets" / "noto-sans-semibold.ttf"
 MONO_SRC = ROOT / "assets" / "jetbrains-mono-semibold.ttf"
@@ -61,7 +61,6 @@ ICON_W = 62.0
 ICON_H = 62.0
 ICON_STROKE = 3.5
 
-PUA = {gid: 0xE000 + i for i, (gid, *_rest) in enumerate(ALL_GLYPHS)}
 META = {}
 for gid, label, full, group in ALL_KEYCAPS:
     META[gid] = {"label": label, "full": full, "group": group,

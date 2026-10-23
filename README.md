@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <img alt="version" src="https://img.shields.io/badge/version-1.5.0-555">
+  <img alt="version" src="https://img.shields.io/badge/version-1.6.0-555">
   <img alt="glyphs" src="https://img.shields.io/badge/glyphs-104-2C8EBB">
   <img alt="keycaps" src="https://img.shields.io/badge/keycaps-87-0078D6">
   <img alt="license" src="https://img.shields.io/badge/license-OFL--1.1-3DA639">
@@ -27,7 +27,8 @@
 ## ✨ 特性
 
 - **104 个字形** — 87 个键帽 + 17 个系统图标，覆盖 106 个 `event.code`
-- **补齐标准键位** — 额外绘制 Print Screen、Scroll Lock、Pause、Menu，并支持右 Win
+- **分区码位** — 键帽从 `U+E000` 起，软件图标从 `U+E100` 起，硬件图标从 `U+E200` 起
+- **预留空位** — 每个分区各占 256 个码位，块内和块间的空位留给后续扩展
 - **统一网格** — 每个字形占满 1em，键帽高 1000 字体单位，混排不跳动
 - **透明内部** — 单色轮廓，跟随文字颜色，适合浅色 / 深色界面
 - **精确映射** — 每个字形有固定 PUA 码位；`A–Z`、`a–z`、`0–9` 可直接当别名
@@ -37,14 +38,15 @@
 
 ## 🚀 快速开始
 
-到 **[Releases](https://github.com/CRITTIof/rei-keycap-font/releases/latest)** 下载，四个文件按需选择：
+到 **[Releases](https://github.com/CRITTIof/reicon-font/releases/latest)** 下载，三个文件按需选择：
 
 | 文件 | 用途 | 说明 |
 | --- | --- | --- |
 | `ReiconFont-Regular.ttf` | 桌面安装 | Windows / macOS 双击安装 |
 | `ReiconFont-Regular.woff2` | 网页字体 | 体积小，适合 `@font-face` |
 | `MAPPING.md` | 映射文档 | 104 个 PUA、62 个 ASCII 别名、106 个 `event.code` |
-| `LICENSE` | 许可证 | SIL Open Font License 1.1 |
+
+许可证见仓库根目录的 [LICENSE](LICENSE)。
 
 **桌面安装**：Windows 双击 TTF 选择“安装”；macOS 用“字体册”打开后选择“安装字体”。
 
@@ -79,15 +81,15 @@
 
 | 范围 | 内容 |
 | --- | --- |
-| `U+E000–U+E052` | 83 个原键盘键帽 |
-| `U+E053–U+E063` | 17 个系统图标 |
-| `U+E064–U+E067` | 4 个补齐键帽（PrtSc / ScrLk / Pause / Menu） |
+| `U+E000–U+E056` | 87 个键帽 |
+| `U+E100–U+E107` | 8 个软件 / 文件 / AI 图标 |
+| `U+E200–U+E208` | 9 个硬件图标 |
 | `A–Z`、`a–z`、`0–9` | 键帽的 ASCII 别名 |
 
 ```html
 <span class="key">&#xE000;</span>  <!-- Esc -->
-<span class="key">&#xE053;</span>  <!-- CPU -->
-<span class="key">&#xE059;</span>  <!-- CLI -->
+<span class="key">&#xE100;</span>  <!-- CLI -->
+<span class="key">&#xE200;</span>  <!-- CPU -->
 <span class="key">A</span>         <!-- A 键帽 -->
 ```
 
@@ -107,23 +109,10 @@ document.addEventListener("keydown", (event) => {
 
 | 类别 | 图标与 PUA |
 | --- | --- |
-| 软件 | CLI `U+E059` · Web `U+E05A` · App `U+E05B` · Game `U+E05C` |
-| 硬件 | CPU `U+E053` · GPU `U+E054` · RAM `U+E055` · ROM `U+E056` · NetUp `U+E057` · NetDown `U+E058` · USB `U+E05D` · Vol `U+E05E` · Mic `U+E063` |
-| 文件 | Folder `U+E05F` · TXT `U+E060` · Image `U+E062` |
-| AI | AI Agent `U+E061` |
-
-</details>
-
-<details>
-<summary><b>补齐的标准键盘键位</b>（点击展开）</summary>
-
-| `event.code` | 键帽 | 说明 |
-| --- | --- | --- |
-| `PrintScreen` | `PrtSc` | Print Screen |
-| `ScrollLock` | `ScrLk` | Scroll Lock |
-| `Pause` | `Pause` | Pause |
-| `ContextMenu` | `Menu` | 菜单键 |
-| `MetaRight` | `Win` | 复用左 Win 键帽 |
+| 软件 | CLI `U+E100` · Web `U+E101` · App `U+E102` · Game `U+E103` |
+| 文件 | Folder `U+E104` · TXT `U+E105` · Image `U+E106` |
+| AI | AI Agent `U+E107` |
+| 硬件 | CPU `U+E200` · GPU `U+E201` · RAM `U+E202` · ROM `U+E203` · NetUp `U+E204` · NetDown `U+E205` · USB `U+E206` · Vol `U+E207` · Mic `U+E208` |
 
 </details>
 
@@ -149,29 +138,7 @@ fonts/ReiconFont-Regular.ttf
 fonts/ReiconFont-Regular.woff2
 ```
 
-构建不依赖 Node.js、浏览器、图像库或网络。修改键位和图标分类看 `src/data.py`，修改轮廓和几何看 `src/geometry.py`，修改字体元数据看 `src/build_font.py`。
-
-## 🗂️ 目录结构
-
-```text
-rei-keycap-font/
-├─ demo.html                     实时键盘演示
-├─ docs/preview.png              README 预览图
-├─ fonts/
-│  ├─ ReiconFont-Regular.ttf      桌面字体
-│  └─ ReiconFont-Regular.woff2    Web 字体
-├─ MAPPING.md                    中文完整映射文档
-├─ README.md
-├─ LICENSE                       SIL OFL 1.1
-├─ requirements.txt
-├─ assets/                       Noto Sans / JetBrains Mono 源字体
-└─ src/
-   ├─ build_font.py              构建入口
-   ├─ data.py                    键位、图例与图标分类
-   └─ geometry.py                字形轮廓与几何
-```
-
-逐字形 SVG、构建中间文件和 ZIP 不进入仓库；`docs/preview.png` 只用于 README 预览。Release 只保留字体、映射文档和许可证。
+构建不依赖 Node.js、浏览器、图像库或网络。修改键位、图标分类和 PUA 分区看 `src/data.py`，修改轮廓和几何看 `src/geometry.py`，修改字体元数据看 `src/build_font.py`。
 
 ## ⚠️ 注意
 
@@ -185,7 +152,7 @@ rei-keycap-font/
 
 字形轮廓来自 **Noto Sans SemiBold**（Copyright 2018 The Noto Project Authors）和 **JetBrains Mono SemiBold**（Copyright 2020 The JetBrains Mono Project Authors），两者同样以 OFL 1.1 使用。生成字体命名为 **ReiconFont**，未使用源字体的保留名称。
 
-<p align="center"><sub>ReiconFont v1.5.0 · 104 glyphs · SIL Open Font License 1.1</sub></p>
+<p align="center"><sub>ReiconFont v1.6.0 · 104 glyphs · SIL Open Font License 1.1</sub></p>
 
 ---
 
@@ -196,7 +163,8 @@ rei-keycap-font/
 **A transparent, content-fitted keycap and system-icon font**, redrawn from a photographed Windows keyboard. Every keycap frame and icon occupies the same **1em / 62-unit** slot, so they stay aligned at any size. The interior is transparent; color comes from `currentColor`.
 
 - **104 glyphs** — 87 keycaps + 17 system icons, covering 106 `event.code` values
-- **Standard-key additions** — Print Screen, Scroll Lock, Pause and Menu, plus right Windows
+- **Blocked codepoints** — keycaps from `U+E000`, software icons from `U+E100`, hardware icons from `U+E200`
+- **Reserved room** — each block spans 256 codepoints, leaving gaps for later additions
 - **106 key mappings** and **62 ASCII aliases** (`A–Z`, `a–z`, `0–9`)
 - **TTF + WOFF2**, 1000 units/em, all glyphs exactly 1em tall
 - **Single-color outlines** with a transparent interior
@@ -204,14 +172,15 @@ rei-keycap-font/
 
 ### Quick start
 
-Download the fonts from **[Releases](https://github.com/CRITTIof/rei-keycap-font/releases/latest)**.
+Download the fonts from **[Releases](https://github.com/CRITTIof/reicon-font/releases/latest)**.
 
 | File | Purpose |
 | --- | --- |
 | `ReiconFont-Regular.ttf` | Desktop install |
 | `ReiconFont-Regular.woff2` | Web font |
 | `MAPPING.md` | Full Chinese mapping reference |
-| `LICENSE` | SIL Open Font License 1.1 |
+
+The license is the [LICENSE](LICENSE) file at the repository root.
 
 ```css
 @font-face {
@@ -223,7 +192,7 @@ Download the fonts from **[Releases](https://github.com/CRITTIof/rei-keycap-font
 
 ```html
 <span class="key">&#xE000;</span>  <!-- Esc -->
-<span class="key">&#xE053;</span>  <!-- CPU -->
+<span class="key">&#xE100;</span>  <!-- CLI -->
 <span class="key">A</span>         <!-- A keycap -->
 ```
 
