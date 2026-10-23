@@ -10,8 +10,8 @@ from data import ALL_GLYPHS
 
 DIST = G.OUT
 DIST.mkdir(parents=True, exist_ok=True)
-TTF_PATH = DIST / "ReiKeycap-Regular.ttf"
-WOFF2_PATH = DIST / "ReiKeycap-Regular.woff2"
+TTF_PATH = DIST / "ReiconFont-Regular.ttf"
+WOFF2_PATH = DIST / "ReiconFont-Regular.woff2"
 
 S = G.FONT_SCALE  # 1000 / 62
 SIDE = G.SIDE_BEARING
@@ -88,15 +88,15 @@ fb.setupHorizontalMetrics(hmtx)
 fb.setupHorizontalHeader(ascent=1000, descent=0)
 fb.setupNameTable({
     "copyright": "Copyright 2026 Rei Xinglan. Glyph outlines derived from Noto Sans SemiBold, Copyright 2018 The Noto Project Authors, and JetBrains Mono SemiBold, Copyright 2020 The JetBrains Mono Project Authors (SIL Open Font License 1.1).",
-    "familyName": "ReiKeycap",
+    "familyName": "ReiconFont",
     "styleName": "Regular",
-    "uniqueFontIdentifier": "ReiKeycap-Regular-1.400",
-    "fullName": "ReiKeycap Regular",
-    "version": "Version 1.400",
-    "psName": "ReiKeycap-Regular",
+    "uniqueFontIdentifier": "ReiconFont-Regular-1.500",
+    "fullName": "ReiconFont Regular",
+    "version": "Version 1.500",
+    "psName": "ReiconFont-Regular",
     "manufacturer": "Rei Xinglan",
     "designer": "Rei Xinglan",
-    "description": "83 content-fitted keycap glyphs with Windows primary legends, 12 transparent system line icons, and normal-text aliases for A-Z/a-z/0-9. Letters and digits use a monospaced face. Upem 1000; glyph height equals 1em.",
+    "description": "87 content-fitted keycap glyphs with Windows primary legends, 17 transparent system icons, and normal-text aliases for A-Z/a-z/0-9. Letters and digits use a monospaced face. Upem 1000; glyph height equals 1em.",
     "licenseDescription": "SIL Open Font License 1.1. Includes outlines derived from Noto Sans SemiBold and JetBrains Mono SemiBold. See LICENSE.",
     "licenseInfoURL": "https://openfontlicense.org/",
 })

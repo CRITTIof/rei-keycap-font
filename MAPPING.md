@@ -1,22 +1,22 @@
-# ReiKeycap 映射文档
+# ReiconFont 映射文档
 
-版本 **1.4.0** · **95** 个字形 · **101** 个 `event.code` · **62** 个 ASCII 别名 · **157** 个 cmap 条目。
+版本 **1.5.0** · **104** 个字形 · **106** 个 `event.code` · **62** 个 ASCII 别名 · **166** 个 cmap 条目。
 
-本文说明字符、PUA 码位和浏览器键盘事件如何对应到 **ReiKeycap** 中的字形。
+本文说明字符、PUA 码位和浏览器键盘事件如何对应到 **ReiconFont** 中的字形。
 
 ## 1. 三种取字方式
 
-1. **PUA 码位**：每个字形都有固定码位（`U+E000–U+E05E`），适合精确指定某个键帽或图标。
+1. **PUA 码位**：每个字形都有固定码位（`U+E000–U+E067`），适合精确指定某个键帽或图标。
 2. **ASCII 别名**：`A–Z`、`a–z`、`0–9` 直接映射到对应键帽；`A` 与 `a` 都会显示大写 A 键帽。
 3. **`event.code`**：先查下表把物理键映射到码位，再用 `String.fromCodePoint(codepoint)` 渲染。
 
 ```css
 @font-face {
-  font-family: "ReiKeycap";
-  src: url("fonts/ReiKeycap-Regular.woff2") format("woff2");
+  font-family: "ReiconFont";
+  src: url("fonts/ReiconFont-Regular.woff2") format("woff2");
 }
 
-.key { font: 400 38px/1 "ReiKeycap"; color: currentColor; }
+.key { font: 400 38px/1 "ReiconFont"; color: currentColor; }
 ```
 
 ```html
@@ -29,7 +29,7 @@
 
 ## 2. PUA 码位表
 
-键帽占 `U+E000–U+E052`，12 个系统图标占 `U+E053–U+E05E`。
+原键盘键帽占 `U+E000–U+E052`，17 个系统图标占 `U+E053–U+E063`，补齐的 4 个键帽占 `U+E064–U+E067`。
 
 | PUA | 字形 ID | 类型 | 分类 | 键帽文字 | 名称 | ASCII 别名 |
 |---|---|---|---|---|---|---|
@@ -128,11 +128,21 @@
 | <code>U+E05C</code> | <code>game</code> | 图标 | 软件 | <code>Game</code> | Game | — |
 | <code>U+E05D</code> | <code>usb</code> | 图标 | 硬件 | <code>USB</code> | USB drive | — |
 | <code>U+E05E</code> | <code>volume</code> | 图标 | 硬件 | <code>Vol</code> | Volume | — |
+| <code>U+E05F</code> | <code>folder</code> | 图标 | 文件 | <code>Folder</code> | Folder | — |
+| <code>U+E060</code> | <code>txt</code> | 图标 | 文件 | <code>TXT</code> | Text file | — |
+| <code>U+E061</code> | <code>agent</code> | 图标 | AI | <code>AI</code> | AI Agent | — |
+| <code>U+E062</code> | <code>image</code> | 图标 | 文件 | <code>Image</code> | Image | — |
+| <code>U+E063</code> | <code>microphone</code> | 图标 | 硬件 | <code>Mic</code> | Microphone | — |
+| <code>U+E064</code> | <code>printscreen</code> | 键帽 | 功能键 | <code>PrtSc</code> | Print Screen | — |
+| <code>U+E065</code> | <code>scrolllock</code> | 键帽 | 功能键 | <code>ScrLk</code> | Scroll Lock | — |
+| <code>U+E066</code> | <code>pause</code> | 键帽 | 功能键 | <code>Pause</code> | Pause | — |
+| <code>U+E067</code> | <code>menu</code> | 键帽 | 修饰键 | <code>Menu</code> | Context Menu | — |
 
 ### 字形说明
 
 - `ROM` 沿用键盘上的丝印；图形实际是**硬盘**（盘片、主轴、磁臂），不是 ROM 芯片。
-- 12 个图标分为 **4 个软件**（`CLI`、`Web`、`App`、`Game`）和 **8 个硬件**（`CPU`、`GPU`、`RAM`、`ROM`、`NetUp`、`NetDown`、`USB`、`Vol`）。
+- 17 个图标分为 **4 个软件**（`CLI`、`Web`、`App`、`Game`）、**9 个硬件**（`CPU`、`GPU`、`RAM`、`ROM`、`NetUp`、`NetDown`、`USB`、`Vol`、`Mic`）、**3 个文件**（`Folder`、`TXT`、`Image`）和 **1 个 AI Agent**。
+- `PrtSc`、`ScrLk`、`Pause`、`Menu` 是原键盘没有、标准 104 键盘有的键位；`MetaRight` 复用 `Win` 键帽。
 - 图标是象形符号，没有 `event.code`，也不属于文本。
 
 ## 3. ASCII 别名
@@ -215,7 +225,7 @@ document.addEventListener("keydown", (event) => {
 });
 ```
 
-`demo.html` 中的 `KEYS` 数组包含全部 101 条映射，可直接复制。
+`demo.html` 中的 `KEYS` 数组包含全部 106 条映射，可直接复制。
 
 | `event.code` | 键帽文字 | 字形 ID | PUA | 分区 |
 |---|---|---|---|---|
@@ -320,12 +330,17 @@ document.addEventListener("keydown", (event) => {
 | <code>NumpadEnter</code> | <code>Enter</code> | <code>enter</code> | <code>U+E03B</code> | 小键盘 |
 | <code>Numpad0</code> | <code>0</code> | <code>digit0</code> | <code>U+E01D</code> | 小键盘 |
 | <code>NumpadDecimal</code> | <code>.</code> | <code>period</code> | <code>U+E045</code> | 小键盘 |
+| <code>PrintScreen</code> | <code>PrtSc</code> | <code>printscreen</code> | <code>U+E064</code> | 功能键 |
+| <code>ScrollLock</code> | <code>ScrLk</code> | <code>scrolllock</code> | <code>U+E065</code> | 功能键 |
+| <code>Pause</code> | <code>Pause</code> | <code>pause</code> | <code>U+E066</code> | 功能键 |
+| <code>MetaRight</code> | <code>Win</code> | <code>win</code> | <code>U+E049</code> | 修饰键 |
+| <code>ContextMenu</code> | <code>Menu</code> | <code>menu</code> | <code>U+E067</code> | 修饰键 |
 
 重复的物理键共用一个字形，但每个 `event.code` 都单独列出。例如 `ShiftLeft` 与 `ShiftRight` 都使用 `shift`，`Digit7` 与 `Numpad7` 都使用 `digit7`。
 
 ## 5. 字体信息
 
-- 字体族：**ReiKeycap**，样式 **Regular**，版本 **1.400**。
+- 字体族：**ReiconFont**，样式 **Regular**，版本 **1.500**。
 - Units per em：**1000**；所有字形占满 **1em / 62 设计单位** 的显示高度。
 - 键帽边框高 1000 字体单位；独立 SVG 的设计高度为 62 单位。
 - 单色轮廓，内部透明，颜色由 `color` / `currentColor` 控制。

@@ -1,4 +1,4 @@
-"""Keycap set data: 101 physical keys, 83 keycap designs, 12 system icons."""
+"""Keycap set data: 106 physical keys, 87 keycap designs, 17 system icons."""
 
 # glyph_id, label, full name, group
 UNIQUE = [
@@ -43,6 +43,16 @@ UNIQUE = [
     ("num", "Num", "Num Lock", "numpad"),
     ("asterisk", "*", "Multiply", "numpad"),
     ("plus", "+", "Plus", "numpad"),
+]
+
+# Keys present on a standard 104-key Windows keyboard but absent from the
+# photographed keyboard.  They are appended after the icons so every existing
+# PUA codepoint (U+E000-U+E063) stays stable.
+EXTRA_KEYS = [
+    ("printscreen", "PrtSc", "Print Screen", "function"),
+    ("scrolllock", "ScrLk", "Scroll Lock", "function"),
+    ("pause", "Pause", "Pause", "function"),
+    ("menu", "Menu", "Context Menu", "mods"),
 ]
 
 # code, label, glyph, full, section
@@ -106,11 +116,16 @@ PHYS = [
     ("NumpadEnter", "Enter", "enter", "Enter", "numpad"),
     ("Numpad0", "0", "digit0", "0", "numpad"),
     ("NumpadDecimal", ".", "period", "Period", "numpad"),
+    ("PrintScreen", "PrtSc", "printscreen", "Print Screen", "function"),
+    ("ScrollLock", "ScrLk", "scrolllock", "Scroll Lock", "function"),
+    ("Pause", "Pause", "pause", "Pause", "function"),
+    ("MetaRight", "Win", "win", "Windows", "mods"),
+    ("ContextMenu", "Menu", "menu", "Context Menu", "mods"),
 ]
 
 # glyph_id, label, full name, group
 # Simple transparent line icons, not text.  They occupy one em like the keycaps.
-# group is the mapping category: "software" or "hardware".
+# group is the mapping category: "software", "hardware", "file" or "ai".
 ICONS = [
     ("cpu", "CPU", "Processor", "hardware"),
     ("gpu", "GPU", "Graphics processor", "hardware"),
@@ -124,13 +139,21 @@ ICONS = [
     ("game", "Game", "Game", "software"),
     ("usb", "USB", "USB drive", "hardware"),
     ("volume", "Vol", "Volume", "hardware"),
+    ("folder", "Folder", "Folder", "file"),
+    ("txt", "TXT", "Text file", "file"),
+    ("agent", "AI", "AI Agent", "ai"),
+    ("image", "Image", "Image", "file"),
+    ("microphone", "Mic", "Microphone", "hardware"),
 ]
 
-ALL_GLYPHS = UNIQUE + ICONS
+ALL_KEYCAPS = UNIQUE + EXTRA_KEYS
+ALL_GLYPHS = UNIQUE + ICONS + EXTRA_KEYS
 
-assert len(PHYS) == 101, len(PHYS)
+assert len(PHYS) == 106, len(PHYS)
 assert len(UNIQUE) == 83, len(UNIQUE)
-assert len(ICONS) == 12, len(ICONS)
-assert len({g[0] for g in UNIQUE}) == len(UNIQUE)
+assert len(EXTRA_KEYS) == 4, len(EXTRA_KEYS)
+assert len(ALL_KEYCAPS) == 87, len(ALL_KEYCAPS)
+assert len(ICONS) == 17, len(ICONS)
+assert len({g[0] for g in ALL_KEYCAPS}) == len(ALL_KEYCAPS)
 assert len({g[0] for g in ALL_GLYPHS}) == len(ALL_GLYPHS)
-assert set(g[0] for g in UNIQUE) == set(p[2] for p in PHYS)
+assert set(g[0] for g in ALL_KEYCAPS) == set(p[2] for p in PHYS)

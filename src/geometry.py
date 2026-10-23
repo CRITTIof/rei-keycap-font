@@ -17,7 +17,7 @@ from fontTools.pens.reverseContourPen import ReverseContourPen
 from fontTools.pens.ttGlyphPen import TTGlyphPen
 from fontTools.pens.cu2quPen import Cu2QuPen
 
-from data import UNIQUE, PHYS, ICONS, ALL_GLYPHS
+from data import ICONS, ALL_KEYCAPS, ALL_GLYPHS
 
 FONT_SRC = ROOT / "assets" / "noto-sans-semibold.ttf"
 MONO_SRC = ROOT / "assets" / "jetbrains-mono-semibold.ttf"
@@ -63,7 +63,7 @@ ICON_STROKE = 3.5
 
 PUA = {gid: 0xE000 + i for i, (gid, *_rest) in enumerate(ALL_GLYPHS)}
 META = {}
-for gid, label, full, group in UNIQUE:
+for gid, label, full, group in ALL_KEYCAPS:
     META[gid] = {"label": label, "full": full, "group": group,
                  "pua": PUA[gid], "kind": "keycap"}
 for gid, label, full, group in ICONS:
@@ -74,7 +74,7 @@ for gid, label, full, group in ICONS:
 # same uppercase keycap so `A` and `a` both render the A key.
 TEXT_CHARS = {}
 TEXT_CMAP = {}
-for gid, label, full, group in UNIQUE:
+for gid, label, full, group in ALL_KEYCAPS:
     if len(label) != 1 or not label.isascii():
         continue
     if label.isalpha():
@@ -322,7 +322,7 @@ def draw_app_frame(pen, gap_y=34.0, stroke=ICON_STROKE):
 
 
 def draw_icon_svg(pen, gid):
-    """Filled line-art outlines for the twelve system pictograms.
+    """Filled line-art outlines for the seventeen system pictograms.
 
     All coordinates live in a 62 x 62 design box.  The shapes are built from
     capsules, rings and dots so the same path can be used by SVG and by the
@@ -409,6 +409,55 @@ def draw_icon_svg(pen, gid):
         capsule(pen, 20, 38, 32, 46)
         stroke_arc(pen, 32, 31, 9.0, math.radians(-55), math.radians(55), 2.6)
         stroke_arc(pen, 32, 31, 14.5, math.radians(-55), math.radians(55), 2.6)
+
+    elif gid == "folder":
+        # Folder with a tab and a front-panel fold line.
+        capsule(pen, 10, 18, 25, 18)
+        capsule(pen, 25, 18, 31, 24)
+        capsule(pen, 31, 24, 50, 24)
+        capsule(pen, 50, 24, 50, 48)
+        capsule(pen, 50, 48, 12, 48)
+        capsule(pen, 12, 48, 12, 18)
+        capsule(pen, 10, 31, 52, 31, 2.8)
+
+    elif gid == "txt":
+        # Text document with a folded top-right corner and three text lines.
+        capsule(pen, 15, 10, 38, 10)
+        capsule(pen, 38, 10, 47, 19)
+        capsule(pen, 47, 19, 47, 50)
+        capsule(pen, 47, 50, 15, 50)
+        capsule(pen, 15, 50, 15, 10)
+        capsule(pen, 38, 10, 38, 19, 3.0)
+        capsule(pen, 38, 19, 47, 19, 3.0)
+        for y, w in ((26, 26), (34, 26), (42, 17)):
+            capsule(pen, 21, y, 21 + w, y, 2.8)
+
+    elif gid == "agent":
+        # AI agent: robot head with antenna, side sensors, eyes and mouth.
+        capsule(pen, 31, 19, 31, 13, 3.0)
+        circle(pen, 31, 11.2, 2.2)
+        ring_rr(pen, 12, 19, 38, 29, 7)
+        capsule(pen, 9, 29, 9, 39, 3.0)
+        capsule(pen, 53, 29, 53, 39, 3.0)
+        circle(pen, 24, 31, 2.2)
+        circle(pen, 38, 31, 2.2)
+        capsule(pen, 25, 40, 37, 40, 2.8)
+
+    elif gid == "image":
+        # Picture frame with a sun and two mountain peaks.
+        ring_rr(pen, 8, 12, 46, 38, 4)
+        circle(pen, 21, 24, 3.2)
+        capsule(pen, 13, 43, 26, 29, 3.0)
+        capsule(pen, 26, 29, 34, 38, 3.0)
+        capsule(pen, 34, 38, 42, 29, 3.0)
+        capsule(pen, 42, 29, 50, 38, 3.0)
+
+    elif gid == "microphone":
+        # Microphone capsule, U-shaped cradle, stem and base.
+        ring_rr(pen, 24, 8, 14, 26, 7)
+        stroke_arc(pen, 31, 30, 10, 0.0, math.pi, 3.2)
+        capsule(pen, 31, 40, 31, 47)
+        capsule(pen, 24, 49, 38, 49)
 
     elif gid == "netup":
         for y in (20, 31, 42):
