@@ -1,4 +1,4 @@
-"""Keycap set data: 106 physical keys, 87 keycaps, 17 system icons."""
+"""Keycap set data: 106 physical keys, 87 keycaps, 23 system icons."""
 
 # glyph_id, label, full name, group
 UNIQUE = [
@@ -149,15 +149,28 @@ HARDWARE_ICONS = [
     ("microphone", "Mic", "Microphone", "hardware"),
 ]
 
-ICONS = SOFTWARE_ICONS + HARDWARE_ICONS
+# Interface icons.  They own the U+E300 block and are not keycaps, software
+# icons or hardware icons.
+UI_ICONS = [
+    ("content", "Content", "Content", "ui"),
+    ("appearance", "Look", "Appearance", "ui"),
+    ("datasource", "Source", "Data source", "ui"),
+    ("behavior", "Action", "Behavior", "ui"),
+    ("hotkey", "Hotkey", "Hotkey", "ui"),
+    ("search", "Search", "Search", "ui"),
+]
+
+ICONS = SOFTWARE_ICONS + HARDWARE_ICONS + UI_ICONS
 
 # PUA blocks.  Each block is 256 code points so later additions have room:
 #   U+E000-U+E0FF  keycaps (87 used)
 #   U+E100-U+E1FF  software, file and AI icons (8 used)
 #   U+E200-U+E2FF  hardware icons (9 used)
+#   U+E300-U+E3FF  interface icons (6 used)
 PUA_KEYCAP = 0xE000
 PUA_SOFTWARE = 0xE100
 PUA_HARDWARE = 0xE200
+PUA_UI = 0xE300
 
 ALL_KEYCAPS = UNIQUE + EXTRA_KEYS
 ALL_GLYPHS = ALL_KEYCAPS + ICONS
@@ -165,6 +178,7 @@ ALL_GLYPHS = ALL_KEYCAPS + ICONS
 PUA = {gid: PUA_KEYCAP + i for i, (gid, *_rest) in enumerate(ALL_KEYCAPS)}
 PUA.update({gid: PUA_SOFTWARE + i for i, (gid, *_rest) in enumerate(SOFTWARE_ICONS)})
 PUA.update({gid: PUA_HARDWARE + i for i, (gid, *_rest) in enumerate(HARDWARE_ICONS)})
+PUA.update({gid: PUA_UI + i for i, (gid, *_rest) in enumerate(UI_ICONS)})
 
 assert len(PHYS) == 106, len(PHYS)
 assert len(UNIQUE) == 83, len(UNIQUE)
@@ -172,7 +186,8 @@ assert len(EXTRA_KEYS) == 4, len(EXTRA_KEYS)
 assert len(ALL_KEYCAPS) == 87, len(ALL_KEYCAPS)
 assert len(SOFTWARE_ICONS) == 8, len(SOFTWARE_ICONS)
 assert len(HARDWARE_ICONS) == 9, len(HARDWARE_ICONS)
-assert len(ICONS) == 17, len(ICONS)
+assert len(UI_ICONS) == 6, len(UI_ICONS)
+assert len(ICONS) == 23, len(ICONS)
 assert len({g[0] for g in ALL_KEYCAPS}) == len(ALL_KEYCAPS)
 assert len({g[0] for g in ALL_GLYPHS}) == len(ALL_GLYPHS)
 assert set(g[0] for g in ALL_KEYCAPS) == set(p[2] for p in PHYS)

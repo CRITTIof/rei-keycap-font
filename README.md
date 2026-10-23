@@ -1,19 +1,15 @@
 <h1 align="center">ReiconFont</h1>
 
 <p align="center">
-  <b>透明、贴合内容的键帽与系统图标字体：87 个键帽 + 17 个图标，共用一套 1em 网格。</b><br>
-  <sub>A transparent, content-fitted keycap and system-icon font with 87 keycaps and 17 icons on a single 1em grid.</sub>
+  <b>透明、贴合内容的键帽与系统图标字体：87 个键帽 + 23 个图标，共用一套 1em 网格。</b><br>
+  <sub>A transparent, content-fitted keycap and system-icon font with 87 keycaps and 23 icons on a single 1em grid.</sub>
 </p>
 
 <p align="center">
-  <img alt="version" src="https://img.shields.io/badge/version-1.6.0-555">
-  <img alt="glyphs" src="https://img.shields.io/badge/glyphs-104-2C8EBB">
+  <img alt="version" src="https://img.shields.io/badge/version-1.7.0-555">
+  <img alt="glyphs" src="https://img.shields.io/badge/glyphs-110-2C8EBB">
   <img alt="keycaps" src="https://img.shields.io/badge/keycaps-87-0078D6">
   <img alt="license" src="https://img.shields.io/badge/license-OFL--1.1-3DA639">
-</p>
-
-<p align="center">
-  <img src="docs/preview.png" width="760" alt="ReiconFont 实时键盘演示">
 </p>
 
 <p align="center">
@@ -26,8 +22,8 @@
 
 ## ✨ 特性
 
-- **104 个字形** — 87 个键帽 + 17 个系统图标，覆盖 106 个 `event.code`
-- **分区码位** — 键帽从 `U+E000` 起，软件图标从 `U+E100` 起，硬件图标从 `U+E200` 起
+- **110 个字形** — 87 个键帽 + 23 个系统图标，覆盖 106 个 `event.code`
+- **分区码位** — 键帽从 `U+E000` 起，软件图标 `U+E100`，硬件图标 `U+E200`，界面图标 `U+E300`
 - **预留空位** — 每个分区各占 256 个码位，块内和块间的空位留给后续扩展
 - **统一网格** — 每个字形占满 1em，键帽高 1000 字体单位，混排不跳动
 - **透明内部** — 单色轮廓，跟随文字颜色，适合浅色 / 深色界面
@@ -44,7 +40,7 @@
 | --- | --- | --- |
 | `ReiconFont-Regular.ttf` | 桌面安装 | Windows / macOS 双击安装 |
 | `ReiconFont-Regular.woff2` | 网页字体 | 体积小，适合 `@font-face` |
-| `MAPPING.md` | 映射文档 | 104 个 PUA、62 个 ASCII 别名、106 个 `event.code` |
+| `MAPPING.md` | 映射文档 | 110 个 PUA、62 个 ASCII 别名、106 个 `event.code` |
 
 许可证见仓库根目录的 [LICENSE](LICENSE)。
 
@@ -84,12 +80,13 @@
 | `U+E000–U+E056` | 87 个键帽 |
 | `U+E100–U+E107` | 8 个软件 / 文件 / AI 图标 |
 | `U+E200–U+E208` | 9 个硬件图标 |
+| `U+E300–U+E305` | 6 个界面图标 |
 | `A–Z`、`a–z`、`0–9` | 键帽的 ASCII 别名 |
 
 ```html
 <span class="key">&#xE000;</span>  <!-- Esc -->
 <span class="key">&#xE100;</span>  <!-- CLI -->
-<span class="key">&#xE200;</span>  <!-- CPU -->
+<span class="key">&#xE300;</span>  <!-- 内容 -->
 <span class="key">A</span>         <!-- A 键帽 -->
 ```
 
@@ -105,7 +102,7 @@ document.addEventListener("keydown", (event) => {
 完整中文对照表见 **[MAPPING.md](MAPPING.md)**。
 
 <details>
-<summary><b>17 个系统图标</b>（点击展开）</summary>
+<summary><b>23 个系统图标</b>（点击展开）</summary>
 
 | 类别 | 图标与 PUA |
 | --- | --- |
@@ -113,6 +110,7 @@ document.addEventListener("keydown", (event) => {
 | 文件 | Folder `U+E104` · TXT `U+E105` · Image `U+E106` |
 | AI | AI Agent `U+E107` |
 | 硬件 | CPU `U+E200` · GPU `U+E201` · RAM `U+E202` · ROM `U+E203` · NetUp `U+E204` · NetDown `U+E205` · USB `U+E206` · Vol `U+E207` · Mic `U+E208` |
+| 界面 | Content `U+E300` · Look `U+E301` · Source `U+E302` · Action `U+E303` · Hotkey `U+E304` · Search `U+E305` |
 
 </details>
 
@@ -152,7 +150,7 @@ fonts/ReiconFont-Regular.woff2
 
 字形轮廓来自 **Noto Sans SemiBold**（Copyright 2018 The Noto Project Authors）和 **JetBrains Mono SemiBold**（Copyright 2020 The JetBrains Mono Project Authors），两者同样以 OFL 1.1 使用。生成字体命名为 **ReiconFont**，未使用源字体的保留名称。
 
-<p align="center"><sub>ReiconFont v1.6.0 · 104 glyphs · SIL Open Font License 1.1</sub></p>
+<p align="center"><sub>ReiconFont v1.7.0 · 110 glyphs · SIL Open Font License 1.1</sub></p>
 
 ---
 
@@ -162,8 +160,8 @@ fonts/ReiconFont-Regular.woff2
 
 **A transparent, content-fitted keycap and system-icon font**, redrawn from a photographed Windows keyboard. Every keycap frame and icon occupies the same **1em / 62-unit** slot, so they stay aligned at any size. The interior is transparent; color comes from `currentColor`.
 
-- **104 glyphs** — 87 keycaps + 17 system icons, covering 106 `event.code` values
-- **Blocked codepoints** — keycaps from `U+E000`, software icons from `U+E100`, hardware icons from `U+E200`
+- **110 glyphs** — 87 keycaps + 23 system icons, covering 106 `event.code` values
+- **Blocked codepoints** — keycaps from `U+E000`, software icons `U+E100`, hardware icons `U+E200`, interface icons `U+E300`
 - **Reserved room** — each block spans 256 codepoints, leaving gaps for later additions
 - **106 key mappings** and **62 ASCII aliases** (`A–Z`, `a–z`, `0–9`)
 - **TTF + WOFF2**, 1000 units/em, all glyphs exactly 1em tall

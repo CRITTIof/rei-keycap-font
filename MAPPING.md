@@ -1,12 +1,12 @@
 # ReiconFont 映射文档
 
-版本 **1.6.0** · **104** 个字形 · **106** 个 `event.code` · **62** 个 ASCII 别名 · **166** 个 cmap 条目。
+版本 **1.7.0** · **110** 个字形 · **106** 个 `event.code` · **62** 个 ASCII 别名 · **172** 个 cmap 条目。
 
 本文说明字符、PUA 码位和浏览器键盘事件如何对应到 **ReiconFont** 中的字形。
 
 ## 1. 三种取字方式
 
-1. **PUA 码位**：每个字形都有固定码位（键帽 `U+E000` 起，软件图标 `U+E100` 起，硬件图标 `U+E200` 起），适合精确指定某个键帽或图标。
+1. **PUA 码位**：每个字形都有固定码位（键帽 `U+E000` 起，软件图标 `U+E100` 起，硬件图标 `U+E200` 起，界面图标 `U+E300` 起），适合精确指定某个键帽或图标。
 2. **ASCII 别名**：`A–Z`、`a–z`、`0–9` 直接映射到对应键帽；`A` 与 `a` 都会显示大写 A 键帽。
 3. **`event.code`**：先查下表把物理键映射到码位，再用 `String.fromCodePoint(codepoint)` 渲染。
 
@@ -23,6 +23,7 @@
 <span class="key">&#xE000;</span>   <!-- Esc：键帽 -->
 <span class="key">&#xE100;</span>   <!-- CLI：软件图标 -->
 <span class="key">&#xE200;</span>   <!-- CPU：硬件图标 -->
+<span class="key">&#xE300;</span>   <!-- 内容：界面图标 -->
 <span class="key">A</span>          <!-- A：ASCII 别名 -->
 ```
 
@@ -30,7 +31,7 @@
 
 ## 2. PUA 码位表
 
-键帽连续占用 `U+E000–U+E056`；软件图标（含文件与 AI）从 `U+E100` 开始，硬件图标从 `U+E200` 开始。每个区块预留 256 个码位，块内和块间的空位都留给后续扩展。
+键帽连续占用 `U+E000–U+E056`；软件图标（含文件与 AI）从 `U+E100` 开始，硬件图标从 `U+E200` 开始，界面图标从 `U+E300` 开始。每个区块预留 256 个码位，块内和块间的空位都留给后续扩展。
 
 | PUA | 字形 ID | 类型 | 分类 | 图例 | 名称 | ASCII 别名 |
 |---|---|---|---|---|---|---|
@@ -138,11 +139,17 @@
 | <code>U+E206</code> | <code>usb</code> | 图标 | 硬件 | <code>USB</code> | USB drive | — |
 | <code>U+E207</code> | <code>volume</code> | 图标 | 硬件 | <code>Vol</code> | Volume | — |
 | <code>U+E208</code> | <code>microphone</code> | 图标 | 硬件 | <code>Mic</code> | Microphone | — |
+| <code>U+E300</code> | <code>content</code> | 图标 | 图标 | <code>Content</code> | Content | — |
+| <code>U+E301</code> | <code>appearance</code> | 图标 | 图标 | <code>Look</code> | Appearance | — |
+| <code>U+E302</code> | <code>datasource</code> | 图标 | 图标 | <code>Source</code> | Data source | — |
+| <code>U+E303</code> | <code>behavior</code> | 图标 | 图标 | <code>Action</code> | Behavior | — |
+| <code>U+E304</code> | <code>hotkey</code> | 图标 | 图标 | <code>Hotkey</code> | Hotkey | — |
+| <code>U+E305</code> | <code>search</code> | 图标 | 图标 | <code>Search</code> | Search | — |
 
 ### 字形说明
 
 - `ROM` 沿用键盘上的丝印；图形实际是**硬盘**（盘片、主轴、磁臂），不是 ROM 芯片。
-- 17 个图标分为 **8 个软件 / 文件 / AI**（`CLI`、`Web`、`App`、`Game`、`Folder`、`TXT`、`Image`、`AI`）和 **9 个硬件**（`CPU`、`GPU`、`RAM`、`ROM`、`NetUp`、`NetDown`、`USB`、`Vol`、`Mic`）。
+- 23 个图标分为 **8 个软件 / 文件 / AI**（`CLI`、`Web`、`App`、`Game`、`Folder`、`TXT`、`Image`、`AI`）、**9 个硬件**（`CPU`、`GPU`、`RAM`、`ROM`、`NetUp`、`NetDown`、`USB`、`Vol`、`Mic`）和 **6 个界面图标**（`Content`、`Look`、`Source`、`Action`、`Hotkey`、`Search`）。
 - `PrtSc`、`ScrLk`、`Pause`、`Menu` 与其余键帽一样占 `U+E000` 区块，不单独分区；`MetaRight` 复用 `Win` 键帽。
 - 图标是象形符号，没有 `event.code`，也不属于文本。
 
@@ -341,7 +348,7 @@ document.addEventListener("keydown", (event) => {
 
 ## 5. 字体信息
 
-- 字体族：**ReiconFont**，样式 **Regular**，版本 **1.600**。
+- 字体族：**ReiconFont**，样式 **Regular**，版本 **1.700**。
 - Units per em：**1000**；所有字形占满 **1em / 62 设计单位** 的显示高度。
 - 键帽边框高 1000 字体单位；独立 SVG 的设计高度为 62 单位。
 - 单色轮廓，内部透明，颜色由 `color` / `currentColor` 控制。

@@ -458,6 +458,58 @@ def draw_icon_svg(pen, gid):
         capsule(pen, 31, 40, 31, 47)
         capsule(pen, 24, 49, 38, 49)
 
+    elif gid == "content":
+        # Text block: one heavy heading bar above three body lines.
+        capsule(pen, 13, 14, 49, 14, 4.6)
+        capsule(pen, 13, 26.5, 49, 26.5, 2.8)
+        capsule(pen, 13, 37, 41, 37, 2.8)
+        capsule(pen, 13, 47.5, 34, 47.5, 2.8)
+
+    elif gid == "appearance":
+        # Paint palette: tray with a thumb notch and three paint dots.  The
+        # rim gap matches the notch so the circle reads as a cut-out.
+        stroke_arc(pen, 31, 31, 20.5, math.radians(64.7), math.radians(385.3), 3.4)
+        ring_circle(pen, 45.5, 45.5, 7.0, 3.4)
+        circle(pen, 21, 30, 2.5)
+        circle(pen, 25.5, 21, 2.5)
+        circle(pen, 34, 17.5, 2.5)
+
+    elif gid == "datasource":
+        # Database cylinder: top disk, two body bands and two side walls.
+        ring_ellipse(pen, 31, 15.5, 17, 5.6, 3.2)
+        capsule(pen, 14, 15.5, 14, 46.5, 3.2)
+        capsule(pen, 48, 15.5, 48, 46.5, 3.2)
+        ring_ellipse(pen, 31, 31, 17, 5.6, 2.6)
+        ring_ellipse(pen, 31, 46.5, 17, 5.6, 2.6)
+
+    elif gid == "behavior":
+        # Mouse pointer, the universal "action" mark.
+        pts = [
+            (18, 11), (18, 44), (26, 36), (31, 47), (36.2, 44.6),
+            (31.2, 34), (41, 34),
+        ]
+        pen.moveTo(pts[0])
+        for p in pts[1:]:
+            pen.lineTo(p)
+        pen.closePath()
+
+    elif gid == "search":
+        # Magnifier: lens ring with a diagonal handle.
+        ring_circle(pen, 25, 24, 13, 3.4)
+        capsule(pen, 34.2, 33.2, 48.5, 47.5, 4.4)
+
+    elif gid == "hotkey":
+        # Keycap outline with a bolt: a keyboard shortcut.
+        ring_rr(pen, 9, 13, 44, 36, 7)
+        bolt = [
+            (33.5, 18.5), (23.5, 33), (29.5, 33), (27, 43.5),
+            (38, 29), (32, 29),
+        ]
+        pen.moveTo(bolt[0])
+        for p in bolt[1:]:
+            pen.lineTo(p)
+        pen.closePath()
+
     elif gid == "netup":
         for y in (20, 31, 42):
             capsule(pen, 9, y, 35, y, 3.2)
