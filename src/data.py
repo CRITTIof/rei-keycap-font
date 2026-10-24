@@ -1,4 +1,4 @@
-"""Keycap set data: 106 physical keys, 87 keycaps, 27 system icons."""
+"""Keycap set data: 106 physical keys, 87 keycaps, 32 system icons."""
 
 # glyph_id, label, full name, group
 UNIQUE = [
@@ -162,6 +162,12 @@ UI_ICONS = [
     ("move", "Move", "Move", "ui"),
     ("add", "Add", "Add", "ui"),
     ("expand", "Expand", "Expand", "ui"),
+    ("video", "Video", "Video", "ui"),
+    ("clock", "Clock", "Clock", "ui"),
+    ("keypress", "Press", "Key press", "ui"),
+    ("play", "Play", "Play", "ui"),
+    # "pause" is already the gid of the Pause keycap.
+    ("pausemedia", "Pause", "Pause", "ui"),
 ]
 
 ICONS = SOFTWARE_ICONS + HARDWARE_ICONS + UI_ICONS
@@ -170,7 +176,7 @@ ICONS = SOFTWARE_ICONS + HARDWARE_ICONS + UI_ICONS
 #   U+E000-U+E0FF  keycaps (87 used)
 #   U+E100-U+E1FF  software, file and AI icons (8 used)
 #   U+E200-U+E2FF  hardware icons (9 used)
-#   U+E300-U+E3FF  interface icons (10 used)
+#   U+E300-U+E3FF  interface icons (15 used)
 PUA_KEYCAP = 0xE000
 PUA_SOFTWARE = 0xE100
 PUA_HARDWARE = 0xE200
@@ -190,8 +196,8 @@ assert len(EXTRA_KEYS) == 4, len(EXTRA_KEYS)
 assert len(ALL_KEYCAPS) == 87, len(ALL_KEYCAPS)
 assert len(SOFTWARE_ICONS) == 8, len(SOFTWARE_ICONS)
 assert len(HARDWARE_ICONS) == 9, len(HARDWARE_ICONS)
-assert len(UI_ICONS) == 10, len(UI_ICONS)
-assert len(ICONS) == 27, len(ICONS)
+assert len(UI_ICONS) == 15, len(UI_ICONS)
+assert len(ICONS) == 32, len(ICONS)
 assert len({g[0] for g in ALL_KEYCAPS}) == len(ALL_KEYCAPS)
 assert len({g[0] for g in ALL_GLYPHS}) == len(ALL_GLYPHS)
 assert set(g[0] for g in ALL_KEYCAPS) == set(p[2] for p in PHYS)

@@ -271,6 +271,34 @@ def capsule(pen, x1, y1, x2, y2, w=ICON_STROKE):
     pen.closePath()
 
 
+def poly_round(pen, pts, r):
+    """Filled polygon whose corners are rounded with radius ``r``."""
+    n = len(pts)
+
+    def unit(dx, dy):
+        length = math.hypot(dx, dy)
+        return (dx / length, dy / length) if length > 1e-9 else (0.0, 0.0)
+
+    for i in range(n):
+        prev, cur, nxt = pts[(i - 1) % n], pts[i], pts[(i + 1) % n]
+        # Never eat more than half of either adjacent edge.
+        room = min(math.hypot(prev[0] - cur[0], prev[1] - cur[1]),
+                   math.hypot(nxt[0] - cur[0], nxt[1] - cur[1])) * 0.5
+        rr_ = min(r, room)
+        u1 = unit(prev[0] - cur[0], prev[1] - cur[1])
+        u2 = unit(nxt[0] - cur[0], nxt[1] - cur[1])
+        p1 = (cur[0] + u1[0] * rr_, cur[1] + u1[1] * rr_)
+        p2 = (cur[0] + u2[0] * rr_, cur[1] + u2[1] * rr_)
+        if i == 0:
+            pen.moveTo(p1)
+        else:
+            pen.lineTo(p1)
+        pen.curveTo((p1[0] + (cur[0] - p1[0]) * K, p1[1] + (cur[1] - p1[1]) * K),
+                    (p2[0] + (cur[0] - p2[0]) * K, p2[1] + (cur[1] - p2[1]) * K),
+                    p2)
+    pen.closePath()
+
+
 def stroke_arc(pen, cx, cy, r, a0, a1, w=ICON_STROKE, steps=None):
     """Approximate a round-capped circular arc with overlapping capsules."""
     if steps is None:
@@ -321,7 +349,7 @@ def draw_app_frame(pen, gap_y=34.0, stroke=ICON_STROKE):
 
 
 def draw_icon_svg(pen, gid):
-    """Filled line-art outlines for the seventeen system pictograms.
+    """Filled line-art outlines for the system pictograms.
 
     All coordinates live in a 62 x 62 design box.  The shapes are built from
     capsules, rings and dots so the same path can be used by SVG and by the
@@ -548,6 +576,33 @@ def draw_icon_svg(pen, gid):
         capsule(pen, 31, 31, 14, 48, 3.4)
         capsule(pen, 14, 48, 14, 39, 3.4)
         capsule(pen, 14, 48, 23, 48, 3.4)
+
+    elif gid == "video":
+        # Frame with a play triangle inside.
+        ring_rr(pen, 7, 12, 48, 38, 5)
+        poly_round(pen, [(26.5, 21.5), (44, 31), (26.5, 40.5)], 3.2)
+
+    elif gid == "clock":
+        # Dial with hour and minute hand.
+        ring_circle(pen, 31, 31, 20, 3.4)
+        capsule(pen, 31, 31, 31, 18.5, 3.2)
+        capsule(pen, 31, 31, 41.5, 36.5, 3.2)
+
+    elif gid == "keypress":
+        # Keycap with a finger arrow pressing down onto it.
+        capsule(pen, 31, 7, 31, 19.5, 3.2)
+        capsule(pen, 31, 21, 25.5, 14.5, 3.2)
+        capsule(pen, 31, 21, 36.5, 14.5, 3.2)
+        ring_rr(pen, 14, 26, 34, 25, 6)
+
+    elif gid == "play":
+        # Solid play triangle with softly rounded corners.
+        poly_round(pen, [(20, 12), (52, 31), (20, 50)], 5.0)
+
+    elif gid == "pausemedia":
+        # Two solid pause bars.
+        rr(pen, 17, 13, 9, 36, 3.5)
+        rr(pen, 36, 13, 9, 36, 3.5)
 
     elif gid == "netup":
         for y in (20, 31, 42):

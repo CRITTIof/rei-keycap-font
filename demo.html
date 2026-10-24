@@ -135,7 +135,7 @@ pre { margin: 10px 0 0; padding: 14px; overflow: auto; background: var(--panel);
   <header>
     <div>
       <h1>REICONFONT</h1>
-      <p class="sub"><b>87</b> keycaps + <b>27</b> system icons · <b>106</b> physical Windows keycodes · transparent outline<br>Press any key to test; duplicate physical keys share one glyph.</p>
+      <p class="sub"><b>87</b> keycaps + <b>32</b> system icons · <b>106</b> physical Windows keycodes · transparent outline<br>Press any key to test; duplicate physical keys share one glyph.</p>
     </div>
     <button class="theme" id="theme" type="button">LIGHT</button>
   </header>
@@ -156,7 +156,7 @@ pre { margin: 10px 0 0; padding: 14px; overflow: auto; background: var(--panel);
 
   <section class="panel">
     <div class="panel-head">
-      <div class="panel-title">87 KEYCAPS / 106 KEYCODES · +27 SYSTEM ICONS</div>
+      <div class="panel-title">87 KEYCAPS / 106 KEYCODES · +32 SYSTEM ICONS</div>
       <div class="controls"><label for="size">SIZE</label><input id="size" type="range" min="26" max="64" value="38" step="1"><span id="sizeLabel">38</span></div>
     </div>
 <section class="group">
@@ -200,7 +200,7 @@ pre { margin: 10px 0 0; padding: 14px; overflow: auto; background: var(--panel);
     <button class="cap" type="button" data-glyph="microphone" data-icon="U+E208" data-label="Mic" data-full="Microphone" aria-label="Mic — Microphone" title="Mic — Microphone · U+E208"><span class="cap-glyph" aria-hidden="true">&#xE208;</span></button>
   </div>
 </section><section class="group">
-  <div class="group-head"><span>08 / INTERFACE</span><span>10</span></div>
+  <div class="group-head"><span>08 / INTERFACE</span><span>15</span></div>
   <div class="caps">
     <button class="cap" type="button" data-glyph="content" data-icon="U+E300" data-label="Content" data-full="Content" aria-label="Content — Content" title="Content — Content · U+E300"><span class="cap-glyph" aria-hidden="true">&#xE300;</span></button>
     <button class="cap" type="button" data-glyph="appearance" data-icon="U+E301" data-label="Look" data-full="Appearance" aria-label="Look — Appearance" title="Look — Appearance · U+E301"><span class="cap-glyph" aria-hidden="true">&#xE301;</span></button>
@@ -212,6 +212,11 @@ pre { margin: 10px 0 0; padding: 14px; overflow: auto; background: var(--panel);
     <button class="cap" type="button" data-glyph="move" data-icon="U+E307" data-label="Move" data-full="Move" aria-label="Move — Move" title="Move — Move · U+E307"><span class="cap-glyph" aria-hidden="true">&#xE307;</span></button>
     <button class="cap" type="button" data-glyph="add" data-icon="U+E308" data-label="Add" data-full="Add" aria-label="Add — Add" title="Add — Add · U+E308"><span class="cap-glyph" aria-hidden="true">&#xE308;</span></button>
     <button class="cap" type="button" data-glyph="expand" data-icon="U+E309" data-label="Expand" data-full="Expand" aria-label="Expand — Expand" title="Expand — Expand · U+E309"><span class="cap-glyph" aria-hidden="true">&#xE309;</span></button>
+    <button class="cap" type="button" data-glyph="video" data-icon="U+E30A" data-label="Video" data-full="Video" aria-label="Video — Video" title="Video — Video · U+E30A"><span class="cap-glyph" aria-hidden="true">&#xE30A;</span></button>
+    <button class="cap" type="button" data-glyph="clock" data-icon="U+E30B" data-label="Clock" data-full="Clock" aria-label="Clock — Clock" title="Clock — Clock · U+E30B"><span class="cap-glyph" aria-hidden="true">&#xE30B;</span></button>
+    <button class="cap" type="button" data-glyph="keypress" data-icon="U+E30C" data-label="Press" data-full="Key press" aria-label="Press — Key press" title="Press — Key press · U+E30C"><span class="cap-glyph" aria-hidden="true">&#xE30C;</span></button>
+    <button class="cap" type="button" data-glyph="play" data-icon="U+E30D" data-label="Play" data-full="Play" aria-label="Play — Play" title="Play — Play · U+E30D"><span class="cap-glyph" aria-hidden="true">&#xE30D;</span></button>
+    <button class="cap" type="button" data-glyph="pausemedia" data-icon="U+E30E" data-label="Pause" data-full="Pause" aria-label="Pause — Pause" title="Pause — Pause · U+E30E"><span class="cap-glyph" aria-hidden="true">&#xE30E;</span></button>
   </div>
 </section>
   </section>
@@ -225,7 +230,7 @@ pre { margin: 10px 0 0; padding: 14px; overflow: auto; background: var(--panel);
         <li>See <code>MAPPING.md</code> for the full <code>event.code</code> → codepoint table.</li>
         <li>Normal text <code>A-Z</code> / <code>a-z</code> / <code>0-9</code> render the matching keycap glyph directly.</li>
         <li>Letter and digit keycaps use a monospaced face, so every one has the same width.</li>
-        <li>27 transparent icons: 8 software / file / AI (U+E100–U+E107), 9 hardware (U+E200–U+E208), 10 interface (U+E300–U+E309).</li>
+        <li>32 transparent icons: 8 software / file / AI (U+E100–U+E107), 9 hardware (U+E200–U+E208), 15 interface (U+E300–U+E30E).</li>
         <li>Fn usually emits no browser key event; treat it as a custom/visual key.</li>
       </ul>
     </div>
