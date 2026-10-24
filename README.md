@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <img alt="version" src="https://img.shields.io/badge/version-1.8.0-555">
+  <img alt="version" src="https://img.shields.io/badge/version-1.8.1-555">
   <img alt="glyphs" src="https://img.shields.io/badge/glyphs-119-2C8EBB">
   <img alt="keycaps" src="https://img.shields.io/badge/keycaps-87-0078D6">
   <img alt="license" src="https://img.shields.io/badge/license-OFL--1.1-3DA639">
@@ -150,7 +150,7 @@ fonts/ReiconFont-Regular.woff2
 
 字形轮廓来自 **Noto Sans SemiBold**（Copyright 2018 The Noto Project Authors）和 **JetBrains Mono SemiBold**（Copyright 2020 The JetBrains Mono Project Authors），两者同样以 OFL 1.1 使用。生成字体命名为 **ReiconFont**，未使用源字体的保留名称。
 
-<p align="center"><sub>ReiconFont v1.8.0 · 119 glyphs · SIL Open Font License 1.1</sub></p>
+<p align="center"><sub>ReiconFont v1.8.1 · 119 glyphs · SIL Open Font License 1.1</sub></p>
 
 ---
 

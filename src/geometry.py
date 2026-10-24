@@ -358,39 +358,40 @@ def draw_icon_svg(pen, gid):
     if gid == "cpu":
         ring_rr(pen, 13, 13, 36, 36, 5)
         ring_rr(pen, 25, 25, 12, 12, 2)
+        # Pins end at y=8/54 so every hardware icon shares the same
+        # 46-unit visual height.
         for p in (22, 31, 40):
-            capsule(pen, p, 8, p, 14)
-            capsule(pen, p, 48, p, 54)
-            capsule(pen, 8, p, 14, p)
-            capsule(pen, 48, p, 54, p)
+            capsule(pen, p, 9.75, p, 14)
+            capsule(pen, p, 48, p, 52.25)
+            capsule(pen, 9.75, p, 14, p)
+            capsule(pen, 48, p, 52.25, p)
 
     elif gid == "gpu":
-        # Narrower card; the three bottom pins keep their original spacing
-        # and line width.
-        ring_rr(pen, 14, 20, 32, 20, 3)
-        capsule(pen, 6, 17, 6, 45)
-        capsule(pen, 3.5, 20, 7, 20)
-        capsule(pen, 3.5, 42, 7, 42)
-        ring_ellipse(pen, 30, 30, 5.8, 6.4, 3.0)
-        for x in (22, 30, 38):
-            capsule(pen, x, 40, x, 45, 2.2)
+        # Taller card: the three bottom pins keep their spacing and width.
+        ring_rr(pen, 11, 10, 39, 36, 4)
+        capsule(pen, 5.5, 9.6, 5.5, 46, 3.2)
+        capsule(pen, 3.6, 13, 7.4, 13, 3.0)
+        capsule(pen, 3.6, 43, 7.4, 43, 3.0)
+        ring_ellipse(pen, 31, 28, 7.2, 7.2, 3.0)
+        for x in (19, 30.5, 42):
+            capsule(pen, x, 46, x, 52.8, 2.4)
 
     elif gid == "ram":
-        # Simplified: three internal rectangles and five bottom pins.
-        ring_rr(pen, 6, 23, 50, 15, 3)
-        for x in (13, 26, 39):
-            ring_rr(pen, x, 27.5, 9, 6, 1.2, 2.2)
-        for x in (14, 23, 32, 41, 50):
-            capsule(pen, x, 38, x, 43, 2.2)
+        # Full-height module: four vertical chips and five bottom pins.
+        ring_rr(pen, 6, 9.75, 50, 33.5, 3)
+        for x in (11.5, 22.5, 33.5, 44.5):
+            ring_rr(pen, x, 17.5, 8, 18, 1.2, 2.2)
+        for x in (12, 21, 30, 39, 48):
+            capsule(pen, x, 44, x, 52.8, 2.4)
 
     elif gid == "rom":
         # "ROM" in this keyboard means the hard drive: enclosure, platter,
         # spindle and actuator arm.
-        ring_rr(pen, 10, 17, 42, 28, 3)
-        ring_circle(pen, 25, 31, 8.0, 3.2)
-        circle(pen, 25, 31, 2.0)
-        circle(pen, 45, 21, 2.2)
-        capsule(pen, 45, 21, 30, 30, 3.0)
+        ring_rr(pen, 7, 9.75, 48, 42.5, 4)
+        ring_circle(pen, 24, 30, 12.0, 3.2)
+        circle(pen, 24, 30, 2.5)
+        circle(pen, 47, 17, 2.4)
+        capsule(pen, 47, 17, 30, 27, 3.0)
 
     elif gid == "terminal":
         ring_rr(pen, 8, 14, 46, 34, 4)
@@ -422,20 +423,20 @@ def draw_icon_svg(pen, gid):
     elif gid == "usb":
         # Front view of a USB-A flash drive: metal plug with two square
         # cut-outs, then a slightly wider body with an open bottom.
-        ring_rr(pen, 17, 6, 28, 24, 2.5)
-        ring_rr(pen, 22.0, 14.5, 5.2, 5.2, 0.8, 2.2)
-        ring_rr(pen, 34.8, 14.5, 5.2, 5.2, 0.8, 2.2)
-        capsule(pen, 42.8, 6.6, 42.8, 29.4, 1.6)
-        capsule(pen, 15.5, 29.5, 15.5, 52.0, 3.5)
-        capsule(pen, 46.5, 29.5, 46.5, 52.0, 3.5)
+        ring_rr(pen, 17, 9.75, 28, 22, 2.5)
+        ring_rr(pen, 22.0, 16.25, 5.2, 5.2, 0.8, 2.2)
+        ring_rr(pen, 34.8, 16.25, 5.2, 5.2, 0.8, 2.2)
+        capsule(pen, 42.8, 10.35, 42.8, 31.15, 1.6)
+        capsule(pen, 15.5, 32.25, 15.5, 52.25, 3.5)
+        capsule(pen, 46.5, 32.25, 46.5, 52.25, 3.5)
 
     elif gid == "volume":
-        ring_rr(pen, 12, 24, 8, 14, 2)
-        capsule(pen, 20, 24, 32, 16)
-        capsule(pen, 32, 16, 32, 46)
-        capsule(pen, 20, 38, 32, 46)
-        stroke_arc(pen, 32, 31, 9.0, math.radians(-55), math.radians(55), 2.6)
-        stroke_arc(pen, 32, 31, 14.5, math.radians(-55), math.radians(55), 2.6)
+        ring_rr(pen, 9, 18.5, 11, 25, 2, 3.0)
+        capsule(pen, 20, 18.5, 36, 9.5, 3.0)
+        capsule(pen, 36, 9.5, 36, 52.5, 3.0)
+        capsule(pen, 20, 43.5, 36, 52.5, 3.0)
+        stroke_arc(pen, 36, 31, 10.5, math.radians(-55), math.radians(55), 2.6)
+        stroke_arc(pen, 36, 31, 16.0, math.radians(-55), math.radians(55), 2.6)
 
     elif gid == "folder":
         # Folder with a tab and a front-panel fold line.
@@ -481,10 +482,10 @@ def draw_icon_svg(pen, gid):
 
     elif gid == "microphone":
         # Microphone capsule, U-shaped cradle, stem and base.
-        ring_rr(pen, 24, 8, 14, 26, 7)
-        stroke_arc(pen, 31, 30, 10, 0.0, math.pi, 3.2)
-        capsule(pen, 31, 40, 31, 47)
-        capsule(pen, 24, 49, 38, 49)
+        ring_rr(pen, 24, 9.5, 14, 27, 7)
+        stroke_arc(pen, 31, 34, 11.5, 0.0, math.pi, 3.2)
+        capsule(pen, 31, 45, 31, 50)
+        capsule(pen, 23, 52.25, 39, 52.25, 3.4)
 
     elif gid == "content":
         # Text block: one heavy heading bar above three body lines.
@@ -605,20 +606,20 @@ def draw_icon_svg(pen, gid):
         rr(pen, 36, 13, 9, 36, 3.5)
 
     elif gid == "netup":
-        for y in (20, 31, 42):
-            capsule(pen, 9, y, 35, y, 3.2)
-        capsule(pen, 36, 20, 36, 42, 3.2)
-        capsule(pen, 50, 46, 50, 20)
-        capsule(pen, 50, 15, 43, 23)
-        capsule(pen, 50, 15, 57, 23)
+        for y in (13, 31, 49):
+            capsule(pen, 9, y, 35, y, 3.6)
+        capsule(pen, 36.5, 13, 36.5, 49, 3.2)
+        capsule(pen, 52, 12.25, 52, 52.25)
+        capsule(pen, 52, 9.75, 45.5, 18.25)
+        capsule(pen, 52, 9.75, 58.5, 18.25)
 
     elif gid == "netdown":
-        for y in (20, 31, 42):
-            capsule(pen, 9, y, 35, y, 3.2)
-        capsule(pen, 36, 20, 36, 42, 3.2)
-        capsule(pen, 50, 16, 50, 42)
-        capsule(pen, 50, 47, 43, 39)
-        capsule(pen, 50, 47, 57, 39)
+        for y in (13, 31, 49):
+            capsule(pen, 9, y, 35, y, 3.6)
+        capsule(pen, 36.5, 13, 36.5, 49, 3.2)
+        capsule(pen, 52, 9.75, 52, 49.75)
+        capsule(pen, 52, 52.25, 45.5, 44)
+        capsule(pen, 52, 52.25, 58.5, 44)
 
 
 def draw_frame_svg(pen, W):
